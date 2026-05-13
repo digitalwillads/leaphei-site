@@ -1,0 +1,257 @@
+<!-- title: Our Mission — Equity for the homeowners who built it. -->
+<!-- desc: Leap was founded on a belief: that the homeowners who built their equity should be the ones who benefit from it. Here's why we exist and what we're working toward. -->
+
+<style>
+  /* Scoped to mission page — keeps css/main.css untouched. */
+  .mission__stat-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 3rem;
+    align-items: center;
+  }
+  .mission__stat-figure {
+    font-family: var(--font-serif, Georgia, "Times New Roman", serif);
+    font-weight: 600;
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--color-red, #b8332a);
+    margin: 0;
+  }
+  .mission__stat-figure small {
+    display: block;
+    font-family: inherit;
+    font-size: 0.32em;
+    font-weight: 500;
+    color: var(--color-ink, #1a1a1a);
+    margin-top: 0.6rem;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  @media (max-width: 760px) {
+    .mission__stat-hero { grid-template-columns: 1fr; gap: 1.5rem; }
+  }
+
+  .mission__manifesto {
+    text-align: center;
+    max-width: 56rem;
+    margin: 0 auto;
+  }
+  .mission__manifesto-eyebrow {
+    color: var(--color-gold, #d4a017);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 1.75rem;
+  }
+  .mission__manifesto-quote {
+    font-family: var(--font-serif, Georgia, "Times New Roman", serif);
+    font-weight: 500;
+    font-size: clamp(1.75rem, 4.2vw, 3rem);
+    line-height: 1.18;
+    letter-spacing: -0.015em;
+    margin: 0 0 1.5rem;
+    text-wrap: balance;
+  }
+  .mission__manifesto-quote em {
+    color: var(--color-gold, #d4a017);
+    font-style: italic;
+  }
+  .mission__manifesto-attribution {
+    font-size: 0.95rem;
+    opacity: 0.7;
+    letter-spacing: 0.05em;
+  }
+
+  .mission__split {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: 3.5rem;
+    align-items: start;
+  }
+  @media (max-width: 860px) {
+    .mission__split { grid-template-columns: 1fr; gap: 2rem; }
+  }
+  .mission__split-prose p { margin-bottom: 1rem; }
+
+  .mission__stat-panel {
+    background: var(--color-cream, #f5efe4);
+    border-left: 4px solid var(--color-red, #b8332a);
+    padding: 2.25rem 2rem;
+    border-radius: 6px;
+  }
+  .mission__stat-panel-figure {
+    font-family: var(--font-serif, Georgia, "Times New Roman", serif);
+    font-size: clamp(2.25rem, 5vw, 3.25rem);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--color-red, #b8332a);
+    margin: 0 0 0.85rem;
+  }
+  .mission__stat-panel-label {
+    font-size: 1rem;
+    line-height: 1.45;
+    margin: 0;
+    color: var(--color-ink, #1a1a1a);
+  }
+  .mission__stat-panel-source {
+    margin-top: 1.1rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.55;
+  }
+
+  .mission__card--dark {
+    background: var(--charcoal);            /* forest #1e3528 */
+    color: var(--off-white);
+    border-color: transparent;
+  }
+  .mission__card--dark .card__title { color: var(--off-white); }
+  .mission__card--dark .card__body,
+  .mission__card--dark .card__body p { color: rgba(244,240,232,0.82); opacity: 1; }
+  .mission__card--dark .card__eyebrow { color: var(--gold-soft); opacity: 1; }
+
+  .mission__card--warm {
+    background: var(--off-white-warm);      /* linen-warm #ede8dd */
+    color: var(--charcoal);
+    border-color: var(--bronze-pale);
+  }
+  .mission__card--warm .card__title { color: var(--charcoal); }
+  .mission__card--warm .card__body,
+  .mission__card--warm .card__body p { color: var(--text-muted); opacity: 1; }
+  .mission__card--warm .card__eyebrow { color: var(--gold); opacity: 1; }
+
+  .mission__team-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 2.25rem 2.5rem;
+    background: var(--color-cream, #f5efe4);
+    border-radius: 8px;
+    flex-wrap: wrap;
+  }
+  .mission__team-cta-text {
+    max-width: 38rem;
+  }
+  .mission__team-cta-text h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+  .mission__team-cta-text p {
+    margin: 0;
+    opacity: 0.75;
+  }
+</style>
+
+  <section class="page-head page-head--editorial page-head--with-image">
+    <div class="container">
+      <div class="page-head__grid">
+        <div class="page-head__copy">
+          <span class="page-head__chapter">Our Mission &middot; Equity, Where It Belongs</span>
+          <h1 class="page-head__title">Equity belongs to the <em>homeowners who&nbsp;built&nbsp;it</em>.</h1>
+          <p class="page-head__lead">Our mission is to close the wealth gap by empowering historically underserved homeowners. The wealth stored in American homes belongs to the families who built it, brick by brick, payment by payment, decade by decade.</p>
+        </div>
+        <div class="page-head__image-wrap">
+          <img src="images/mission-hero.jpeg" alt="A tree-lined American residential street at golden hour, modest brick rowhouses with wreaths and porch chairs set behind mature autumn trees." class="page-head__image" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Module 1: Opening stat hero -->
+  <section class="section">
+    <div class="container">
+      <div class="mission__stat-hero">
+        <div>
+          <p class="mission__stat-figure">
+            $35T
+            <small>in home equity sits in American homes &mdash; the single largest store of household wealth in the country.</small>
+          </p>
+        </div>
+        <div class="prose">
+          <h2 class="h2">The wealth that sits in homes</h2>
+          <p>For most American families, the equity in their home is worth more than their retirement accounts, stock portfolios, and savings combined.</p>
+          <p>But for the homeowners who hold it, that equity has historically been one of the hardest assets to access. Traditional products require strong current income, accept new monthly payments onto the household budget, or transfer ownership of the home to a lender.</p>
+          <p>For homeowners on fixed incomes, between jobs, or simply unwilling to take on new debt, those products put their own equity out of reach.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Module 2: Manifesto / dark pull-quote -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="mission__manifesto">
+        <div class="mission__manifesto-eyebrow">What we believe</div>
+        <blockquote class="mission__manifesto-quote">
+          &ldquo;Community, not exploitation, is the nature of capitalism in the 21st century: <em>inclusive&nbsp;capitalism</em>.&rdquo;
+        </blockquote>
+        <div class="mission__manifesto-attribution">The principle Leap is built on.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Module 3: Equity, redlining, missing trillion -->
+  <section class="section section--off">
+    <div class="container">
+      <div class="mission__split">
+        <div class="mission__split-prose prose">
+          <span class="eyebrow">History</span>
+          <h2 class="h2" style="text-wrap: balance;">Equity, redlining, and the missing&nbsp;trillion</h2>
+          <p>The history of American home equity is not equally distributed. Federal redlining policies, enforced from the 1930s through the 1960s, systematically denied mortgage credit to Black and Latino families in specific neighborhoods.</p>
+          <p>The effect compounded across generations. Families denied access to homeownership in those decades had no equity to pass down. Their children entered adulthood without the down-payment support that built wealth for their neighbors. Their grandchildren start with the same disadvantage today.</p>
+          <p>Leap is not a fix for redlining. No product is. But we are explicitly built to serve homeowners in markets and demographics that traditional equity lenders have historically underserved, with underwriting that prioritizes equity ownership over income documentation, and a product structure that does not add a monthly payment to a budget that may already be stretched.</p>
+        </div>
+        <aside class="mission__stat-panel">
+          <p class="mission__stat-panel-figure">~$1T</p>
+          <p class="mission__stat-panel-label">The missing trillion dollars of equity that, absent redlining, would have accumulated in the homes of Black and Latino American families.</p>
+          <p class="mission__stat-panel-source">Federal Reserve &middot; Urban Institute</p>
+          <hr style="border:0;border-top:1px solid rgba(0,0,0,0.1);margin:1.5rem 0;">
+          <p class="mission__stat-panel-label" style="font-weight:500;">Black homeowners hold roughly <strong>half the equity</strong> of white homeowners &mdash; even after controlling for income and home value.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Module 4: Won't do / Working toward — card grid -->
+  <section class="section">
+    <div class="container">
+      <div class="card-grid card-grid--2">
+        <article class="card mission__card--dark">
+          <span class="card__eyebrow">What we won&rsquo;t do</span>
+          <h3 class="card__title">No predatory targeting. Ever.</h3>
+          <div class="card__body">
+            <p>Leap does not buy lead lists of distressed homeowners. We do not run direct-response advertising to households in foreclosure. We do not offer &ldquo;investment&rdquo; products that are reverse mortgages by another name &mdash; with compounding interest, lien-style claims, or balance-erodes-equity mechanics.</p>
+            <p>Every Leap product is a true equity investment: downside shared, no compounding, no monthly obligation. Every contract is written in plain English. Every appraisal is conducted by a third-party licensed appraiser. Every origination is reviewed against fair-lending standards stricter than what the law requires.</p>
+          </div>
+        </article>
+
+        <article class="card mission__card--warm">
+          <span class="card__eyebrow">What we&rsquo;re working toward</span>
+          <h3 class="card__title">Knowledge is Power.</h3>
+          <div class="card__body">
+            <p>Leap unlocks the equity in your home to help you achieve financial wellness. We combine advanced financial technology with institutional real estate expertise to improve financial literacy, remove bias from the application process through AI and ML, and put cash to work paying down debt instead of adding to it.</p>
+            <p>A home equity account that is as accessible to the family who built it as a checking account &mdash; no strings, no monthly payments, no surrendering the home itself. That is the work. That is what every Leap investment is engineered to advance.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Module 5: Team CTA -->
+  <section class="section section--off-warm">
+    <div class="container container--narrow">
+      <div class="mission__team-cta">
+        <div class="mission__team-cta-text">
+          <h3>We believe in teamwork &mdash; and having fun when we&rsquo;re not grinding on your behalf.</h3>
+          <p>The people building Leap come from the communities Leap was built to serve.</p>
+        </div>
+        <a href="about.html" class="btn btn--primary btn--lg">Meet the team &rarr;</a>
+      </div>
+    </div>
+  </section>

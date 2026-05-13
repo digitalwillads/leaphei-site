@@ -1,0 +1,685 @@
+<!-- title: How a home equity investment works -->
+<!-- desc: The full mechanics of a Leap HEI. How equity is calculated, how the investment is structured, what happens at the term end, and what happens if home values change. -->
+
+<style>
+  /* Page-scoped mechanics styles */
+  .mechanics__two-col {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  @media (max-width: 880px) {
+    .mechanics__two-col { grid-template-columns: 1fr; gap: 2rem; }
+  }
+  .mechanics__copy h2 { margin-top: 0; }
+  .mechanics__copy p { margin: 0 0 1rem; }
+  .mechanics__copy p:last-child { margin-bottom: 0; }
+
+  .mechanics__calc {
+    background: var(--off-white-warm);
+    border: 1px solid var(--rule, rgba(22,24,27,0.12));
+    border-left: 3px solid var(--gold);
+    padding: 2rem;
+    border-radius: 4px;
+  }
+  .mechanics__calc-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 600;
+    color: var(--text-muted, #595A5C);
+    margin-bottom: 1.25rem;
+  }
+  .mechanics__calc-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(22,24,27,0.08);
+    font-family: var(--font-sans);
+  }
+  .mechanics__calc-row:last-of-type { border-bottom: 0; }
+  .mechanics__calc-label {
+    font-size: 0.875rem;
+    color: var(--charcoal-soft, #2A2D32);
+    letter-spacing: 0.02em;
+  }
+  .mechanics__calc-value {
+    font-family: var(--font-serif, 'Source Serif 4', serif);
+    font-size: 1.5rem;
+    color: var(--charcoal);
+    font-weight: 500;
+  }
+  .mechanics__calc-value--xl {
+    font-size: 2.25rem;
+  }
+  .mechanics__calc-value--accent {
+    color: var(--red);
+  }
+  .mechanics__calc-cap {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 2px solid var(--charcoal);
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--charcoal);
+  }
+  .mechanics__calc-cap strong { font-weight: 700; }
+
+  /* Worked example on dark */
+  .mechanics__example {
+    background: var(--charcoal);
+    color: var(--text-on-dark);
+    padding: 3rem 2.5rem;
+    border-radius: 4px;
+  }
+  @media (max-width: 720px) {
+    .mechanics__example { padding: 2rem 1.5rem; }
+  }
+  .mechanics__example-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+    color: var(--gold-soft);
+    margin-bottom: 1rem;
+  }
+  .mechanics__example-title {
+    font-family: var(--font-serif, 'Source Serif 4', serif);
+    color: var(--text-on-dark);
+    margin: 0 0 0.5rem;
+    font-size: 1.875rem;
+    font-weight: 500;
+  }
+  .mechanics__example-lead {
+    color: var(--text-on-dark-muted);
+    font-family: var(--font-sans);
+    margin: 0 0 2rem;
+    max-width: 56ch;
+  }
+  .mechanics__example-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+  @media (max-width: 720px) {
+    .mechanics__example-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  }
+  .mechanics__example-col h4 {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+    color: var(--gold-soft);
+    margin: 0 0 1rem;
+  }
+  .mechanics__example-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid rgba(240,237,230,0.12);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+  }
+  .mechanics__example-row:last-child { border-bottom: 0; }
+  .mechanics__example-row span:first-child { color: var(--text-on-dark-muted); }
+  .mechanics__example-row span:last-child {
+    font-family: var(--font-serif, 'Source Serif 4', serif);
+    color: var(--text-on-dark);
+    font-size: 1.125rem;
+  }
+  .mechanics__example-row--total {
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+    border-top: 2px solid var(--gold);
+    border-bottom: 0 !important;
+  }
+  .mechanics__example-row--total span:first-child {
+    color: var(--gold-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.72rem;
+    font-weight: 600;
+  }
+  .mechanics__example-row--total span:last-child {
+    color: var(--gold-soft);
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  /* ── Settlement chart — editorial bar visualization ──
+     Replaces the previous 4-quadrant figure grid with two
+     readable horizontal bars: home value over time, then the
+     $620K sale split. Same forest/bronze/linen palette. */
+  .settlement-chart {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(244,240,232,0.10);
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  .settlement-chart__section-label {
+    font-family: var(--font-sans);
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    font-weight: 400;
+    color: var(--gold-soft);
+    margin-bottom: 1.5rem;
+  }
+
+  /* Timeline rows (Today / In five years) */
+  .settlement-chart__timeline { display: flex; flex-direction: column; gap: 1rem; }
+  .settlement-chart__row {
+    display: grid;
+    grid-template-columns: 130px 1fr auto;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  .settlement-chart__row-label {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--text-on-dark-muted);
+  }
+  .settlement-chart__row-bar {
+    height: 32px;
+    background: rgba(244,240,232,0.06);
+    position: relative;
+    display: flex;
+    overflow: hidden;
+  }
+  .settlement-chart__row-fill {
+    height: 100%;
+    background: var(--off-white);
+    transition: width 1.2s cubic-bezier(0.16,1,0.3,1);
+  }
+  .settlement-chart__row-delta {
+    height: 100%;
+    background: var(--gold);
+    transition: width 1.2s cubic-bezier(0.16,1,0.3,1) 0.2s;
+  }
+  .settlement-chart__row-value {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--off-white);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-align: right;
+    min-width: 7ch;
+  }
+  .settlement-chart__row-delta-label {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-top: 0.35rem;
+    font-weight: 500;
+  }
+
+  /* Split bar (the $620K split into three slices) */
+  .settlement-chart__split-bar {
+    display: flex;
+    height: 96px;
+    border: 1px solid rgba(184,151,90,0.18);
+  }
+  .settlement-chart__split {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0.9rem 1rem;
+    min-width: 0;
+    border-right: 1px solid rgba(15,22,17,0.5);
+  }
+  .settlement-chart__split:last-child { border-right: 0; }
+  .settlement-chart__split--keep {
+    background: var(--off-white);
+    color: var(--charcoal);
+  }
+  .settlement-chart__split--principal {
+    background: var(--gold);
+    color: var(--charcoal-deep);
+  }
+  .settlement-chart__split--share {
+    background: var(--gold-soft);
+    color: var(--charcoal-deep);
+  }
+  .settlement-chart__split-amount {
+    font-family: var(--font-serif);
+    font-size: clamp(1.25rem, 1rem + 0.8vw, 1.75rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.025em;
+  }
+  .settlement-chart__split-label {
+    font-family: var(--font-sans);
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 400;
+    opacity: 0.82;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .settlement-chart__split-pct {
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    opacity: 0.7;
+    margin-top: 0.2rem;
+  }
+
+  /* Totals line below the split bar */
+  .settlement-chart__totals {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    margin-top: -0.5rem;
+  }
+  .settlement-chart__total {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .settlement-chart__total--leap { text-align: right; }
+  .settlement-chart__total-label {
+    font-family: var(--font-sans);
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    color: var(--text-on-dark-muted);
+  }
+  .settlement-chart__total-value {
+    font-family: var(--font-serif);
+    font-size: clamp(1.75rem, 1.3rem + 1.4vw, 2.4rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+  }
+  .settlement-chart__total-value--keep { color: var(--off-white); }
+  .settlement-chart__total-value--leap { color: var(--gold-soft); }
+  .settlement-chart__total-pct {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: var(--text-on-dark-muted);
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 720px) {
+    .settlement-chart__row { grid-template-columns: 90px 1fr; }
+    .settlement-chart__row-value { grid-column: 2 / 3; text-align: left; margin-top: 0.25rem; }
+    .settlement-chart__split-bar { height: auto; flex-direction: column; }
+    .settlement-chart__split {
+      border-right: 0;
+      border-bottom: 1px solid rgba(15,22,17,0.4);
+      padding: 1rem 1.1rem;
+      flex-direction: row;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .settlement-chart__split:last-child { border-bottom: 0; }
+    .settlement-chart__split-label { font-size: 0.66rem; }
+    .settlement-chart__totals { grid-template-columns: 1fr; gap: 1rem; }
+    .settlement-chart__total--leap { text-align: left; }
+  }
+
+  /* Downside callout */
+  .mechanics__callout {
+    border-left: 4px solid var(--gold);
+    background: var(--off-white-warm);
+    padding: 1.75rem 2rem;
+    border-radius: 0 4px 4px 0;
+  }
+  .mechanics__callout-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .mechanics__callout h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1.375rem;
+  }
+  .mechanics__callout p {
+    margin: 0 0 0.75rem;
+    font-family: var(--font-sans);
+    color: var(--charcoal-soft, #2A2D32);
+  }
+  .mechanics__callout p:last-child { margin-bottom: 0; }
+
+  /* Final CTA banner */
+  .mechanics__cta {
+    text-align: center;
+    background: var(--charcoal);
+    color: var(--text-on-dark);
+    padding: 3.5rem 2rem;
+    border-radius: 4px;
+  }
+  .mechanics__cta-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+    color: var(--gold-soft);
+    margin-bottom: 1rem;
+  }
+  .mechanics__cta h2 {
+    color: var(--text-on-dark);
+    margin: 0 0 1rem;
+    font-size: 2rem;
+  }
+  .mechanics__cta p {
+    color: var(--text-on-dark-muted);
+    margin: 0 auto 2rem;
+    max-width: 52ch;
+    font-family: var(--font-sans);
+  }
+
+  .mechanics__section-head {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 3rem;
+  }
+  .mechanics__section-head h2 { margin: 0.5rem 0 0.75rem; }
+  .mechanics__section-head p {
+    margin: 0;
+    color: var(--text-muted, #595A5C);
+    font-family: var(--font-sans);
+  }
+
+  /* Editorial page-head is now defined globally in css/main.css —
+     see .page-head--editorial / .page-head--with-image / .page-head__chapter.
+     Per Will's 2026-05-13 "this looks too much like the first header
+     on the homepage" — the editorial cream + portrait-inset variant
+     differentiates interior pages from the marketing hero. */
+</style>
+
+  <section class="page-head page-head--editorial page-head--with-image">
+    <div class="container">
+      <div class="page-head__grid">
+        <div class="page-head__copy">
+          <span class="page-head__chapter">Chapter 01 &middot; The Mechanics</span>
+          <h1 class="page-head__title">A home equity investment, <em>fully&nbsp;explained</em>.</h1>
+          <p class="page-head__lead">Most homeowners have only encountered HELOCs and cash-out refinancing. A home equity investment is structurally different. This page is the long version &mdash; written so you can decide with full information.</p>
+        </div>
+        <div class="page-head__image-wrap">
+          <img src="images/how-it-works-hero.jpeg" alt="A sunlit reading nook with a linen armchair, fiddle-leaf fig, and open book on a vintage oak side table." class="page-head__image" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="explainer__steps explainer__steps--four">
+        <article class="step">
+          <span class="step__when">Day 0</span>
+          <div class="step__num">1</div>
+          <span class="step__label">Step One</span>
+          <h3 class="step__title">Apply and qualify</h3>
+          <p class="step__body">A three-question pre-qualification confirms eligibility in under two minutes, and a full application then runs an automated credit and equity check without the income statements, employment verification, or paperwork backlog that a traditional mortgage process tends to require.</p>
+        </article>
+        <article class="step">
+          <span class="step__when">Within days</span>
+          <div class="step__num">2</div>
+          <span class="step__label">Step Two</span>
+          <h3 class="step__title">Receive your investment</h3>
+          <p class="step__body">Once approved, the investment funds at closing, typically within days, and up to $300,000 in cash is deposited directly to your account for any purpose you choose.</p>
+        </article>
+        <article class="step">
+          <span class="step__when">Years 1&ndash;30</span>
+          <div class="step__num">3</div>
+          <span class="step__label">Step Three</span>
+          <h3 class="step__title">Live without a new payment</h3>
+          <p class="step__body">For the full term of the investment, anywhere from ten to thirty years depending on the product, you make no monthly payments and accrue no interest, so the investment never shows up on your household budget the way a HELOC or refinance would.</p>
+        </article>
+        <article class="step">
+          <span class="step__when">At sale</span>
+          <div class="step__num">4</div>
+          <span class="step__label">Step Four</span>
+          <h3 class="step__title">Repay when you choose</h3>
+          <p class="step__body">When you sell the home, refinance, or reach the end of the term, you repay the original investment plus a share of your home's appreciation since the investment began.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 1: Two-column investment calculation -->
+  <section class="section section--off">
+    <div class="container">
+      <div class="mechanics__two-col">
+        <div class="mechanics__copy">
+          <span class="eyebrow">The math</span>
+          <h2>How the investment is calculated</h2>
+          <p>The amount Leap can invest depends on two figures: your home's appraised value and the equity you already hold in it. We invest in the equity, not the underlying mortgage.</p>
+          <p>For most homeowners, Leap invests between 10 and 25 percent of the current appraised value, up to a $300,000 maximum. The exact figure depends on the product, your credit profile, the local market, and the term length you choose.</p>
+        </div>
+        <aside class="mechanics__calc" aria-label="Example investment range">
+          <div class="mechanics__calc-eyebrow">If your home appraises at</div>
+          <div class="mechanics__calc-row">
+            <span class="mechanics__calc-label">Home appraised value</span>
+            <span class="mechanics__calc-value mechanics__calc-value--xl">$500,000</span>
+          </div>
+          <div class="mechanics__calc-row">
+            <span class="mechanics__calc-label">Investment range</span>
+            <span class="mechanics__calc-value">10&ndash;25%</span>
+          </div>
+          <div class="mechanics__calc-row">
+            <span class="mechanics__calc-label">Available to you</span>
+            <span class="mechanics__calc-value mechanics__calc-value--accent">$50K&ndash;$125K</span>
+          </div>
+          <div class="mechanics__calc-cap">
+            <span>Program maximum</span>
+            <strong>$300,000</strong>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 2: Worked example on dark -->
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="mechanics__section-head">
+        <span class="eyebrow eyebrow--red">The repayment formula</span>
+        <h2>One investment, walked through end to end</h2>
+        <p>The formula has two parts: your original investment back, plus an agreed share of the appreciation. If your home does not appreciate, you owe only the original amount.</p>
+      </div>
+      <div class="mechanics__example">
+        <div class="mechanics__example-eyebrow">Worked example &middot; 5-year hold</div>
+        <h3 class="mechanics__example-title">A $75,000 investment at 30% appreciation&nbsp;share</h3>
+        <p class="mechanics__example-lead">Your home appraises at $500,000 today. Leap invests $75,000. Five years later you sell for $620,000. Here is the full settlement.</p>
+
+        <div class="settlement-chart">
+          <!-- Timeline: home value today vs. at sale -->
+          <div class="settlement-chart__section">
+            <div class="settlement-chart__section-label">Home value over the term</div>
+            <div class="settlement-chart__timeline">
+              <div class="settlement-chart__row">
+                <div class="settlement-chart__row-label">Today</div>
+                <div class="settlement-chart__row-bar">
+                  <div class="settlement-chart__row-fill" style="width:80.65%;"></div>
+                </div>
+                <div class="settlement-chart__row-value">$500,000</div>
+              </div>
+              <div class="settlement-chart__row">
+                <div class="settlement-chart__row-label">In five years</div>
+                <div class="settlement-chart__row-bar">
+                  <div class="settlement-chart__row-fill" style="width:80.65%;"></div>
+                  <div class="settlement-chart__row-delta" style="width:19.35%;"></div>
+                </div>
+                <div class="settlement-chart__row-value">
+                  $620,000
+                  <span class="settlement-chart__row-delta-label">+$120,000 &middot; +24%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Split bar: where the $620,000 goes -->
+          <div class="settlement-chart__section">
+            <div class="settlement-chart__section-label">Where the $620,000 sale goes</div>
+            <div class="settlement-chart__split-bar" role="img" aria-label="The $620,000 sale splits into $509,000 that stays with you, $75,000 original investment back to Leap, and $36,000 appreciation share to Leap.">
+              <div class="settlement-chart__split settlement-chart__split--keep" style="flex: 509;">
+                <div class="settlement-chart__split-amount">$509,000</div>
+                <div>
+                  <div class="settlement-chart__split-label">Stays with you</div>
+                  <div class="settlement-chart__split-pct">82.1%</div>
+                </div>
+              </div>
+              <div class="settlement-chart__split settlement-chart__split--principal" style="flex: 75;">
+                <div class="settlement-chart__split-amount">$75,000</div>
+                <div>
+                  <div class="settlement-chart__split-label">Original investment</div>
+                  <div class="settlement-chart__split-pct">12.1%</div>
+                </div>
+              </div>
+              <div class="settlement-chart__split settlement-chart__split--share" style="flex: 36;">
+                <div class="settlement-chart__split-amount">$36,000</div>
+                <div>
+                  <div class="settlement-chart__split-label">30% appreciation share</div>
+                  <div class="settlement-chart__split-pct">5.8%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Totals: side-by-side summary -->
+          <div class="settlement-chart__totals">
+            <div class="settlement-chart__total">
+              <div class="settlement-chart__total-label">Stays with you</div>
+              <div class="settlement-chart__total-value settlement-chart__total-value--keep">$509,000</div>
+              <div class="settlement-chart__total-pct">82.1% of the sale</div>
+            </div>
+            <div class="settlement-chart__total settlement-chart__total--leap">
+              <div class="settlement-chart__total-label">Total to Leap</div>
+              <div class="settlement-chart__total-value settlement-chart__total-value--leap">$111,000</div>
+              <div class="settlement-chart__total-pct">$75K invested + $36K share</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 3: Downside callout -->
+  <section class="section section--off">
+    <div class="container container--narrow">
+      <div class="mechanics__callout">
+        <div class="mechanics__callout-eyebrow">If values fall</div>
+        <h3>Leap shares the downside, not just the upside</h3>
+        <p>If your home appraises lower at the end of the investment than it did at the start, your repayment is reduced. In most products on a one-for-one basis. In the steepest declines, repayment can fall below the original investment.</p>
+        <p>This is the structural advantage of an investment over a loan. A loan must be repaid in full regardless of the home's market value. An investment shares the risk because it shares the upside.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 4: Two-card grid: early repayment + requirements -->
+  <section class="section">
+    <div class="container">
+      <div class="mechanics__section-head">
+        <span class="eyebrow">Terms and flexibility</span>
+        <h2>What you can do, what we ask</h2>
+      </div>
+      <div class="card-grid card-grid--2">
+        <article class="card">
+          <span class="card__eyebrow">Early repayment</span>
+          <h3 class="card__title">Repay any time, no penalty</h3>
+          <p class="card__body">You can settle a Leap investment at any point during the term. The amount due uses the same formula: the original investment plus the agreed share of appreciation as of the repayment date, based on a current appraisal.</p>
+        </article>
+        <article class="card">
+          <span class="card__eyebrow">Your obligations</span>
+          <h3 class="card__title">Live in the home. Stay current.</h3>
+          <p class="card__body">For the term of the investment, you occupy the home as your primary residence, keep it in reasonable condition, and stay current on your primary mortgage, property taxes, and homeowners insurance. There are no other ongoing obligations.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 5: Comparison table -->
+  <section class="section section--off">
+    <div class="container">
+      <div class="compare__head">
+        <span class="eyebrow">Side by side</span>
+        <h2>How a Leap HEI compares to a HELOC or cash-out refi</h2>
+        <p>A HELOC adds a second lien and a monthly payment. A cash-out refi replaces your mortgage with a larger one. A Leap HEI does neither.</p>
+      </div>
+      <div class="compare__wrap">
+        <table class="compare">
+          <thead>
+            <tr>
+              <th scope="col">&nbsp;</th>
+              <th scope="col" class="is-leap">Leap HEI</th>
+              <th scope="col">HELOC</th>
+              <th scope="col">Cash-out refi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Monthly payment</td>
+              <td class="is-leap">None</td>
+              <td>Yes, interest-bearing</td>
+              <td>Yes, larger than before</td>
+            </tr>
+            <tr>
+              <td>New interest accrues</td>
+              <td class="is-leap">No</td>
+              <td>Yes, variable rate</td>
+              <td>Yes, often at a higher rate</td>
+            </tr>
+            <tr>
+              <td>Adds to your debt balance</td>
+              <td class="is-leap">No &mdash; structured as an investment</td>
+              <td>Yes &mdash; second lien</td>
+              <td>Yes &mdash; replaces primary mortgage</td>
+            </tr>
+            <tr>
+              <td>Repayment trigger</td>
+              <td class="is-leap">Sale, refinance, or term end</td>
+              <td>Monthly, on a calendar</td>
+              <td>Monthly, on a calendar</td>
+            </tr>
+            <tr>
+              <td>Shares downside if values fall</td>
+              <td class="is-leap">Yes</td>
+              <td>No</td>
+              <td>No</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 6: Final CTA banner -->
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="mechanics__cta">
+        <div class="mechanics__cta-eyebrow">Next step</div>
+        <h2>Ready to see what you qualify for?</h2>
+        <p>A three-question pre-qualification takes under two minutes and does not affect your credit score. You'll get a product recommendation and an estimated investment range.</p>
+        <a href="apply.html" class="btn btn--primary btn--lg">Check my eligibility &rarr;</a>
+      </div>
+    </div>
+  </section>

@@ -1,0 +1,104 @@
+<!-- title: Check my eligibility -->
+<!-- desc: A three-question pre-qualification for a Leap HEI. Under two minutes. No credit pull. -->
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="prequal" data-prequal>
+        <div class="prequal__meta">
+          <span class="prequal__meta-item">3 questions</span>
+          <span class="prequal__meta-item">~2 minutes</span>
+          <span class="prequal__meta-item">No credit pull</span>
+        </div>
+        <div class="prequal__progress"><div class="prequal__progress-bar" style="width: 25%;"></div></div>
+
+        <!-- Step 1: use of funds -->
+        <div class="prequal__step is-active" data-key="use">
+          <div class="prequal__count">Question 1 of 3</div>
+          <h2 class="prequal__q">What would you use the funds for?</h2>
+          <div class="prequal__choices">
+            <button class="prequal__choice" data-value="debt">Pay off credit card or other high-interest debt</button>
+            <button class="prequal__choice" data-value="renovate">Renovate or improve my home</button>
+            <button class="prequal__choice" data-value="retirement">Supplement income or fund retirement</button>
+            <button class="prequal__choice" data-value="other">Something else</button>
+          </div>
+        </div>
+
+        <!-- Step 2: state -->
+        <div class="prequal__step" data-key="state">
+          <div class="prequal__count">Question 2 of 3</div>
+          <h2 class="prequal__q">What state is your home in?</h2>
+          <p class="prequal__hint" style="text-align:center; font-size: var(--fs-small); color: var(--text-muted); margin: -0.5rem 0 1rem;">Leap currently invests in 27 states. More on the way.</p>
+          <select class="prequal__input" name="state">
+            <option value="">Choose a state</option>
+            <option>Arizona</option>
+            <option>California</option>
+            <option>Colorado</option>
+            <option>Connecticut</option>
+            <option>Delaware</option>
+            <option>Florida</option>
+            <option>Georgia</option>
+            <option>Illinois</option>
+            <option>Indiana</option>
+            <option>Kansas</option>
+            <option>Kentucky</option>
+            <option>Maryland</option>
+            <option>Michigan</option>
+            <option>Missouri</option>
+            <option>Nevada</option>
+            <option>New Jersey</option>
+            <option>New Mexico</option>
+            <option>North Carolina</option>
+            <option>Ohio</option>
+            <option>Oregon</option>
+            <option>Pennsylvania</option>
+            <option>South Carolina</option>
+            <option>Tennessee</option>
+            <option>Utah</option>
+            <option>Virginia</option>
+            <option>Washington</option>
+            <option>Wisconsin</option>
+          </select>
+          <div class="prequal__nav">
+            <button class="prequal__back" type="button">&larr; Back</button>
+            <button data-next class="btn btn--charcoal" type="button">Continue &rarr;</button>
+          </div>
+        </div>
+
+        <!-- Step 3: credit -->
+        <div class="prequal__step" data-key="credit">
+          <div class="prequal__count">Question 3 of 3</div>
+          <h2 class="prequal__q">What range best describes your credit score?</h2>
+          <div class="prequal__choices">
+            <button class="prequal__choice" data-value="720+">720 or higher</button>
+            <button class="prequal__choice" data-value="660-720">Between 660 and 720</button>
+            <button class="prequal__choice" data-value="600-660">Between 600 and 660</button>
+            <button class="prequal__choice" data-value="<600">I'm not sure / under 600</button>
+          </div>
+          <div class="prequal__nav prequal__nav--back-only">
+            <button class="prequal__back" type="button">&larr; Back</button>
+          </div>
+        </div>
+
+        <!-- Result -->
+        <div class="prequal__step" data-key="result">
+          <div class="prequal__result">
+            <div class="prequal__match">Your recommended product</div>
+            <h2 class="prequal__match-name" data-result-name>Leap Restore</h2>
+            <p style="max-width: 48ch; margin: 0 auto 2rem; color: var(--text-muted); line-height: 1.6;" data-result-desc>Designed to help homeowners pay down high-interest debt and rebuild credit without a new monthly payment.</p>
+            <a href="solutions-restore.html" class="btn btn--primary btn--lg" data-result-link>Continue with this product &rarr;</a>
+            <p style="margin-top: 2rem; color: var(--text-muted);">Or talk to a Leap specialist instead — <a href="mailto:hello@leaphei.com?subject=Leap%20specialist%20conversation" style="color: var(--charcoal); text-decoration: underline; font-weight: 600;">hello@leaphei.com</a> or <a href="tel:+18005327462" style="color: var(--charcoal); text-decoration: underline; font-weight: 600;">(800)&nbsp;532-7462</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--off">
+    <div class="container container--narrow">
+      <div class="prose text-center" style="text-align:center;">
+        <h2>What happens after pre-qualification</h2>
+        <p>If you decide to keep going, the full application takes a few more minutes and includes a soft credit check plus an automated equity verification on your property. None of that touches your credit score or locks you in. An underwriter then reviews everything and gets back to you with a final offer in a matter of days.</p>
+        <p>Have a question first? <a href="mailto:hello@leaphei.com">Email us</a> or call <a href="tel:+18005327462">1-800-LEAP-HEI</a>. A licensed Leap specialist will answer.</p>
+      </div>
+    </div>
+  </section>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Check my eligibility — Leap HEI</title>
+  <meta name="description" content="A three-question pre-qualification for a Leap HEI. Under two minutes. No credit pull.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="css/main.css">
+  <meta name="theme-color" content="#1e3528">
+</head>
+<body>
+
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__brand" aria-label="Leap">
+        <img src="images/logo-gold.png" alt="Leap" class="nav__brand-img">
+      </a>
+      <nav>
+        <ul class="nav__menu">
+          <li><a href="how-it-works.html" class="nav__link">How it works</a></li>
+          <li><a href="solutions.html" class="nav__link">Solutions</a></li>
+          <li><a href="learn.html" class="nav__link">Learn</a></li>
+          <li><a href="mission.html" class="nav__link">Our Mission</a></li>
+          <li><a href="about.html" class="nav__link">About</a></li>
+        </ul>
+      </nav>
+      <a href="apply.html" data-app-href class="nav__cta">Apply now &rarr;</a>
+      <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" id="navToggle"><span></span></button>
+    </div>
+    <div class="nav__drawer">
+      <a href="how-it-works.html" class="nav__link">How it works</a>
+      <a href="solutions.html" class="nav__link">Solutions</a>
+      <a href="learn.html" class="nav__link">Learn</a>
+      <a href="mission.html" class="nav__link">Our Mission</a>
+      <a href="about.html" class="nav__link">About</a>
+    </div>
+  </header>
+
+  <main>
+  <section class="section section--tight">
+    <div class="container">
+      <div class="prequal" data-prequal>
+        <div class="prequal__meta">
+          <span class="prequal__meta-item">3 questions</span>
+          <span class="prequal__meta-item">~2 minutes</span>
+          <span class="prequal__meta-item">No credit pull</span>
+        </div>
+        <div class="prequal__progress"><div class="prequal__progress-bar" style="width: 25%;"></div></div>
+
+        <!-- Step 1: use of funds -->
+        <div class="prequal__step is-active" data-key="use">
+          <div class="prequal__count">Question 1 of 3</div>
+          <h2 class="prequal__q">What would you use the funds for?</h2>
+          <div class="prequal__choices">
+            <button class="prequal__choice" data-value="debt">Pay off credit card or other high-interest debt</button>
+            <button class="prequal__choice" data-value="renovate">Renovate or improve my home</button>
+            <button class="prequal__choice" data-value="retirement">Supplement income or fund retirement</button>
+            <button class="prequal__choice" data-value="other">Something else</button>
+          </div>
+        </div>
+
+        <!-- Step 2: state -->
+        <div class="prequal__step" data-key="state">
+          <div class="prequal__count">Question 2 of 3</div>
+          <h2 class="prequal__q">What state is your home in?</h2>
+          <p class="prequal__hint" style="text-align:center; font-size: var(--fs-small); color: var(--text-muted); margin: -0.5rem 0 1rem;">Leap currently invests in 27 states. More on the way.</p>
+          <select class="prequal__input" name="state">
+            <option value="">Choose a state</option>
+            <option>Arizona</option>
+            <option>California</option>
+            <option>Colorado</option>
+            <option>Connecticut</option>
+            <option>Delaware</option>
+            <option>Florida</option>
+            <option>Georgia</option>
+            <option>Illinois</option>
+            <option>Indiana</option>
+            <option>Kansas</option>
+            <option>Kentucky</option>
+            <option>Maryland</option>
+            <option>Michigan</option>
+            <option>Missouri</option>
+            <option>Nevada</option>
+            <option>New Jersey</option>
+            <option>New Mexico</option>
+            <option>North Carolina</option>
+            <option>Ohio</option>
+            <option>Oregon</option>
+            <option>Pennsylvania</option>
+            <option>South Carolina</option>
+            <option>Tennessee</option>
+            <option>Utah</option>
+            <option>Virginia</option>
+            <option>Washington</option>
+            <option>Wisconsin</option>
+          </select>
+          <div class="prequal__nav">
+            <button class="prequal__back" type="button">&larr; Back</button>
+            <button data-next class="btn btn--charcoal" type="button">Continue &rarr;</button>
+          </div>
+        </div>
+
+        <!-- Step 3: credit -->
+        <div class="prequal__step" data-key="credit">
+          <div class="prequal__count">Question 3 of 3</div>
+          <h2 class="prequal__q">What range best describes your credit score?</h2>
+          <div class="prequal__choices">
+            <button class="prequal__choice" data-value="720+">720 or higher</button>
+            <button class="prequal__choice" data-value="660-720">Between 660 and 720</button>
+            <button class="prequal__choice" data-value="600-660">Between 600 and 660</button>
+            <button class="prequal__choice" data-value="<600">I'm not sure / under 600</button>
+          </div>
+          <div class="prequal__nav prequal__nav--back-only">
+            <button class="prequal__back" type="button">&larr; Back</button>
+          </div>
+        </div>
+
+        <!-- Result -->
+        <div class="prequal__step" data-key="result">
+          <div class="prequal__result">
+            <div class="prequal__match">Your recommended product</div>
+            <h2 class="prequal__match-name" data-result-name>Leap Restore</h2>
+            <p style="max-width: 48ch; margin: 0 auto 2rem; color: var(--text-muted); line-height: 1.6;" data-result-desc>Designed to help homeowners pay down high-interest debt and rebuild credit without a new monthly payment.</p>
+            <a href="solutions-restore.html" class="btn btn--primary btn--lg" data-result-link>Continue with this product &rarr;</a>
+            <p style="margin-top: 2rem; color: var(--text-muted);">Or talk to a Leap specialist instead — <a href="mailto:hello@leaphei.com?subject=Leap%20specialist%20conversation" style="color: var(--charcoal); text-decoration: underline; font-weight: 600;">hello@leaphei.com</a> or <a href="tel:+18005327462" style="color: var(--charcoal); text-decoration: underline; font-weight: 600;">(800)&nbsp;532-7462</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--off">
+    <div class="container container--narrow">
+      <div class="prose text-center" style="text-align:center;">
+        <h2>What happens after pre-qualification</h2>
+        <p>If you decide to keep going, the full application takes a few more minutes and includes a soft credit check plus an automated equity verification on your property. None of that touches your credit score or locks you in. An underwriter then reviews everything and gets back to you with a final offer in a matter of days.</p>
+        <p>Have a question first? <a href="mailto:hello@leaphei.com">Email us</a> or call <a href="tel:+18005327462">1-800-LEAP-HEI</a>. A licensed Leap specialist will answer.</p>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand-col">
+          <a href="index.html" class="footer__brand" aria-label="Leap home">
+            <img src="images/logo-gold.png" alt="Leap" class="footer__brand-img">
+          </a>
+          <p class="footer__tag">A home equity investment platform built for homeowners who want to put their equity to work without taking on a new monthly bill.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Products</h4>
+          <ul>
+            <li><a href="solutions-restore.html">Leap Restore</a></li>
+            <li><a href="solutions-revive.html">Leap Revive</a></li>
+            <li><a href="solutions-relax.html">Leap Relax</a></li>
+            <li><a href="compare.html">Compare options</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Learn</h4>
+          <ul>
+            <li><a href="how-it-works.html">How HEIs work</a></li>
+            <li><a href="learn.html">Knowledge Center</a></li>
+            <li><a href="learn-basics.html">HEI Basics</a></li>
+            <li><a href="learn-guides.html">Homeownership Guides</a></li>
+            <li><a href="learn-definitions.html">Glossary</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="mission.html">Our Mission</a></li>
+            <li><a href="about.html#press">Press</a></li>
+            <li><a href="about.html#partners">Partners</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:hello@leaphei.com">hello@leaphei.com</a></li>
+            <li><a href="tel:+18005327462">(800) 532-7462</a></li>
+            <li><a href="apply.html">Start an application</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__trust">
+        <span class="footer__trust-label">Trusted &middot; verified by</span>
+        <div class="footer__badges">
+          <span class="footer__badge">BBB Accredited</span>
+          <span class="footer__badge">SOC 2 Type II</span>
+          <span class="footer__badge">Equal Housing Opportunity</span>
+          <span class="footer__badge">NMLS Registered</span>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; <span data-year>2026</span> Leap Analytics, Inc.&nbsp; All rights reserved.</span>
+        <div class="footer__legal">
+          <a href="legal-privacy.html">Privacy</a>
+          <a href="legal-terms.html">Terms</a>
+          <a href="legal-disclosures.html">Disclosures</a>
+          <a href="legal-licenses.html">Licenses &amp; NMLS</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/site.js" defer></script>
+</body>
+</html>
