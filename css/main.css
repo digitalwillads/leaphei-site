@@ -968,7 +968,7 @@ h1 em, h2 em, h3 em,
   line-height: 1.25;
   letter-spacing: -0.005em;
   color: var(--off-white);
-  margin: 0 0 0.75rem;
+  margin: 0 0 1.75rem;
   min-height: 3.4em;
 }
 .solution__name {
@@ -978,7 +978,7 @@ h1 em, h2 em, h3 em,
   letter-spacing: 0.22em;
   font-weight: 600;
   color: var(--gold-soft);
-  margin-bottom: 1.75rem;
+  margin: 0 0 0.75rem;
   display: block;
 }
 
