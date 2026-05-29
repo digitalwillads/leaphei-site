@@ -2013,9 +2013,12 @@ h1, h2, h3, .display, .h1, .h2, .h3,
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: 1.25rem 2rem;
+  justify-content: flex-start;
+  gap: 1rem 1.5rem;
 }
+/* Keep the label tied to the badge cluster rather than floating
+   off on its own at the far edge. */
+.footer__trust-label { margin-right: 0.5rem; }
 .footer__trust-label {
   font-family: var(--font-sans);
   font-size: 0.66rem;
@@ -2101,3 +2104,187 @@ html.has-custom-cursor .cursor-ring { display: block; }
 /* Hide custom cursor over text inputs so users see a real caret. */
 html.has-custom-cursor input:focus ~ .cursor-dot,
 html.has-custom-cursor textarea:focus ~ .cursor-dot { opacity: 0; }
+
+/* =========================================================
+   Homepage feedback pass — Shane Baldino (2026-05-20 doc +
+   2026-05-19 walkthrough).
+   GOAL: "significantly brighter and lighter." Dark green now
+   used sparingly (closing CTA only). Real home photography in
+   the hero. HEI -> HEA rebrand. New nav + footer structure.
+   ========================================================= */
+
+/* ---- Hero: brighter. Real sunlit photo + a much lighter scrim,
+   weighted to the bottom only so the cream headline stays legible
+   without darkening the whole frame. ---- */
+.hero__overlay {
+  background:
+    linear-gradient(180deg,
+      rgba(15,22,17,0.20) 0%,
+      rgba(15,22,17,0.08) 30%,
+      rgba(15,22,17,0.34) 70%,
+      rgba(15,22,17,0.66) 100%),
+    linear-gradient(95deg,
+      rgba(15,22,17,0.46) 0%,
+      rgba(15,22,17,0.12) 42%,
+      rgba(15,22,17,0) 68%);
+}
+.hero__headline,
+.hero__subhead {
+  text-shadow: 0 1px 26px rgba(15, 22, 17, 0.42);
+}
+
+/* ---- Solutions, light variant (homepage only — interior
+   solutions.html keeps the dark treatment until the all-pages
+   pass). Cream section, white cards, forest text. ---- */
+.solutions--light {
+  background: var(--off-white);
+  color: var(--text);
+}
+.solutions--light .solutions__head h2 { color: var(--charcoal); }
+.solutions--light .solutions__head p { color: var(--text-muted); }
+/* Give the long "Three solutions..." headline room so it breaks
+   into a few balanced lines instead of a cramped 16ch column. */
+.solutions--light .solutions__head h2 {
+  max-width: none;
+  line-height: 1.14;
+  text-wrap: balance;
+}
+.solutions--light .solution {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-top: 2px solid var(--gold);
+  box-shadow: 0 24px 48px -34px rgba(30, 53, 40, 0.28);
+}
+.solutions--light .solution:hover {
+  background: var(--white);
+  border-color: var(--rule);
+  border-top-color: var(--gold-soft);
+  box-shadow: 0 30px 56px -32px rgba(30, 53, 40, 0.34);
+}
+.solutions--light .solution__who { color: var(--charcoal); }
+.solutions--light .solution__name { color: var(--gold); }
+.solutions--light .solution__terms {
+  border-top-color: var(--rule);
+}
+.solutions--light .solution__terms li { color: var(--text-muted); }
+.solutions--light .solution__terms li strong { color: var(--charcoal); }
+.solutions--light .solution__ctas { border-top-color: var(--rule); }
+.solutions--light .solution .link-arrow:not(.link-arrow--red) { color: var(--charcoal); }
+.solutions--light .solution .link-arrow:not(.link-arrow--red):hover { color: var(--red); }
+.solutions--light .solution .link-arrow--red { color: var(--red); }
+.solutions--light .solution .link-arrow--red:hover { color: var(--charcoal); }
+
+/* ---- Explainer: supporting paragraph below the 3 steps ---- */
+.explainer__footer { display: flex; flex-direction: column; align-items: center; gap: 1.75rem; margin-top: 3rem; }
+/* Tighten the explainer -> solutions boundary: the stacked section
+   paddings were leaving a ~15rem void that read as "off". */
+.explainer { padding-bottom: clamp(3rem, 2rem + 2.5vw, 4.5rem); }
+.solutions--light { padding-top: clamp(3rem, 2rem + 2.5vw, 4.5rem); }
+/* Same fix as the solutions heading: the 14ch cap forced this
+   into a cramped 4-line wrap. Give it room for two lines. */
+.explainer .explainer__head h2 {
+  max-width: none;
+  line-height: 1.14;
+  text-wrap: balance;
+}
+.explainer__note {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+  max-width: 62ch;
+  margin: 0;
+  text-align: center;
+}
+
+/* ---- Closing CTA: the one intentional dark-green module.
+   Adds a lead line beneath the headline. ---- */
+.close__lead {
+  font-family: var(--font-sans);
+  font-size: var(--fs-lead);
+  line-height: 1.55;
+  color: rgba(240, 237, 230, 0.82);
+  max-width: 52ch;
+  margin: 0 auto 2.5rem;
+}
+
+/* ---- Disclaimer band — dark legal fine print. Reads as the top
+   of the footer region, not a bright stripe between dark sections. ---- */
+.disclaimer {
+  background: var(--charcoal-deep);
+  padding: 1.75rem 0;
+}
+.disclaimer__text {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  color: var(--text-on-dark-muted);
+  margin: 0;
+}
+
+/* ---- Nav: add "Sign In" alongside "Apply Now" ---- */
+.nav__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(0.75rem, 0.4rem + 1vw, 1.5rem);
+}
+.nav__signin {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(244,240,232,0.62);
+  transition: color var(--t-fast) var(--ease), letter-spacing var(--t-base) var(--ease);
+}
+.nav__signin:hover { color: var(--white); letter-spacing: 0.28em; }
+.nav__link--cta { color: var(--gold-soft); }
+
+@media (max-width: 880px) {
+  .nav__actions .nav__signin { display: none; }   /* Sign In lives in the drawer on mobile */
+}
+
+/* ---- Footer: 4-column grid (brand + Solutions / Insights /
+   Company), linked headers, social row. ---- */
+.footer__top { grid-template-columns: 1.6fr repeat(3, 1fr); }
+.footer__col h4 a {
+  color: var(--gold-soft);
+  transition: color var(--t-fast) var(--ease);
+}
+.footer__col h4 a:hover { color: var(--off-white); }
+.footer__social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin: 0 0 1.25rem;
+}
+.footer__social a {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  color: var(--text-on-dark-muted);
+  border-bottom: 1px solid rgba(184, 151, 90, 0.32);
+  padding-bottom: 1px;
+  transition: color var(--t-fast) var(--ease);
+}
+.footer__social a:hover { color: var(--gold-soft); }
+.footer__contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.footer__contact a {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--text-on-dark-muted);
+  transition: color var(--t-fast) var(--ease);
+}
+.footer__contact a:hover { color: var(--off-white); }
+
+@media (max-width: 980px) {
+  .footer__top { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .footer__top { grid-template-columns: 1fr; }
+}

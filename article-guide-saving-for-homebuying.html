@@ -22,20 +22,24 @@
         <ul class="nav__menu">
           <li><a href="how-it-works.html" class="nav__link">How it works</a></li>
           <li><a href="solutions.html" class="nav__link">Solutions</a></li>
-          <li><a href="learn.html" class="nav__link">Learn</a></li>
-          <li><a href="mission.html" class="nav__link">Our Mission</a></li>
-          <li><a href="about.html" class="nav__link">About</a></li>
+          <li><a href="learn.html" class="nav__link">Insights &amp; Resources</a></li>
+          <li><a href="about.html" class="nav__link">Company</a></li>
         </ul>
       </nav>
-      <a href="apply.html" data-app-href class="nav__cta">Apply now &rarr;</a>
+      <div class="nav__actions">
+        <!-- TODO(Will): point "Sign In" at the real application/login URL once provided. -->
+        <a href="#" class="nav__signin">Sign In</a>
+        <a href="apply.html" data-app-href class="nav__cta">Apply Now &rarr;</a>
+      </div>
       <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" id="navToggle"><span></span></button>
     </div>
     <div class="nav__drawer">
       <a href="how-it-works.html" class="nav__link">How it works</a>
       <a href="solutions.html" class="nav__link">Solutions</a>
-      <a href="learn.html" class="nav__link">Learn</a>
-      <a href="mission.html" class="nav__link">Our Mission</a>
-      <a href="about.html" class="nav__link">About</a>
+      <a href="learn.html" class="nav__link">Insights &amp; Resources</a>
+      <a href="about.html" class="nav__link">Company</a>
+      <a href="#" class="nav__link">Sign In</a>
+      <a href="apply.html" data-app-href class="nav__link nav__link--cta">Apply Now &rarr;</a>
     </div>
   </header>
 
@@ -132,42 +136,44 @@
           <a href="index.html" class="footer__brand" aria-label="Leap home">
             <img src="images/logo-gold.png" alt="Leap" class="footer__brand-img">
           </a>
-          <p class="footer__tag">A home equity investment platform built for homeowners who want to put their equity to work without taking on a new monthly bill.</p>
+          <p class="footer__tag">A home equity agreement platform built for homeowners who want to put their equity to work without taking on a new monthly bill.</p>
+          <!-- TODO(Will): replace "#" with the real social account URLs. -->
+          <div class="footer__social" aria-label="Follow Leap">
+            <a href="#" aria-label="Leap on LinkedIn">LinkedIn</a>
+            <a href="#" aria-label="Leap on Instagram">Instagram</a>
+            <a href="#" aria-label="Leap on Facebook">Facebook</a>
+            <a href="#" aria-label="Leap on X">X</a>
+          </div>
+          <div class="footer__contact">
+            <a href="mailto:hello@leaphei.com">hello@leaphei.com</a>
+            <a href="tel:+18005327462">(800) 532-7462</a>
+          </div>
         </div>
         <div class="footer__col">
-          <h4>Products</h4>
+          <h4><a href="solutions.html">Solutions</a></h4>
           <ul>
             <li><a href="solutions-restore.html">Leap Restore</a></li>
             <li><a href="solutions-revive.html">Leap Revive</a></li>
             <li><a href="solutions-relax.html">Leap Relax</a></li>
-            <li><a href="compare.html">Compare options</a></li>
           </ul>
         </div>
         <div class="footer__col">
-          <h4>Learn</h4>
+          <h4><a href="learn.html">Insights &amp; Resources</a></h4>
           <ul>
-            <li><a href="how-it-works.html">How HEIs work</a></li>
-            <li><a href="learn.html">Knowledge Center</a></li>
-            <li><a href="learn-basics.html">HEI Basics</a></li>
-            <li><a href="learn-guides.html">Homeownership Guides</a></li>
+            <li><a href="how-it-works.html">How HEAs Work</a></li>
+            <li><a href="learn.html">Financial Wellness</a></li>
+            <li><a href="learn-guides.html">Home Ownership Guides</a></li>
             <li><a href="learn-definitions.html">Glossary</a></li>
           </ul>
         </div>
         <div class="footer__col">
-          <h4>Company</h4>
+          <h4><a href="about.html">Company</a></h4>
           <ul>
             <li><a href="about.html">About</a></li>
             <li><a href="mission.html">Our Mission</a></li>
+            <li><a href="about.html#team">Team</a></li>
             <li><a href="about.html#press">Press</a></li>
             <li><a href="about.html#partners">Partners</a></li>
-          </ul>
-        </div>
-        <div class="footer__col">
-          <h4>Contact</h4>
-          <ul>
-            <li><a href="mailto:hello@leaphei.com">hello@leaphei.com</a></li>
-            <li><a href="tel:+18005327462">(800) 532-7462</a></li>
-            <li><a href="apply.html">Start an application</a></li>
           </ul>
         </div>
       </div>
