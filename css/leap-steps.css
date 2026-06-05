@@ -1,0 +1,467 @@
+/*
+ * Leap HEI — Horizontal Step Process Component
+ * Version 1.0 — supplied by Ashley Bete, integrated into leaphei-site 2026-06-05.
+ *
+ * Integration changes from the vendor original:
+ *   1. Brand tokens mapped onto the live site palette (css/main.css :root),
+ *      so the component inherits the exact forest/bronze/linen scheme.
+ *   2. Font stack switched from Inter to the site's --font-sans (Jost) and
+ *      --font-serif (Cormorant Garamond) — no extra Google Fonts request.
+ *   3. Responsive breakpoints added (vendor file had none): the 4-across track
+ *      and detail card now reflow cleanly on tablet and phone widths.
+ */
+
+/* ── Brand tokens — mapped onto site palette (css/main.css) ─────── */
+:root {
+  --leap-gold:          var(--gold, #b8975a);        /* bronze primary           */
+  --leap-gold-mid:      var(--gold-soft, #c9a96e);   /* connector fill + btn tab */
+  --leap-gold-deep:     var(--red-deep, #a48149);    /* btn line / arrow         */
+  --leap-gold-text:     #6e561f;                     /* text on bronze surfaces  */
+  --leap-gold-muted:    #8a6d39;                     /* back button text + arrow */
+  --leap-beige:         var(--bronze-pale, #e8d9bc); /* continue btn fill        */
+  --leap-beige-hover:   #ddcba6;                      /* continue btn hover fill  */
+  --leap-dark:          var(--charcoal, #1e3528);    /* completed step circle    */
+  --leap-gold-ring:     rgba(184, 151, 90, 0.10);
+  --leap-gold-glow:     rgba(184, 151, 90, 0.16);
+  --leap-gold-ripple:   rgba(184, 151, 90, 1);
+}
+
+/* ── Wrapper ──────────────────────────────────── */
+.leap-steps {
+  font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+  padding: 2.5rem 1.5rem 2rem;
+  max-width: 860px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* ── Header ───────────────────────────────────── */
+.leap-steps__eyebrow {
+  font-family: var(--font-sans, 'Jost', sans-serif);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--leap-gold);
+  margin: 0 0 0.6rem;
+  font-weight: 400;
+}
+
+.leap-steps__heading {
+  font-size: 48px;
+  font-weight: 300;
+  color: inherit;
+  margin: 0 0 0.3rem;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.leap-steps__heading em {
+  font-style: italic;
+  color: var(--leap-gold);
+  font-weight: 300;
+}
+
+.leap-steps__subtext {
+  font-family: var(--font-sans, 'Jost', sans-serif);
+  font-size: 16px;
+  color: #888;
+  margin: 0 0 2.5rem;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  line-height: 1.6;
+}
+
+/* ── Track ────────────────────────────────────── */
+.leap-steps__track {
+  display: grid;
+  grid-template-columns: 1fr 36px 1fr 36px 1fr 36px 1fr;
+  align-items: center;
+}
+
+/* ── Node ─────────────────────────────────────── */
+.leap-steps__node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.leap-steps__circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 0.5px solid rgba(0,0,0,0.18);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    border-color 0.45s ease,
+    background 0.45s ease,
+    transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.45s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.leap-steps__num {
+  font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+  font-size: 18px;
+  font-weight: 300;
+  color: #888;
+  transition:
+    color 0.4s ease,
+    font-size 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+    font-weight 0.3s ease;
+  line-height: 1;
+}
+
+.leap-steps__check {
+  display: none;
+  font-size: 15px;
+  color: var(--leap-gold);
+}
+
+/* Active node */
+.leap-steps__node--active .leap-steps__circle {
+  border-color: var(--leap-gold);
+  background: #fff;
+  transform: scale(1.26) translateY(-5px);
+  box-shadow:
+    0 0 0 7px var(--leap-gold-ring),
+    0 6px 20px var(--leap-gold-glow);
+}
+
+.leap-steps__node--active .leap-steps__num {
+  font-size: 30px;
+  font-weight: 400;
+  color: var(--leap-gold);
+}
+
+.leap-steps__node--active .leap-steps__label {
+  color: var(--leap-gold);
+}
+
+/* Done node */
+.leap-steps__node--done .leap-steps__circle {
+  border-color: var(--leap-dark);
+  background: var(--leap-dark);
+  transform: scale(1) translateY(0);
+}
+
+.leap-steps__node--done .leap-steps__num {
+  display: none;
+}
+
+.leap-steps__node--done .leap-steps__check {
+  display: block;
+}
+
+/* Label */
+.leap-steps__label {
+  font-family: var(--font-sans, 'Jost', sans-serif);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #888;
+  text-align: center;
+  transition: color 0.4s;
+  line-height: 1.5;
+}
+
+/* ── Connectors ───────────────────────────────── */
+.leap-steps__connector {
+  height: 0.5px;
+  background: rgba(0,0,0,0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.leap-steps__connector-fill {
+  position: absolute;
+  left: 0; top: 0;
+  height: 100%;
+  width: 0%;
+  background: var(--leap-gold);
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Detail card ──────────────────────────────── */
+.leap-steps__panel {
+  margin-top: 2.5rem;
+  min-height: 160px;
+  position: relative;
+}
+
+.leap-steps__card {
+  border: 0.5px solid rgba(0,0,0,0.1);
+  border-radius: 12px;
+  padding: 2rem 2.25rem;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.leap-steps__ripple-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 12px;
+}
+
+.leap-steps__timing {
+  font-family: var(--font-sans, 'Jost', sans-serif);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--leap-gold);
+  margin: 0 0 8px;
+  font-weight: 400;
+}
+
+.leap-steps__title {
+  font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+  font-size: 36px;
+  font-weight: 300;
+  color: inherit;
+  margin: 0 0 14px;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+}
+
+.leap-steps__body {
+  font-family: var(--font-sans, 'Jost', sans-serif);
+  font-size: 16px;
+  line-height: 1.75;
+  color: #666;
+  margin: 0;
+  font-weight: 300;
+}
+
+/* ── Word reveal animation ────────────────────── */
+@keyframes leapWordIn {
+  0%   { opacity: 0; transform: translateY(12px) scale(0.92); }
+  55%  { opacity: 1; transform: translateY(-3px) scale(1.02); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.leap-steps__body span {
+  display: inline-block;
+  opacity: 0;
+}
+
+.leap-steps__body span.leap-revealed {
+  animation: leapWordIn 0.52s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ── Nav row ──────────────────────────────────── */
+.leap-steps__nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 2.25rem;
+}
+
+/* Shared button reset */
+.leap-btn {
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-family: var(--font-sans, 'Jost', sans-serif);
+  -webkit-appearance: none;
+}
+
+.leap-btn:disabled {
+  opacity: 0.2;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* ── Back button ──────────────────────────────── */
+.leap-btn--back .leap-btn__inner {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  position: relative;
+  padding: 0;
+}
+
+.leap-btn--back .leap-btn__side-bar {
+  width: 3px;
+  height: 42px;
+  background: var(--leap-gold);
+  opacity: 0.45;
+  transition: opacity 0.3s ease, height 0.3s ease;
+  flex-shrink: 0;
+}
+
+.leap-btn--back .leap-btn__body {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 18px 10px 14px;
+  border-top: 0.5px solid rgba(184, 151, 90, 0.3);
+  border-bottom: 0.5px solid rgba(184, 151, 90, 0.3);
+  transition: border-color 0.3s;
+}
+
+.leap-btn--back .leap-btn__arrow {
+  font-size: 13px;
+  color: var(--leap-gold-muted);
+  transition: transform 0.35s cubic-bezier(0.34, 1.3, 0.64, 1);
+}
+
+.leap-btn--back .leap-btn__label {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--leap-gold-muted);
+}
+
+.leap-btn--back:not(:disabled):hover .leap-btn__side-bar {
+  opacity: 0.85;
+  height: 46px;
+}
+
+.leap-btn--back:not(:disabled):hover .leap-btn__body {
+  border-color: rgba(184, 151, 90, 0.65);
+}
+
+.leap-btn--back:not(:disabled):hover .leap-btn__arrow {
+  transform: translateX(-4px);
+}
+
+/* ── Continue button ──────────────────────────── */
+.leap-btn--next .leap-btn__inner {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.leap-btn--next .leap-btn__left {
+  background: var(--leap-beige);
+  border: 0.5px solid var(--leap-gold-mid);
+  border-right: none;
+  padding: 13px 20px 13px 22px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+
+.leap-btn--next .leap-btn__label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--leap-gold-text);
+  white-space: nowrap;
+  position: relative;
+  z-index: 1;
+}
+
+.leap-btn--next .leap-btn__right {
+  background: var(--leap-gold-mid);
+  border: 0.5px solid var(--leap-gold-mid);
+  border-left: none;
+  padding: 13px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s, padding 0.3s;
+  min-width: 44px;
+}
+
+.leap-btn--next .leap-btn__arrow {
+  font-size: 14px;
+  color: var(--leap-gold-text);
+  transition: transform 0.35s cubic-bezier(0.34, 1.3, 0.64, 1);
+  display: block;
+}
+
+.leap-btn--next .leap-btn__sheen {
+  position: absolute;
+  top: 0; left: -90%;
+  width: 60%; height: 100%;
+  background: rgba(255, 255, 255, 0.22);
+  transform: skewX(-16deg);
+  transition: left 0.55s ease;
+  pointer-events: none;
+}
+
+.leap-btn--next:not(:disabled):hover .leap-btn__left {
+  background: var(--leap-beige-hover);
+}
+
+.leap-btn--next:not(:disabled):hover .leap-btn__right {
+  background: var(--leap-gold);
+  padding: 13px 20px;
+}
+
+.leap-btn--next:not(:disabled):hover .leap-btn__arrow {
+  transform: translateX(3px);
+}
+
+.leap-btn--next:not(:disabled):hover .leap-btn__sheen {
+  left: 150%;
+}
+
+/* ── Step counter ─────────────────────────────── */
+.leap-steps__counter {
+  font-family: var(--font-sans, 'Jost', sans-serif);
+  font-size: 12px;
+  color: #888;
+  margin-left: auto;
+  letter-spacing: 0.06em;
+  font-weight: 300;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────
+   The vendor file shipped desktop-only. These breakpoints keep the
+   4-across track from overflowing narrow viewports: connectors are
+   dropped, circles and type scale down, and the detail card / nav
+   reflow so nothing clips on tablet or phone. */
+
+/* Tablet — tighten the connector gutters and type. */
+@media (max-width: 720px) {
+  .leap-steps { padding: 1.75rem 0.5rem 1.5rem; }
+  .leap-steps__track { grid-template-columns: 1fr 20px 1fr 20px 1fr 20px 1fr; }
+  .leap-steps__circle { width: 50px; height: 50px; }
+  .leap-steps__node--active .leap-steps__circle { transform: scale(1.16) translateY(-3px); }
+  .leap-steps__title { font-size: 30px; }
+  .leap-steps__card { padding: 1.75rem 1.5rem; }
+}
+
+/* Phone — drop the connectors entirely and lay the four nodes out as a
+   clean equal-width row. display:none removes the connectors from grid
+   flow, so the four remaining nodes auto-place into four columns. */
+@media (max-width: 560px) {
+  .leap-steps__track { grid-template-columns: repeat(4, 1fr); column-gap: 4px; }
+  .leap-steps__connector { display: none; }
+  .leap-steps__node { gap: 9px; }
+  .leap-steps__circle { width: 42px; height: 42px; }
+  .leap-steps__num { font-size: 15px; }
+  .leap-steps__node--active .leap-steps__circle {
+    transform: scale(1.12) translateY(-2px);
+    box-shadow: 0 0 0 5px var(--leap-gold-ring), 0 4px 14px var(--leap-gold-glow);
+  }
+  .leap-steps__node--active .leap-steps__num { font-size: 22px; }
+  .leap-steps__label { font-size: 9.5px; letter-spacing: 0.05em; }
+
+  .leap-steps__panel { margin-top: 2rem; min-height: 0; }
+  .leap-steps__title { font-size: 26px; }
+  .leap-steps__body { font-size: 15px; line-height: 1.7; }
+  .leap-steps__card { padding: 1.5rem 1.25rem; }
+
+  .leap-steps__nav { flex-wrap: wrap; gap: 14px; margin-top: 1.75rem; }
+  .leap-steps__counter { margin-left: auto; }
+}

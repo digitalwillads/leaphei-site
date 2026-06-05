@@ -1,6 +1,10 @@
 <!-- title: How a home equity investment works -->
 <!-- desc: The full mechanics of a Leap HEI. How equity is calculated, how the investment is structured, what happens at the term end, and what happens if home values change. -->
 
+<!-- Interactive step-process component (supplied by Ashley Bete, integrated 2026-06-05).
+     Loaded only on this page; brand tokens + fonts are aligned to css/main.css. -->
+<link rel="stylesheet" href="css/leap-steps.css">
+
 <style>
   /* Page-scoped mechanics styles */
   .mechanics__two-col {
@@ -430,38 +434,12 @@
     </div>
   </section>
 
+  <!-- The four lifecycle steps, presented as an interactive stepper.
+       Replaces the previous static 4-card grid; same content and copy,
+       driven by the Leap step-process component (js/leap-steps.js). -->
   <section class="section">
-    <div class="container">
-      <div class="explainer__steps explainer__steps--four">
-        <article class="step">
-          <span class="step__when">Day 0</span>
-          <div class="step__num">1</div>
-          <span class="step__label">Step One</span>
-          <h3 class="step__title">Apply and qualify</h3>
-          <p class="step__body">A three-question pre-qualification confirms eligibility in under two minutes, and a full application then runs an automated credit and equity check without the income statements, employment verification, or paperwork backlog that a traditional mortgage process tends to require.</p>
-        </article>
-        <article class="step">
-          <span class="step__when">Within days</span>
-          <div class="step__num">2</div>
-          <span class="step__label">Step Two</span>
-          <h3 class="step__title">Receive your investment</h3>
-          <p class="step__body">Once approved, the investment funds at closing, typically within days, and up to $300,000 in cash is deposited directly to your account for any purpose you choose.</p>
-        </article>
-        <article class="step">
-          <span class="step__when">Years 1&ndash;30</span>
-          <div class="step__num">3</div>
-          <span class="step__label">Step Three</span>
-          <h3 class="step__title">Live without a new payment</h3>
-          <p class="step__body">For the full term of the investment, anywhere from ten to thirty years depending on the product, you make no monthly payments and accrue no interest, so the investment never shows up on your household budget the way a HELOC or refinance would.</p>
-        </article>
-        <article class="step">
-          <span class="step__when">At sale</span>
-          <div class="step__num">4</div>
-          <span class="step__label">Step Four</span>
-          <h3 class="step__title">Repay when you choose</h3>
-          <p class="step__body">When you sell the home, refinance, or reach the end of the term, you repay the original investment plus a share of your home's appreciation since the investment began.</p>
-        </article>
-      </div>
+    <div class="container container--narrow">
+      <div id="leap-steps-root"></div>
     </div>
   </section>
 
@@ -683,3 +661,45 @@
       </div>
     </div>
   </section>
+
+  <!-- Initialise the interactive step process. Runs after #leap-steps-root
+       (above) is in the DOM. Copy mirrors the page's lifecycle narrative. -->
+  <script src="js/leap-steps.js"></script>
+  <script>
+    (function () {
+      var root = document.getElementById('leap-steps-root');
+      if (!root || typeof LeapSteps !== 'function') return;
+
+      var steps = [
+        {
+          timing:     'Day 0',
+          title:      'Apply and qualify',
+          shortLabel: 'Apply &amp;<br>qualify',
+          body:       'A three-question pre-qualification confirms eligibility in under two minutes, and a full application then runs an automated credit and equity check without the income statements, employment verification, or paperwork backlog a traditional mortgage tends to require.'
+        },
+        {
+          timing:     'Within days',
+          title:      'Receive your investment',
+          shortLabel: 'Receive<br>funds',
+          body:       'Once approved, the investment funds at closing, typically within days, and up to $300,000 in cash is deposited directly to your account for any purpose you choose.'
+        },
+        {
+          timing:     'Years 1-30',
+          title:      'Live without a new payment',
+          shortLabel: 'Live<br>payment-free',
+          body:       'For the full term, anywhere from ten to thirty years depending on the product, you make no monthly payments and accrue no interest, so the investment never shows up on your household budget the way a HELOC or refinance would.'
+        },
+        {
+          timing:     'At sale',
+          title:      'Repay when you choose',
+          shortLabel: 'Repay<br>at sale',
+          body:       'When you sell the home, refinance, or reach the end of the term, you repay the original investment plus a share of your home\'s appreciation since the investment began.'
+        }
+      ];
+
+      new LeapSteps('#leap-steps-root', steps, {
+        ctaLabel:   'Check my eligibility',
+        onComplete: function () { window.location.href = 'apply.html'; }
+      });
+    })();
+  </script>
