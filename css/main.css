@@ -1076,7 +1076,16 @@ h1 em, h2 em, h3 em,
 }
 .compare tbody tr:last-child td { border-bottom: 0; }
 
-.compare__footer { text-align: center; margin-top: 2.5rem; }
+/* Shane (2026-06-07): added a "Check my eligibility" button under the
+   table, with the full-comparison link below it. */
+.compare__footer {
+  text-align: center;
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
 
 /* =========================================================
    Social proof (Section 6)
@@ -1197,9 +1206,11 @@ h1 em, h2 em, h3 em,
    Bottom CTA (Section 7 — close, mirror of hero)
    ========================================================= */
 
+/* Shane (2026-06-07): drop the dark-green closing block; repeat the
+   lighter linen surface used by the section above (.section--off). */
 .close {
-  background: var(--charcoal);
-  color: var(--off-white);
+  background: var(--off-white);
+  color: var(--text);
   padding-top: clamp(5rem, 3rem + 6vw, 8rem);
   padding-bottom: clamp(5rem, 3rem + 6vw, 8rem);
   text-align: center;
@@ -1211,8 +1222,8 @@ h1 em, h2 em, h3 em,
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(at 30% 20%, rgba(184, 151, 90, 0.14) 0%, transparent 50%),
-    radial-gradient(at 80% 80%, rgba(184, 151, 90, 0.06) 0%, transparent 55%);
+    radial-gradient(at 30% 20%, rgba(184, 151, 90, 0.10) 0%, transparent 50%),
+    radial-gradient(at 80% 80%, rgba(184, 151, 90, 0.05) 0%, transparent 55%);
   pointer-events: none;
 }
 .close__inner { position: relative; }
@@ -1222,7 +1233,7 @@ h1 em, h2 em, h3 em,
   text-transform: uppercase;
   letter-spacing: 0.22em;
   font-weight: 600;
-  color: var(--gold-soft);
+  color: var(--gold);
   margin-bottom: 1.25rem;
   display: block;
 }
@@ -1234,9 +1245,9 @@ h1 em, h2 em, h3 em,
   letter-spacing: -0.018em;
   max-width: 22ch;
   margin: 0 auto 2.5rem;
-  color: var(--off-white);
+  color: var(--charcoal);
 }
-.close__headline em { font-style: italic; color: var(--gold-soft); }
+.close__headline em { font-style: italic; color: rgba(30,53,40,0.45); }
 .close__ctas {
   display: flex;
   gap: 0.75rem;
@@ -1879,12 +1890,14 @@ h1, h2, h3, .display, .h1, .h2, .h3,
 @keyframes leap-draw { to { transform: scaleX(1); } }
 
 .hero__headline em {
-  color: rgba(244,240,232,0.62);
+  /* Was 0.62 — too faint over the bright photo (Shane 2026-06-07).
+     Near-solid cream so "Activated." reads as the punchline it is. */
+  color: rgba(247,243,236,0.95);
   white-space: normal;
 }
 
-/* Close section em — match hero italic treatment */
-.close__headline em { color: rgba(244,240,232,0.58); }
+/* Close section em — muted forest now that the block is light (Shane 2026-06-07) */
+.close__headline em { color: rgba(30,53,40,0.45); }
 
 /* Page-head em — same on dark interior pages */
 .page-head__title em { color: rgba(244,240,232,0.58); }
@@ -2116,21 +2129,25 @@ html.has-custom-cursor textarea:focus ~ .cursor-dot { opacity: 0; }
 /* ---- Hero: brighter. Real sunlit photo + a much lighter scrim,
    weighted to the bottom only so the cream headline stays legible
    without darkening the whole frame. ---- */
+/* Shane (2026-06-07): "Activated." bled into the bright hero photo.
+   Darkened the left-and-bottom of the scrim (where the cream copy sits)
+   for more contrast, without dimming the whole sunlit frame. */
 .hero__overlay {
   background:
     linear-gradient(180deg,
-      rgba(15,22,17,0.20) 0%,
-      rgba(15,22,17,0.08) 30%,
-      rgba(15,22,17,0.34) 70%,
-      rgba(15,22,17,0.66) 100%),
+      rgba(15,22,17,0.22) 0%,
+      rgba(15,22,17,0.10) 28%,
+      rgba(15,22,17,0.44) 68%,
+      rgba(15,22,17,0.80) 100%),
     linear-gradient(95deg,
-      rgba(15,22,17,0.46) 0%,
-      rgba(15,22,17,0.12) 42%,
-      rgba(15,22,17,0) 68%);
+      rgba(15,22,17,0.66) 0%,
+      rgba(15,22,17,0.40) 32%,
+      rgba(15,22,17,0.10) 62%,
+      rgba(15,22,17,0) 78%);
 }
 .hero__headline,
 .hero__subhead {
-  text-shadow: 0 1px 26px rgba(15, 22, 17, 0.42);
+  text-shadow: 0 1px 30px rgba(15, 22, 17, 0.58);
 }
 
 /* ---- Solutions, light variant (homepage only — interior
@@ -2197,13 +2214,13 @@ html.has-custom-cursor textarea:focus ~ .cursor-dot { opacity: 0; }
   text-align: center;
 }
 
-/* ---- Closing CTA: the one intentional dark-green module.
-   Adds a lead line beneath the headline. ---- */
+/* ---- Closing CTA: now a light linen module (Shane 2026-06-07),
+   matching the section above. Lead line beneath the headline. ---- */
 .close__lead {
   font-family: var(--font-sans);
   font-size: var(--fs-lead);
   line-height: 1.55;
-  color: rgba(240, 237, 230, 0.82);
+  color: var(--text-muted);
   max-width: 52ch;
   margin: 0 auto 2.5rem;
 }
