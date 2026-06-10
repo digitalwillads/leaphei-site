@@ -521,8 +521,8 @@ h1 em, h2 em, h3 em,
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(15,22,17,0.55) 0%, rgba(15,22,17,0.45) 40%, rgba(15,22,17,0.92) 100%),
-    linear-gradient(95deg, rgba(15,22,17,0.55) 0%, rgba(15,22,17,0.18) 60%, rgba(15,22,17,0.55) 100%);
+    linear-gradient(180deg, rgba(15,22,17,0.30) 0%, rgba(15,22,17,0.25) 40%, rgba(15,22,17,0.72) 100%),
+    linear-gradient(95deg, rgba(15,22,17,0.35) 0%, rgba(15,22,17,0.08) 60%, rgba(15,22,17,0.35) 100%);
   z-index: -1;
 }
 
