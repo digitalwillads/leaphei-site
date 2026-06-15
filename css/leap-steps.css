@@ -88,8 +88,8 @@
 }
 
 .leap-steps__circle {
-  width: 56px;
-  height: 56px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   border: 0.5px solid rgba(0,0,0,0.18);
   background: #fff;
@@ -99,7 +99,7 @@
   transition:
     border-color 0.45s ease,
     background 0.45s ease,
-    transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
     box-shadow 0.45s ease;
   position: relative;
   z-index: 2;
@@ -107,12 +107,12 @@
 
 .leap-steps__num {
   font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 300;
   color: #888;
   transition:
     color 0.4s ease,
-    font-size 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+    font-size 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
     font-weight 0.3s ease;
   line-height: 1;
 }
@@ -127,14 +127,14 @@
 .leap-steps__node--active .leap-steps__circle {
   border-color: var(--leap-gold);
   background: #fff;
-  transform: scale(1.26) translateY(-5px);
+  transform: scale(1.4) translateY(-8px);
   box-shadow:
-    0 0 0 7px var(--leap-gold-ring),
-    0 6px 20px var(--leap-gold-glow);
+    0 0 0 8px var(--leap-gold-ring),
+    0 8px 24px var(--leap-gold-glow);
 }
 
 .leap-steps__node--active .leap-steps__num {
-  font-size: 30px;
+  font-size: 44px;
   font-weight: 400;
   color: var(--leap-gold);
 }
@@ -436,7 +436,7 @@
   .leap-steps { padding: 1.75rem 0.5rem 1.5rem; }
   .leap-steps__track { grid-template-columns: 1fr 20px 1fr 20px 1fr 20px 1fr; }
   .leap-steps__circle { width: 50px; height: 50px; }
-  .leap-steps__node--active .leap-steps__circle { transform: scale(1.16) translateY(-3px); }
+  .leap-steps__node--active .leap-steps__circle { transform: scale(1.28) translateY(-5px); }
   .leap-steps__title { font-size: 30px; }
   .leap-steps__card { padding: 1.75rem 1.5rem; }
 }
@@ -454,7 +454,7 @@
     transform: scale(1.12) translateY(-2px);
     box-shadow: 0 0 0 5px var(--leap-gold-ring), 0 4px 14px var(--leap-gold-glow);
   }
-  .leap-steps__node--active .leap-steps__num { font-size: 22px; }
+  .leap-steps__node--active .leap-steps__num { font-size: 30px; }
   .leap-steps__label { font-size: 9.5px; letter-spacing: 0.05em; }
 
   .leap-steps__panel { margin-top: 2rem; min-height: 0; }
