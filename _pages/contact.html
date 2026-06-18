@@ -1,0 +1,112 @@
+<!-- title: Contact Us — We'd love to hear from you -->
+<!-- desc: Get in touch with Leap — whether you're interested in an HEA, looking to partner with us, or exploring career opportunities. -->
+
+  <section class="page-head page-head--editorial">
+    <div class="container page-head__inner">
+      <span class="page-head__eyebrow">Contact Us</span>
+      <h1 class="page-head__title">We&rsquo;d love to hear<br><em>from you.</em></h1>
+      <p class="page-head__lead">Are you interested in a Home Equity Agreement? Want to learn how to create a path towards wealth mobility? Are you an investor or company looking to partner with Leap? Let us know how we can help.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container container--narrow">
+      <form class="contact-form" name="contact" method="POST" action="#" style="max-width: 600px; margin: 0 auto;">
+
+        <div class="contact-form__field">
+          <label for="contact-name" class="contact-form__label">Name <span aria-hidden="true">*</span></label>
+          <input type="text" id="contact-name" name="name" required class="contact-form__input" placeholder="Your full name">
+        </div>
+
+        <div class="contact-form__field">
+          <label for="contact-email" class="contact-form__label">Email address <span aria-hidden="true">*</span></label>
+          <input type="email" id="contact-email" name="email" required class="contact-form__input" placeholder="you@example.com">
+        </div>
+
+        <div class="contact-form__field">
+          <label for="contact-phone" class="contact-form__label">Phone number</label>
+          <input type="tel" id="contact-phone" name="phone" class="contact-form__input" placeholder="(555) 000-0000">
+        </div>
+
+        <div class="contact-form__field">
+          <label for="contact-topic" class="contact-form__label">How can we help?</label>
+          <select id="contact-topic" name="topic" class="contact-form__input contact-form__select">
+            <option value="" disabled selected>Select a topic</option>
+            <option value="learn-hea">I&rsquo;d like to learn more about HEAs</option>
+            <option value="partner">I&rsquo;m an investor or third party looking to partner</option>
+            <option value="employment">I&rsquo;m interested in employment at Leap</option>
+          </select>
+        </div>
+
+        <div class="contact-form__field">
+          <label for="contact-comments" class="contact-form__label">Comments</label>
+          <textarea id="contact-comments" name="comments" class="contact-form__input contact-form__textarea" rows="5" placeholder="Tell us more about how we can help&hellip;"></textarea>
+        </div>
+
+        <div class="contact-form__field contact-form__field--check">
+          <label class="contact-form__check-label">
+            <input type="checkbox" name="hea-interest" value="yes">
+            <span>Send me information about Leap&rsquo;s purpose-built HEAs. A Leap specialist will contact you and walk you through the application process.</span>
+          </label>
+        </div>
+
+        <div class="contact-form__actions">
+          <button type="submit" class="btn btn--primary btn--lg">Submit &rarr;</button>
+        </div>
+
+      </form>
+    </div>
+  </section>
+
+<style>
+  .contact-form__field { margin-bottom: 1.5rem; }
+  .contact-form__label {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    margin-bottom: 0.5rem;
+  }
+  .contact-form__label span { color: var(--red); }
+  .contact-form__input {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--charcoal);
+    background: var(--off-white-warm);
+    border: 1px solid rgba(22,24,27,0.2);
+    border-radius: 3px;
+    box-sizing: border-box;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    appearance: none;
+  }
+  .contact-form__input:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(184,151,90,0.18);
+  }
+  .contact-form__textarea { resize: vertical; min-height: 120px; }
+  .contact-form__select { cursor: pointer; }
+  .contact-form__field--check { display: flex; align-items: flex-start; gap: 0; }
+  .contact-form__check-label {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    color: var(--charcoal-soft);
+    cursor: pointer;
+    line-height: 1.5;
+  }
+  .contact-form__check-label input[type="checkbox"] {
+    width: auto;
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+  }
+  .contact-form__actions { margin-top: 2rem; }
+</style>

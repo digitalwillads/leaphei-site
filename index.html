@@ -9,6 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
   <meta name="theme-color" content="#1e3528">
 </head>
 <body>
@@ -22,14 +24,30 @@
         <ul class="nav__menu">
           <li><a href="how-it-works.html" class="nav__link">How it works</a></li>
           <li><a href="solutions.html" class="nav__link">Solutions</a></li>
-          <li><a href="learn.html" class="nav__link">Insights &amp; Resources</a></li>
-          <li><a href="about.html" class="nav__link">Company</a></li>
+          <li class="nav__item--has-dropdown">
+            <a href="learn.html" class="nav__link">Insights &amp; Resources</a>
+            <ul class="nav__dropdown">
+              <li><a href="financial-planning.html">Financial Planning</a></li>
+              <li><a href="housing-tips.html">Housing Related Tips</a></li>
+              <li><a href="faq.html">FAQs</a></li>
+              <li><a href="external-resources.html">External Resources</a></li>
+            </ul>
+          </li>
+          <li class="nav__item--has-dropdown">
+            <a href="about.html" class="nav__link">Company</a>
+            <ul class="nav__dropdown">
+              <li><a href="about.html">Why Leap / Our Mission</a></li>
+              <li><a href="leadership.html">Leadership</a></li>
+              <li><a href="partners.html">Partners</a></li>
+              <li><a href="pr-media.html">PR &amp; Media</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <div class="nav__actions">
-        <!-- TODO(Will): point "Sign In" at the real application/login URL once provided. -->
         <a href="#" class="nav__signin">Sign In</a>
-        <a href="apply.html" data-app-href class="nav__cta">Apply Now &rarr;</a>
+        <a href="apply.html" data-app-href class="nav__cta">Apply &rarr;</a>
       </div>
       <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" id="navToggle"><span></span></button>
     </div>
@@ -37,9 +55,22 @@
       <a href="how-it-works.html" class="nav__link">How it works</a>
       <a href="solutions.html" class="nav__link">Solutions</a>
       <a href="learn.html" class="nav__link">Insights &amp; Resources</a>
+      <div class="nav__drawer-sub">
+        <a href="financial-planning.html">Financial Planning</a>
+        <a href="housing-tips.html">Housing Related Tips</a>
+        <a href="faq.html">FAQs</a>
+        <a href="external-resources.html">External Resources</a>
+      </div>
       <a href="about.html" class="nav__link">Company</a>
+      <div class="nav__drawer-sub">
+        <a href="about.html">Why Leap / Our Mission</a>
+        <a href="leadership.html">Leadership</a>
+        <a href="partners.html">Partners</a>
+        <a href="pr-media.html">PR &amp; Media</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
       <a href="#" class="nav__link">Sign In</a>
-      <a href="apply.html" data-app-href class="nav__link nav__link--cta">Apply Now &rarr;</a>
+      <a href="apply.html" data-app-href class="nav__link nav__link--cta">Apply &rarr;</a>
     </div>
   </header>
 
@@ -52,8 +83,7 @@
      in the legal disclaimer, per Shane's own wording.)
    - Lighter / brighter look: real bright home photo in the hero with a much
      lighter scrim; solutions section flipped from full dark-green to a light
-     surface. Per Shane (2026-06-07) the closing CTA is now light linen too,
-     so dark green only appears in the hero photo scrim and the disclaimer band.
+     surface. Dark green now used sparingly — only the closing CTA module.
    - New hero, how-it-works, solutions, compare, and closing copy verbatim
      from Shane's doc. Disclaimer added.
    - Scroll-reveal ("page builds as you scroll") was already wired via
@@ -71,7 +101,7 @@
     <div class="hero__overlay"></div>
     <div class="hero__inner">
       <h1 class="hero__headline">Your Home Equity. <em>Activated.</em></h1>
-      <p class="hero__subhead">43 million American homeowners hold unprecedented wealth &mdash; yet remain unable to access it. Leap converts dormant home equity into immediate capital, with zero monthly payments and no debt obligation.</p>
+      <p class="hero__subhead">Not a loan. Not refinancing. It&rsquo;s a belief in yourself.<br>A Home Equity Agreement from Leap can unlock the wealth you&rsquo;ve already accumulated and create financial mobility with no monthly payments, no interest, and no burden.</p>
 
       <div class="hero__ctas">
         <a href="how-it-works.html" class="btn btn--ghost btn--lg">Learn how it works</a>
@@ -226,7 +256,6 @@
       </div>
 
       <div class="compare__footer">
-        <a href="apply.html" data-app-href class="btn btn--primary btn--lg">Check my eligibility &rarr;</a>
         <a href="compare.html" class="link-arrow">See the full comparison &rarr;</a>
       </div>
     </div>
@@ -292,20 +321,20 @@
         <div class="footer__col">
           <h4><a href="learn.html">Insights &amp; Resources</a></h4>
           <ul>
-            <li><a href="how-it-works.html">How HEAs Work</a></li>
-            <li><a href="learn.html">Financial Wellness</a></li>
-            <li><a href="learn-guides.html">Home Ownership Guides</a></li>
-            <li><a href="learn-definitions.html">Glossary</a></li>
+            <li><a href="financial-planning.html">Financial Planning</a></li>
+            <li><a href="housing-tips.html">Housing Related Tips</a></li>
+            <li><a href="faq.html">FAQs</a></li>
+            <li><a href="external-resources.html">External Resources</a></li>
           </ul>
         </div>
         <div class="footer__col">
           <h4><a href="about.html">Company</a></h4>
           <ul>
-            <li><a href="about.html">About</a></li>
-            <li><a href="mission.html">Our Mission</a></li>
-            <li><a href="about.html#team">Team</a></li>
-            <li><a href="about.html#press">Press</a></li>
-            <li><a href="about.html#partners">Partners</a></li>
+            <li><a href="about.html">Why Leap / Our Mission</a></li>
+            <li><a href="leadership.html">Leadership</a></li>
+            <li><a href="partners.html">Partners</a></li>
+            <li><a href="pr-media.html">PR &amp; Media</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
           </ul>
         </div>
       </div>

@@ -3,12 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Knowledge Center — Leap HEI</title>
-  <meta name="description" content="Articles, guides, and definitions on home equity investments and homeownership.">
+  <title>Insights & Resources — Leap HEI</title>
+  <meta name="description" content="The knowledge you need, from a trusted source. Financial planning, housing tips, FAQs, and external resources from Leap.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
   <meta name="theme-color" content="#1e3528">
 </head>
 <body>
@@ -22,14 +24,30 @@
         <ul class="nav__menu">
           <li><a href="how-it-works.html" class="nav__link">How it works</a></li>
           <li><a href="solutions.html" class="nav__link">Solutions</a></li>
-          <li><a href="learn.html" class="nav__link">Insights &amp; Resources</a></li>
-          <li><a href="about.html" class="nav__link">Company</a></li>
+          <li class="nav__item--has-dropdown">
+            <a href="learn.html" class="nav__link">Insights &amp; Resources</a>
+            <ul class="nav__dropdown">
+              <li><a href="financial-planning.html">Financial Planning</a></li>
+              <li><a href="housing-tips.html">Housing Related Tips</a></li>
+              <li><a href="faq.html">FAQs</a></li>
+              <li><a href="external-resources.html">External Resources</a></li>
+            </ul>
+          </li>
+          <li class="nav__item--has-dropdown">
+            <a href="about.html" class="nav__link">Company</a>
+            <ul class="nav__dropdown">
+              <li><a href="about.html">Why Leap / Our Mission</a></li>
+              <li><a href="leadership.html">Leadership</a></li>
+              <li><a href="partners.html">Partners</a></li>
+              <li><a href="pr-media.html">PR &amp; Media</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <div class="nav__actions">
-        <!-- TODO(Will): point "Sign In" at the real application/login URL once provided. -->
         <a href="#" class="nav__signin">Sign In</a>
-        <a href="apply.html" data-app-href class="nav__cta">Apply Now &rarr;</a>
+        <a href="apply.html" data-app-href class="nav__cta">Apply &rarr;</a>
       </div>
       <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" id="navToggle"><span></span></button>
     </div>
@@ -37,9 +55,22 @@
       <a href="how-it-works.html" class="nav__link">How it works</a>
       <a href="solutions.html" class="nav__link">Solutions</a>
       <a href="learn.html" class="nav__link">Insights &amp; Resources</a>
+      <div class="nav__drawer-sub">
+        <a href="financial-planning.html">Financial Planning</a>
+        <a href="housing-tips.html">Housing Related Tips</a>
+        <a href="faq.html">FAQs</a>
+        <a href="external-resources.html">External Resources</a>
+      </div>
       <a href="about.html" class="nav__link">Company</a>
+      <div class="nav__drawer-sub">
+        <a href="about.html">Why Leap / Our Mission</a>
+        <a href="leadership.html">Leadership</a>
+        <a href="partners.html">Partners</a>
+        <a href="pr-media.html">PR &amp; Media</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
       <a href="#" class="nav__link">Sign In</a>
-      <a href="apply.html" data-app-href class="nav__link nav__link--cta">Apply Now &rarr;</a>
+      <a href="apply.html" data-app-href class="nav__link nav__link--cta">Apply &rarr;</a>
     </div>
   </header>
 
@@ -48,9 +79,10 @@
     <div class="container">
       <div class="page-head__grid">
         <div class="page-head__copy">
-          <span class="page-head__chapter">Knowledge Center &middot; The Library</span>
-          <h1 class="page-head__title">The full library, <em>organized by where you are</em> in your&nbsp;decision.</h1>
-          <p class="page-head__lead">Three categories, written for three places in the homeowner journey. Whether you're learning what an HEI is for the first time or you've already decided and want to compare structural details, you'll find the right depth here.</p>
+          <span class="page-head__chapter">Insights &amp; Resources</span>
+          <h1 class="page-head__title">The knowledge you need,<br><em>from a trusted source.</em></h1>
+          <p class="page-head__lead">We know how complex the financial system is. Leap was founded to help people just like you make the best decision for your situation. And we believe that a knowledgeable customer is our best partner.</p>
+          <p class="page-head__lead">Whether you&rsquo;re just learning what an HEA is or you want a blueprint to an even better financial future, we are here to arm you with the information you need to continue on your path to prosperity.</p>
         </div>
         <div class="page-head__image-wrap">
           <img src="images/learn-hero.jpeg" alt="A library desk with leather-bound books, an open hardback, reading glasses, and a vintage brass desk lamp casting warm light, with tall bookshelves behind." class="page-head__image" loading="lazy">
@@ -63,31 +95,31 @@
     <div class="container">
       <div class="card-grid">
         <article class="card">
-          <p class="card__eyebrow">Category One</p>
-          <h3 class="card__title">HEI Basics</h3>
-          <p class="card__body">Foundational explainers on what a home equity investment is, how it differs from a HELOC or cash-out refinance, and how repayment works. Designed for homeowners learning about HEIs for the first time.</p>
-          <a href="learn-basics.html" class="link-arrow card__cta">Browse HEI Basics &rarr;</a>
+          <p class="card__eyebrow">Housing Related Tips</p>
+          <h3 class="card__title">20 Tips for Credit &amp; Homeownership</h3>
+          <p class="card__body">For most people, your home is your largest asset. We&rsquo;ve compiled a list of 20 tips to help you navigate the journey of credit and home ownership challenges.</p>
+          <a href="housing-tips.html" class="link-arrow card__cta">Browse Housing Tips &rarr;</a>
         </article>
 
         <article class="card">
-          <p class="card__eyebrow">Category Two</p>
-          <h3 class="card__title">Homeownership Guides</h3>
-          <p class="card__body">Long-form pieces on the broader topic of building, holding, and using home equity wisely &mdash; from renovation ROI to retirement planning to credit recovery strategies that don't require new debt.</p>
-          <a href="learn-guides.html" class="link-arrow card__cta">Browse Homeownership Guides &rarr;</a>
+          <p class="card__eyebrow">Financial Planning</p>
+          <h3 class="card__title">Financial Wellness Series</h3>
+          <p class="card__body">Our Financial Wellness series covers 8 topics, starting with &ldquo;How Money Actually Works.&rdquo; We help you explore Credit, Budgeting, Debt, and a range of topics to guide you on your journey to financial prosperity. Take them in order or pick &amp; choose your topics &mdash; it&rsquo;s up to you.</p>
+          <a href="financial-planning.html" class="link-arrow card__cta">Browse Financial Planning &rarr;</a>
         </article>
 
         <article class="card">
-          <p class="card__eyebrow">Category Three</p>
-          <h3 class="card__title">News &amp; Press</h3>
-          <p class="card__body">Coverage of Leap, the home equity investment category, and the regulatory environment that governs both. Updated as new coverage appears &mdash; we do not pay for placement.</p>
-          <a href="learn-news.html" class="link-arrow card__cta">Browse News &amp; Press &rarr;</a>
+          <p class="card__eyebrow">External Resources</p>
+          <h3 class="card__title">Calculators, Glossaries &amp; More</h3>
+          <p class="card__body">We&rsquo;ve compiled a list of resources for you, completely free of charge, including financial calculators, terms &amp; definitions, and consumer lending websites.</p>
+          <a href="external-resources.html" class="link-arrow card__cta">Browse External Resources &rarr;</a>
         </article>
 
         <article class="card">
-          <p class="card__eyebrow">Category Four</p>
-          <h3 class="card__title">Glossary</h3>
-          <p class="card__body">A plain-English definition for every term you'll see in a Leap contract &mdash; sourced directly from Leap's published glossary. Searchable, scannable, written without jargon.</p>
-          <a href="learn-definitions.html" class="link-arrow card__cta">Browse the glossary &rarr;</a>
+          <p class="card__eyebrow">Frequently Asked Questions</p>
+          <h3 class="card__title">Your Questions, Answered</h3>
+          <p class="card__body">Our answers to the most common questions we hear should help you on your journey of discovering how a Home Equity Agreement from Leap can create the financial mobility you seek.</p>
+          <a href="faq.html" class="link-arrow card__cta">Browse FAQs &rarr;</a>
         </article>
       </div>
     </div>
@@ -125,20 +157,20 @@
         <div class="footer__col">
           <h4><a href="learn.html">Insights &amp; Resources</a></h4>
           <ul>
-            <li><a href="how-it-works.html">How HEAs Work</a></li>
-            <li><a href="learn.html">Financial Wellness</a></li>
-            <li><a href="learn-guides.html">Home Ownership Guides</a></li>
-            <li><a href="learn-definitions.html">Glossary</a></li>
+            <li><a href="financial-planning.html">Financial Planning</a></li>
+            <li><a href="housing-tips.html">Housing Related Tips</a></li>
+            <li><a href="faq.html">FAQs</a></li>
+            <li><a href="external-resources.html">External Resources</a></li>
           </ul>
         </div>
         <div class="footer__col">
           <h4><a href="about.html">Company</a></h4>
           <ul>
-            <li><a href="about.html">About</a></li>
-            <li><a href="mission.html">Our Mission</a></li>
-            <li><a href="about.html#team">Team</a></li>
-            <li><a href="about.html#press">Press</a></li>
-            <li><a href="about.html#partners">Partners</a></li>
+            <li><a href="about.html">Why Leap / Our Mission</a></li>
+            <li><a href="leadership.html">Leadership</a></li>
+            <li><a href="partners.html">Partners</a></li>
+            <li><a href="pr-media.html">PR &amp; Media</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
           </ul>
         </div>
       </div>

@@ -9,6 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
   <meta name="theme-color" content="#1e3528">
 </head>
 <body>
@@ -22,14 +24,30 @@
         <ul class="nav__menu">
           <li><a href="how-it-works.html" class="nav__link">How it works</a></li>
           <li><a href="solutions.html" class="nav__link">Solutions</a></li>
-          <li><a href="learn.html" class="nav__link">Insights &amp; Resources</a></li>
-          <li><a href="about.html" class="nav__link">Company</a></li>
+          <li class="nav__item--has-dropdown">
+            <a href="learn.html" class="nav__link">Insights &amp; Resources</a>
+            <ul class="nav__dropdown">
+              <li><a href="financial-planning.html">Financial Planning</a></li>
+              <li><a href="housing-tips.html">Housing Related Tips</a></li>
+              <li><a href="faq.html">FAQs</a></li>
+              <li><a href="external-resources.html">External Resources</a></li>
+            </ul>
+          </li>
+          <li class="nav__item--has-dropdown">
+            <a href="about.html" class="nav__link">Company</a>
+            <ul class="nav__dropdown">
+              <li><a href="about.html">Why Leap / Our Mission</a></li>
+              <li><a href="leadership.html">Leadership</a></li>
+              <li><a href="partners.html">Partners</a></li>
+              <li><a href="pr-media.html">PR &amp; Media</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <div class="nav__actions">
-        <!-- TODO(Will): point "Sign In" at the real application/login URL once provided. -->
         <a href="#" class="nav__signin">Sign In</a>
-        <a href="apply.html" data-app-href class="nav__cta">Apply Now &rarr;</a>
+        <a href="apply.html" data-app-href class="nav__cta">Apply &rarr;</a>
       </div>
       <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" id="navToggle"><span></span></button>
     </div>
@@ -37,9 +55,22 @@
       <a href="how-it-works.html" class="nav__link">How it works</a>
       <a href="solutions.html" class="nav__link">Solutions</a>
       <a href="learn.html" class="nav__link">Insights &amp; Resources</a>
+      <div class="nav__drawer-sub">
+        <a href="financial-planning.html">Financial Planning</a>
+        <a href="housing-tips.html">Housing Related Tips</a>
+        <a href="faq.html">FAQs</a>
+        <a href="external-resources.html">External Resources</a>
+      </div>
       <a href="about.html" class="nav__link">Company</a>
+      <div class="nav__drawer-sub">
+        <a href="about.html">Why Leap / Our Mission</a>
+        <a href="leadership.html">Leadership</a>
+        <a href="partners.html">Partners</a>
+        <a href="pr-media.html">PR &amp; Media</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
       <a href="#" class="nav__link">Sign In</a>
-      <a href="apply.html" data-app-href class="nav__link nav__link--cta">Apply Now &rarr;</a>
+      <a href="apply.html" data-app-href class="nav__link nav__link--cta">Apply &rarr;</a>
     </div>
   </header>
 
@@ -63,56 +94,29 @@
     <div class="container container--narrow">
       <div class="prose">
         <h2>Who Leap Restore is for</h2>
-        <p>You own your home and have built meaningful equity in it. You also carry high-interest debt &mdash; credit cards averaging above 20% APR, a personal loan, or balances that have lingered longer than you'd like. Your debt-to-income ratio is straining what should be a comfortable monthly budget, and your credit score is being weighed down by utilization on revolving accounts.</p>
-        <p>You don't want a HELOC, because adding a new monthly payment to your budget defeats the purpose of consolidating. And you don't want a cash-out refinance, because mortgage rates are higher than the one you locked in years ago.</p>
+        <p>You own your home and have built meaningful equity in it. You also carry high-interest debt &mdash; credit cards averaging above 20% APR, a personal loan, or balances that have lingered longer than you&rsquo;d like. Your debt-to-income ratio is straining what should be a comfortable monthly budget, and your credit score is being weighed down by utilization on revolving accounts.</p>
+        <p>You don&rsquo;t want a HELOC, because adding a new monthly payment to your budget defeats the purpose of consolidating. And you don&rsquo;t want a cash-out refinance, because mortgage rates are higher than the one you locked in years ago.</p>
 
         <h2>How Restore works</h2>
-        <p>Leap invests between $30,000 and $200,000 in your home's equity. You receive the funds at closing as a lump sum, which you use to pay off your highest-interest balances on day one. From that point forward, you have no monthly payment on the Leap investment. The original debt is gone, the new investment costs you nothing per month, and your credit utilization drops dramatically &mdash; typically improving your score within the first reporting cycle.</p>
+        <p>Leap invests between $30,000 and $200,000 in your home&rsquo;s equity. You receive the funds at closing as a lump sum, which you use to pay off your highest-interest balances on day one. From that point forward, you have no monthly payment on the Leap investment. The original debt is gone, the new investment costs you nothing per month, and your credit utilization drops dramatically &mdash; typically improving your score within the first reporting cycle.</p>
 
         <h2>The term</h2>
         <p>Leap Restore is a 10-year investment. You can repay it at any point during the term &mdash; through a home sale, a refinance, or a voluntary buyout &mdash; with no prepayment penalty. At year 10, repayment is automatic.</p>
-      </div>
-
-      <div class="mt-3">
-        <div class="example">
-          <div class="example__eyebrow">Worked example</div>
-          <h3 class="example__title">A homeowner in Charlotte, NC.</h3>
-          <p>Marcus and Renee own their home outright with $420,000 of equity. They carry $58,000 of credit card debt across four cards averaging 22.4% APR, costing them roughly $1,080/month in minimum payments alone.</p>
-
-          <div class="example__rows">
-            <div class="example__col">
-              <h4>Before Leap Restore</h4>
-              <div class="example__line"><span>Credit card balance</span> <strong>$58,000</strong></div>
-              <div class="example__line"><span>Avg interest rate</span> <strong>22.4%</strong></div>
-              <div class="example__line"><span>Min. monthly payment</span> <strong>$1,080</strong></div>
-              <div class="example__line"><span>Credit score</span> <strong>624</strong></div>
-            </div>
-            <div class="example__col">
-              <h4>After Leap Restore</h4>
-              <div class="example__line"><span>Credit card balance</span> <strong>$0</strong></div>
-              <div class="example__line"><span>Leap investment</span> <strong>$75,000</strong></div>
-              <div class="example__line"><span>New monthly payment</span> <strong class="example__total">$0</strong></div>
-              <div class="example__line"><span>Score after 12 months</span> <strong>758</strong></div>
-            </div>
-          </div>
-
-          <p style="margin:0; color: var(--text-muted); font-size: 0.9rem;">Settled at sale in year 7 for $560,000. Repayment to Leap: $75,000 original + 30% share of $140,000 appreciation = $117,000. Net of the original $75,000 cash and 7 years free of $1,080/month payments, Restore returned roughly $48,720 in interest avoided plus the credit recovery.</p>
-        </div>
       </div>
     </div>
   </section>
 
   <section class="section section--off">
     <div class="container container--narrow">
-      <h2 class="h2 text-center" style="text-align:center; margin-bottom: 2.5rem;">Restore — frequently asked</h2>
+      <h2 class="h2 text-center" style="text-align:center; margin-bottom: 2.5rem;">Restore &mdash; frequently asked</h2>
       <div class="faq">
-        <div class="faq__item"><button class="faq__q">Will using Leap Restore actually improve my credit score?</button><div class="faq__a"><div class="faq__a-inner">Paying off revolving credit balances reduces your credit utilization ratio, which is one of the largest factors in your FICO score. Most Restore customers see a score improvement of 60–150 points within 12 months. Because there is no new monthly payment on the Leap investment, your debt-to-income ratio improves at the same time.</div></div></div>
+        <div class="faq__item"><button class="faq__q">Will using Leap Restore actually improve my credit score?</button><div class="faq__a"><div class="faq__a-inner">Paying off revolving credit balances reduces your credit utilization ratio, which is one of the largest factors in your FICO score. Most Restore customers see a score improvement of 60&ndash;150 points within 12 months. Because there is no new monthly payment on the Leap investment, your debt-to-income ratio improves at the same time.</div></div></div>
         <div class="faq__item"><button class="faq__q">Does Leap report to credit bureaus?</button><div class="faq__a"><div class="faq__a-inner">No. A home equity investment is not debt, so it does not appear on your credit report and does not affect your debt-to-income calculation when applying for future credit.</div></div></div>
-        <div class="faq__item"><button class="faq__q">What if I run my balances back up?</button><div class="faq__a"><div class="faq__a-inner">That's your call. Restore funds are yours unconditionally after closing. We strongly recommend pairing Restore with a closure of the cards you've paid off &mdash; many customers close the high-interest accounts and keep only one or two no-fee cards with healthy limits to maintain credit history.</div></div></div>
+        <div class="faq__item"><button class="faq__q">What if I run my balances back up?</button><div class="faq__a"><div class="faq__a-inner">That&rsquo;s your call. Restore funds are yours unconditionally after closing. We strongly recommend pairing Restore with a closure of the cards you&rsquo;ve paid off &mdash; many customers close the high-interest accounts and keep only one or two no-fee cards with healthy limits to maintain credit history.</div></div></div>
         <div class="faq__item"><button class="faq__q">What credit score do I need to qualify?</button><div class="faq__a"><div class="faq__a-inner">Restore has the most flexible credit requirements of our three products. Most applicants approve with FICO scores as low as 580 if equity and ownership history support the investment.</div></div></div>
       </div>
 
-      <p class="text-center mt-3" style="text-align:center;"><a href="apply.html?product=restore" class="btn btn--primary btn--lg">Apply for Leap Restore &rarr;</a></p>
+      <p class="text-center mt-3" style="text-align:center;"><a href="apply.html?product=restore" class="btn btn--primary btn--lg">Get started with Leap Restore &rarr;</a></p>
     </div>
   </section>
   </main>
@@ -148,20 +152,20 @@
         <div class="footer__col">
           <h4><a href="learn.html">Insights &amp; Resources</a></h4>
           <ul>
-            <li><a href="how-it-works.html">How HEAs Work</a></li>
-            <li><a href="learn.html">Financial Wellness</a></li>
-            <li><a href="learn-guides.html">Home Ownership Guides</a></li>
-            <li><a href="learn-definitions.html">Glossary</a></li>
+            <li><a href="financial-planning.html">Financial Planning</a></li>
+            <li><a href="housing-tips.html">Housing Related Tips</a></li>
+            <li><a href="faq.html">FAQs</a></li>
+            <li><a href="external-resources.html">External Resources</a></li>
           </ul>
         </div>
         <div class="footer__col">
           <h4><a href="about.html">Company</a></h4>
           <ul>
-            <li><a href="about.html">About</a></li>
-            <li><a href="mission.html">Our Mission</a></li>
-            <li><a href="about.html#team">Team</a></li>
-            <li><a href="about.html#press">Press</a></li>
-            <li><a href="about.html#partners">Partners</a></li>
+            <li><a href="about.html">Why Leap / Our Mission</a></li>
+            <li><a href="leadership.html">Leadership</a></li>
+            <li><a href="partners.html">Partners</a></li>
+            <li><a href="pr-media.html">PR &amp; Media</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
           </ul>
         </div>
       </div>

@@ -3,12 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>How a home equity investment works — Leap HEI</title>
-  <meta name="description" content="The full mechanics of a Leap HEI. How equity is calculated, how the investment is structured, what happens at the term end, and what happens if home values change.">
+  <title>How a Home Equity Agreement works — Leap HEI</title>
+  <meta name="description" content="How a Leap Home Equity Agreement works — the full explanation of what an HEA is, how it's structured, and why it's different from a HELOC or cash-out refinance.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
   <meta name="theme-color" content="#1e3528">
 </head>
 <body>
@@ -22,14 +24,30 @@
         <ul class="nav__menu">
           <li><a href="how-it-works.html" class="nav__link">How it works</a></li>
           <li><a href="solutions.html" class="nav__link">Solutions</a></li>
-          <li><a href="learn.html" class="nav__link">Insights &amp; Resources</a></li>
-          <li><a href="about.html" class="nav__link">Company</a></li>
+          <li class="nav__item--has-dropdown">
+            <a href="learn.html" class="nav__link">Insights &amp; Resources</a>
+            <ul class="nav__dropdown">
+              <li><a href="financial-planning.html">Financial Planning</a></li>
+              <li><a href="housing-tips.html">Housing Related Tips</a></li>
+              <li><a href="faq.html">FAQs</a></li>
+              <li><a href="external-resources.html">External Resources</a></li>
+            </ul>
+          </li>
+          <li class="nav__item--has-dropdown">
+            <a href="about.html" class="nav__link">Company</a>
+            <ul class="nav__dropdown">
+              <li><a href="about.html">Why Leap / Our Mission</a></li>
+              <li><a href="leadership.html">Leadership</a></li>
+              <li><a href="partners.html">Partners</a></li>
+              <li><a href="pr-media.html">PR &amp; Media</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <div class="nav__actions">
-        <!-- TODO(Will): point "Sign In" at the real application/login URL once provided. -->
         <a href="#" class="nav__signin">Sign In</a>
-        <a href="apply.html" data-app-href class="nav__cta">Apply Now &rarr;</a>
+        <a href="apply.html" data-app-href class="nav__cta">Apply &rarr;</a>
       </div>
       <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" id="navToggle"><span></span></button>
     </div>
@@ -37,9 +55,22 @@
       <a href="how-it-works.html" class="nav__link">How it works</a>
       <a href="solutions.html" class="nav__link">Solutions</a>
       <a href="learn.html" class="nav__link">Insights &amp; Resources</a>
+      <div class="nav__drawer-sub">
+        <a href="financial-planning.html">Financial Planning</a>
+        <a href="housing-tips.html">Housing Related Tips</a>
+        <a href="faq.html">FAQs</a>
+        <a href="external-resources.html">External Resources</a>
+      </div>
       <a href="about.html" class="nav__link">Company</a>
+      <div class="nav__drawer-sub">
+        <a href="about.html">Why Leap / Our Mission</a>
+        <a href="leadership.html">Leadership</a>
+        <a href="partners.html">Partners</a>
+        <a href="pr-media.html">PR &amp; Media</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
       <a href="#" class="nav__link">Sign In</a>
-      <a href="apply.html" data-app-href class="nav__link nav__link--cta">Apply Now &rarr;</a>
+      <a href="apply.html" data-app-href class="nav__link nav__link--cta">Apply &rarr;</a>
     </div>
   </header>
 
@@ -466,9 +497,9 @@
     <div class="container">
       <div class="page-head__grid">
         <div class="page-head__copy">
-          <span class="page-head__chapter">Chapter 01 &middot; The Mechanics</span>
-          <h1 class="page-head__title">A home equity investment, <em>fully&nbsp;explained</em>.</h1>
-          <p class="page-head__lead">Most homeowners have only encountered HELOCs and cash-out refinancing. A home equity investment is structurally different. This page is the long version &mdash; written so you can decide with full information.</p>
+          <span class="page-head__chapter">How It Works &middot; The Mechanics</span>
+          <h1 class="page-head__title">A home equity agreement, <em>fully&nbsp;explained</em>.</h1>
+          <p class="page-head__lead">Most homeowners have only encountered HELOCs and cash-out refinancing. Unfortunately, the requirements for qualification are stringent, the timelines and paperwork are a hassle, and these products might not be a fit for your unique situation. A home equity agreement is structurally different and can offer a different path to the outcomes you seek &mdash; including financial mobility and wellness.</p>
         </div>
         <div class="page-head__image-wrap">
           <img src="images/how-it-works-hero.jpeg" alt="A sunlit reading nook with a linen armchair, fiddle-leaf fig, and open book on a vintage oak side table." class="page-head__image" loading="lazy">
@@ -486,172 +517,63 @@
     </div>
   </section>
 
-  <!-- MODULE 1: Two-column investment calculation -->
-  <section class="section section--off">
-    <div class="container">
-      <div class="mechanics__two-col">
-        <div class="mechanics__copy">
-          <span class="eyebrow">The math</span>
-          <h2>How the investment is calculated</h2>
-          <p>The amount Leap can invest depends on two figures: your home's appraised value and the equity you already hold in it. We invest in the equity, not the underlying mortgage.</p>
-          <p>For most homeowners, Leap invests between 10 and 25 percent of the current appraised value, up to a $300,000 maximum. The exact figure depends on the product, your credit profile, the local market, and the term length you choose.</p>
-        </div>
-        <aside class="mechanics__calc" aria-label="Example investment range">
-          <div class="mechanics__calc-eyebrow">If your home appraises at</div>
-          <div class="mechanics__calc-row">
-            <span class="mechanics__calc-label">Home appraised value</span>
-            <span class="mechanics__calc-value mechanics__calc-value--xl">$500,000</span>
-          </div>
-          <div class="mechanics__calc-row">
-            <span class="mechanics__calc-label">Investment range</span>
-            <span class="mechanics__calc-value">10&ndash;25%</span>
-          </div>
-          <div class="mechanics__calc-row">
-            <span class="mechanics__calc-label">Available to you</span>
-            <span class="mechanics__calc-value mechanics__calc-value--accent">$50K&ndash;$125K</span>
-          </div>
-          <div class="mechanics__calc-cap">
-            <span>Program maximum</span>
-            <strong>$300,000</strong>
-          </div>
-        </aside>
-      </div>
-    </div>
-  </section>
-
-  <!-- MODULE 2: Worked example on dark -->
-  <section class="section">
-    <div class="container container--narrow">
-      <div class="mechanics__section-head">
-        <span class="eyebrow eyebrow--red">The repayment formula</span>
-        <h2>One investment, walked through end to end</h2>
-        <p>The formula has two parts: your original investment back, plus an agreed share of the appreciation. If your home does not appreciate, you owe only the original amount.</p>
-      </div>
-      <div class="mechanics__example">
-        <div class="mechanics__example-eyebrow">Worked example &middot; 5-year hold</div>
-        <h3 class="mechanics__example-title">A $75,000 investment at 30% appreciation&nbsp;share</h3>
-        <p class="mechanics__example-lead">Your home appraises at $500,000 today. Leap invests $75,000. Five years later you sell for $620,000. Here is the full settlement.</p>
-
-        <div class="settlement-chart">
-          <!-- Timeline: home value today vs. at sale -->
-          <div class="settlement-chart__section">
-            <div class="settlement-chart__section-label">Home value over the term</div>
-            <div class="settlement-chart__timeline">
-              <div class="settlement-chart__row">
-                <div class="settlement-chart__row-label">Today</div>
-                <div class="settlement-chart__row-bar">
-                  <div class="settlement-chart__row-fill" style="width:80.65%;"></div>
-                </div>
-                <div class="settlement-chart__row-value">$500,000</div>
-              </div>
-              <div class="settlement-chart__row">
-                <div class="settlement-chart__row-label">In five years</div>
-                <div class="settlement-chart__row-bar">
-                  <div class="settlement-chart__row-fill" style="width:80.65%;"></div>
-                  <div class="settlement-chart__row-delta" style="width:19.35%;"></div>
-                </div>
-                <div class="settlement-chart__row-value">
-                  $620,000
-                  <span class="settlement-chart__row-delta-label">+$120,000 &middot; +24%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Split bar: where the $620,000 goes -->
-          <div class="settlement-chart__section">
-            <div class="settlement-chart__section-label">Where the $620,000 sale goes</div>
-            <div class="settlement-chart__split-bar" role="img" aria-label="The $620,000 sale splits into $509,000 that stays with you, $75,000 original investment back to Leap, and $36,000 appreciation share to Leap.">
-              <div class="settlement-chart__split settlement-chart__split--keep" style="flex: 509;">
-                <div class="settlement-chart__split-amount">$509,000</div>
-                <div>
-                  <div class="settlement-chart__split-label">Stays with you</div>
-                  <div class="settlement-chart__split-pct">82.1%</div>
-                </div>
-              </div>
-              <div class="settlement-chart__split settlement-chart__split--principal" style="flex: 75;">
-                <div class="settlement-chart__split-amount">$75,000</div>
-                <div>
-                  <div class="settlement-chart__split-label">Original investment</div>
-                  <div class="settlement-chart__split-pct">12.1%</div>
-                </div>
-              </div>
-              <div class="settlement-chart__split settlement-chart__split--share" style="flex: 36;">
-                <div class="settlement-chart__split-amount">$36,000</div>
-                <div>
-                  <div class="settlement-chart__split-label">30% appreciation share</div>
-                  <div class="settlement-chart__split-pct">5.8%</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Totals: side-by-side summary -->
-          <div class="settlement-chart__totals">
-            <div class="settlement-chart__total">
-              <div class="settlement-chart__total-label">Stays with you</div>
-              <div class="settlement-chart__total-value settlement-chart__total-value--keep">$509,000</div>
-              <div class="settlement-chart__total-pct">82.1% of the sale</div>
-            </div>
-            <div class="settlement-chart__total settlement-chart__total--leap">
-              <div class="settlement-chart__total-label">Total to Leap</div>
-              <div class="settlement-chart__total-value settlement-chart__total-value--leap">$111,000</div>
-              <div class="settlement-chart__total-pct">$75K invested + $36K share</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MODULE 3: Downside callout -->
+  <!-- Leap shares the downside callout -->
   <section class="section section--off">
     <div class="container container--narrow">
       <div class="mechanics__callout">
-        <div class="mechanics__callout-eyebrow">If values fall</div>
-        <h3>Leap shares the downside, not just the upside</h3>
-        <p>If your home appraises lower at the end of the investment than it did at the start, your repayment is reduced. In most products on a one-for-one basis. In the steepest declines, repayment can fall below the original investment.</p>
-        <p>This is the structural advantage of an investment over a loan. A loan must be repaid in full regardless of the home's market value. An investment shares the risk because it shares the upside.</p>
+        <div class="mechanics__callout-eyebrow">How it works</div>
+        <h3>At its core, a Home Equity Agreement provides you a lump sum upfront in exchange for a share of your home&rsquo;s future value</h3>
+        <p>You get your cash now and unlike a loan, you don&rsquo;t pay anything back until you sell, refinance, or the term ends (typically 10 years). Leap shares in your home&rsquo;s growth &mdash; or loss. When the agreement ends, the investor gets their percentage of your home&rsquo;s value at that time.</p>
+        <p>Most importantly, you keep control &mdash; you still own your home, you just repay the investor when you&rsquo;re ready to move or settle the agreement.</p>
       </div>
     </div>
   </section>
 
-  <!-- MODULE 4: Two-card grid: early repayment + requirements -->
+  <!-- Why pick an HEA -->
   <section class="section">
-    <div class="container">
+    <div class="container container--narrow">
       <div class="mechanics__section-head">
-        <span class="eyebrow">Terms and flexibility</span>
-        <h2>What you can do, what we ask</h2>
+        <h2>Why pick an HEA?</h2>
       </div>
       <div class="card-grid card-grid--2">
         <article class="card">
-          <span class="card__eyebrow">Early repayment</span>
-          <h3 class="card__title">Repay any time, no penalty</h3>
-          <p class="card__body">You can settle a Leap investment at any point during the term. The amount due uses the same formula: the original investment plus the agreed share of appreciation as of the repayment date, based on a current appraisal.</p>
+          <span class="card__eyebrow">No monthly payments or debt</span>
+          <h3 class="card__title">Payments only when you&rsquo;re ready</h3>
+          <p class="card__body">Unlike home equity loans or HELOCs, HEAs do not require repayment in installments. You repay at sale, refinance, or term end &mdash; on your timeline.</p>
         </article>
         <article class="card">
-          <span class="card__eyebrow">Your obligations</span>
-          <h3 class="card__title">Live in the home. Stay current.</h3>
-          <p class="card__body">For the term of the investment, you occupy the home as your primary residence, keep it in reasonable condition, and stay current on your primary mortgage, property taxes, and homeowners insurance. There are no other ongoing obligations.</p>
+          <span class="card__eyebrow">Financial inclusion</span>
+          <h3 class="card__title">Accessible to more homeowners</h3>
+          <p class="card__body">Lenient approval terms make HEAs accessible to homeowners with lower credit scores who may not qualify for traditional equity products.</p>
+        </article>
+        <article class="card">
+          <span class="card__eyebrow">No interest</span>
+          <h3 class="card__title">A share of appreciation, not debt</h3>
+          <p class="card__body">Since HEAs are not loans, there is no interest charged. You share a portion of your home&rsquo;s future value &mdash; nothing more.</p>
+        </article>
+        <article class="card">
+          <span class="card__eyebrow">Retain ownership</span>
+          <h3 class="card__title">Your home. Your title.</h3>
+          <p class="card__body">Homeowners keep the title and can continue living in the house throughout the entire agreement term. Nothing about your daily life changes.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- MODULE 5: Comparison table -->
+  <!-- Detailed Comparison table -->
   <section class="section section--off">
     <div class="container">
       <div class="compare__head">
-        <span class="eyebrow">Side by side</span>
-        <h2>How a Leap HEI compares to a HELOC or cash-out refi</h2>
-        <p>A HELOC adds a second lien and a monthly payment. A cash-out refi replaces your mortgage with a larger one. A Leap HEI does neither.</p>
+        <span class="eyebrow">Detailed Comparison</span>
+        <h2>How a Leap HEA compares to other options</h2>
+        <p>A HELOC adds a second lien and a monthly payment. A cash-out refi replaces your mortgage with a larger one. A Leap HEA does neither.</p>
       </div>
       <div class="compare__wrap">
         <table class="compare">
           <thead>
             <tr>
               <th scope="col">&nbsp;</th>
-              <th scope="col" class="is-leap">Leap HEI</th>
+              <th scope="col" class="is-leap">Leap HEA</th>
               <th scope="col">HELOC</th>
               <th scope="col">Cash-out refi</th>
             </tr>
@@ -779,20 +701,20 @@
         <div class="footer__col">
           <h4><a href="learn.html">Insights &amp; Resources</a></h4>
           <ul>
-            <li><a href="how-it-works.html">How HEAs Work</a></li>
-            <li><a href="learn.html">Financial Wellness</a></li>
-            <li><a href="learn-guides.html">Home Ownership Guides</a></li>
-            <li><a href="learn-definitions.html">Glossary</a></li>
+            <li><a href="financial-planning.html">Financial Planning</a></li>
+            <li><a href="housing-tips.html">Housing Related Tips</a></li>
+            <li><a href="faq.html">FAQs</a></li>
+            <li><a href="external-resources.html">External Resources</a></li>
           </ul>
         </div>
         <div class="footer__col">
           <h4><a href="about.html">Company</a></h4>
           <ul>
-            <li><a href="about.html">About</a></li>
-            <li><a href="mission.html">Our Mission</a></li>
-            <li><a href="about.html#team">Team</a></li>
-            <li><a href="about.html#press">Press</a></li>
-            <li><a href="about.html#partners">Partners</a></li>
+            <li><a href="about.html">Why Leap / Our Mission</a></li>
+            <li><a href="leadership.html">Leadership</a></li>
+            <li><a href="partners.html">Partners</a></li>
+            <li><a href="pr-media.html">PR &amp; Media</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
           </ul>
         </div>
       </div>

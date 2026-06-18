@@ -24,14 +24,30 @@
         <ul class="nav__menu">
           <li><a href="how-it-works.html" class="nav__link">How it works</a></li>
           <li><a href="solutions.html" class="nav__link">Solutions</a></li>
-          <li><a href="learn.html" class="nav__link">Insights &amp; Resources</a></li>
-          <li><a href="about.html" class="nav__link">Company</a></li>
+          <li class="nav__item--has-dropdown">
+            <a href="learn.html" class="nav__link">Insights &amp; Resources</a>
+            <ul class="nav__dropdown">
+              <li><a href="financial-planning.html">Financial Planning</a></li>
+              <li><a href="housing-tips.html">Housing Related Tips</a></li>
+              <li><a href="faq.html">FAQs</a></li>
+              <li><a href="external-resources.html">External Resources</a></li>
+            </ul>
+          </li>
+          <li class="nav__item--has-dropdown">
+            <a href="about.html" class="nav__link">Company</a>
+            <ul class="nav__dropdown">
+              <li><a href="about.html">Why Leap / Our Mission</a></li>
+              <li><a href="leadership.html">Leadership</a></li>
+              <li><a href="partners.html">Partners</a></li>
+              <li><a href="pr-media.html">PR &amp; Media</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <div class="nav__actions">
-        <!-- TODO(Will): point "Sign In" at the real application/login URL once provided. -->
         <a href="#" class="nav__signin">Sign In</a>
-        <a href="apply.html" data-app-href class="nav__cta">Apply Now &rarr;</a>
+        <a href="apply.html" data-app-href class="nav__cta">Apply &rarr;</a>
       </div>
       <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" id="navToggle"><span></span></button>
     </div>
@@ -39,9 +55,22 @@
       <a href="how-it-works.html" class="nav__link">How it works</a>
       <a href="solutions.html" class="nav__link">Solutions</a>
       <a href="learn.html" class="nav__link">Insights &amp; Resources</a>
+      <div class="nav__drawer-sub">
+        <a href="financial-planning.html">Financial Planning</a>
+        <a href="housing-tips.html">Housing Related Tips</a>
+        <a href="faq.html">FAQs</a>
+        <a href="external-resources.html">External Resources</a>
+      </div>
       <a href="about.html" class="nav__link">Company</a>
+      <div class="nav__drawer-sub">
+        <a href="about.html">Why Leap / Our Mission</a>
+        <a href="leadership.html">Leadership</a>
+        <a href="partners.html">Partners</a>
+        <a href="pr-media.html">PR &amp; Media</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
       <a href="#" class="nav__link">Sign In</a>
-      <a href="apply.html" data-app-href class="nav__link nav__link--cta">Apply Now &rarr;</a>
+      <a href="apply.html" data-app-href class="nav__link nav__link--cta">Apply &rarr;</a>
     </div>
   </header>
 
@@ -53,8 +82,9 @@
     </div>
   </section>
 
-  <section class="section solutions solutions--light" style="padding-top: 0;">
+  <section class="section solutions solutions--light">
     <div class="container">
+      <p style="text-align: center; margin-bottom: 2rem;"><a href="how-it-works.html" class="link-arrow">Learn how HEAs work &rarr;</a></p>
       <div class="solutions__grid">
         <article class="solution reveal reveal--delay-1" data-tone="restore">
           <span class="solution__name">Leap Restore</span>
@@ -67,7 +97,7 @@
           </ul>
           <div class="solution__ctas">
             <a href="solutions-restore.html" class="link-arrow">Learn more &rarr;</a>
-            <a href="apply.html?product=restore" class="link-arrow link-arrow--red">Apply for this &rarr;</a>
+            <a href="apply.html?product=restore" class="link-arrow link-arrow--red">Apply &rarr;</a>
           </div>
         </article>
 
@@ -82,7 +112,7 @@
           </ul>
           <div class="solution__ctas">
             <a href="solutions-revive.html" class="link-arrow">Learn more &rarr;</a>
-            <a href="apply.html?product=revive" class="link-arrow link-arrow--red">Apply for this &rarr;</a>
+            <a href="apply.html?product=revive" class="link-arrow link-arrow--red">Apply &rarr;</a>
           </div>
         </article>
 
@@ -97,7 +127,7 @@
           </ul>
           <div class="solution__ctas">
             <a href="solutions-relax.html" class="link-arrow">Learn more &rarr;</a>
-            <a href="apply.html?product=relax" class="link-arrow link-arrow--red">Apply for this &rarr;</a>
+            <a href="apply.html?product=relax" class="link-arrow link-arrow--red">Apply &rarr;</a>
           </div>
         </article>
       </div>
@@ -136,20 +166,20 @@
         <div class="footer__col">
           <h4><a href="learn.html">Insights &amp; Resources</a></h4>
           <ul>
-            <li><a href="how-it-works.html">How HEAs Work</a></li>
-            <li><a href="learn.html">Financial Wellness</a></li>
-            <li><a href="learn-guides.html">Home Ownership Guides</a></li>
-            <li><a href="learn-definitions.html">Glossary</a></li>
+            <li><a href="financial-planning.html">Financial Planning</a></li>
+            <li><a href="housing-tips.html">Housing Related Tips</a></li>
+            <li><a href="faq.html">FAQs</a></li>
+            <li><a href="external-resources.html">External Resources</a></li>
           </ul>
         </div>
         <div class="footer__col">
           <h4><a href="about.html">Company</a></h4>
           <ul>
-            <li><a href="about.html">About</a></li>
-            <li><a href="mission.html">Our Mission</a></li>
-            <li><a href="about.html#team">Team</a></li>
-            <li><a href="about.html#press">Press</a></li>
-            <li><a href="about.html#partners">Partners</a></li>
+            <li><a href="about.html">Why Leap / Our Mission</a></li>
+            <li><a href="leadership.html">Leadership</a></li>
+            <li><a href="partners.html">Partners</a></li>
+            <li><a href="pr-media.html">PR &amp; Media</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
           </ul>
         </div>
       </div>
