@@ -1929,6 +1929,9 @@ h1, h2, h3, .display, .h1, .h2, .h3,
   color: var(--charcoal);
   padding: clamp(6rem, 4rem + 5vw, 9rem) 0 clamp(4rem, 2.5rem + 4vw, 6rem);
 }
+.page-head--editorial:not(.page-head--with-image) {
+  padding-bottom: clamp(2rem, 1rem + 2vw, 3rem);
+}
 .page-head--editorial::before { display: none; }
 .page-head--editorial .page-head__eyebrow,
 .page-head--editorial .page-head__chapter { color: var(--gold); }

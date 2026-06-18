@@ -370,9 +370,9 @@
 }
 
 .leap-btn--next .leap-btn__right {
-  background: var(--leap-gold-mid);
+  background: var(--leap-beige);
   border: 0.5px solid var(--leap-gold-mid);
-  border-left: none;
+  border-left: 0.5px solid rgba(184, 151, 90, 0.3);
   padding: 13px 16px;
   display: flex;
   align-items: center;
