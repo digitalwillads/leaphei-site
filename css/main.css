@@ -2311,6 +2311,14 @@ html.has-custom-cursor textarea:focus ~ .cursor-dot { opacity: 0; }
 
 /* ── Two-tier dropdown navigation ────────────────────────────────────── */
 .nav__item--has-dropdown { position: relative; }
+.nav__item--has-dropdown::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  right: 0;
+  height: 12px;
+}
 
 .nav__dropdown {
   position: absolute;

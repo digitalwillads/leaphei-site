@@ -23,7 +23,14 @@
       <nav>
         <ul class="nav__menu">
           <li><a href="how-it-works.html" class="nav__link">How it works</a></li>
-          <li><a href="solutions.html" class="nav__link">Solutions</a></li>
+          <li class="nav__item--has-dropdown">
+            <a href="solutions.html" class="nav__link">Solutions</a>
+            <ul class="nav__dropdown">
+              <li><a href="solutions-restore.html">Leap Restore</a></li>
+              <li><a href="solutions-revive.html">Leap Revive</a></li>
+              <li><a href="solutions-relax.html">Leap Relax</a></li>
+            </ul>
+          </li>
           <li class="nav__item--has-dropdown">
             <a href="learn.html" class="nav__link">Insights &amp; Resources</a>
             <ul class="nav__dropdown">
@@ -36,7 +43,6 @@
           <li class="nav__item--has-dropdown">
             <a href="about.html" class="nav__link">Company</a>
             <ul class="nav__dropdown">
-              <li><a href="about.html">Why Leap / Our Mission</a></li>
               <li><a href="leadership.html">Leadership</a></li>
               <li><a href="partners.html">Partners</a></li>
               <li><a href="pr-media.html">PR &amp; Media</a></li>
@@ -54,6 +60,11 @@
     <div class="nav__drawer">
       <a href="how-it-works.html" class="nav__link">How it works</a>
       <a href="solutions.html" class="nav__link">Solutions</a>
+      <div class="nav__drawer-sub">
+        <a href="solutions-restore.html">Leap Restore</a>
+        <a href="solutions-revive.html">Leap Revive</a>
+        <a href="solutions-relax.html">Leap Relax</a>
+      </div>
       <a href="learn.html" class="nav__link">Insights &amp; Resources</a>
       <div class="nav__drawer-sub">
         <a href="financial-planning.html">Financial Planning</a>
@@ -63,7 +74,6 @@
       </div>
       <a href="about.html" class="nav__link">Company</a>
       <div class="nav__drawer-sub">
-        <a href="about.html">Why Leap / Our Mission</a>
         <a href="leadership.html">Leadership</a>
         <a href="partners.html">Partners</a>
         <a href="pr-media.html">PR &amp; Media</a>
@@ -508,15 +518,6 @@
     </div>
   </section>
 
-  <!-- The four lifecycle steps, presented as an interactive stepper.
-       Replaces the previous static 4-card grid; same content and copy,
-       driven by the Leap step-process component (js/leap-steps.js). -->
-  <section class="section">
-    <div class="container container--narrow">
-      <div id="leap-steps-root"></div>
-    </div>
-  </section>
-
   <!-- Leap shares the downside callout -->
   <section class="section section--off">
     <div class="container container--narrow">
@@ -526,6 +527,15 @@
         <p>You get your cash now and unlike a loan, you don&rsquo;t pay anything back until you sell, refinance, or the term ends (typically 10 years). Leap shares in your home&rsquo;s growth &mdash; or loss. When the agreement ends, the investor gets their percentage of your home&rsquo;s value at that time.</p>
         <p>Most importantly, you keep control &mdash; you still own your home, you just repay the investor when you&rsquo;re ready to move or settle the agreement.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- The four lifecycle steps, presented as an interactive stepper.
+       Replaces the previous static 4-card grid; same content and copy,
+       driven by the Leap step-process component (js/leap-steps.js). -->
+  <section class="section">
+    <div class="container container--narrow">
+      <div id="leap-steps-root"></div>
     </div>
   </section>
 
@@ -564,53 +574,56 @@
   <section class="section section--off">
     <div class="container">
       <div class="compare__head">
-        <span class="eyebrow">Detailed Comparison</span>
-        <h2>How a Leap HEA compares to other options</h2>
-        <p>A HELOC adds a second lien and a monthly payment. A cash-out refi replaces your mortgage with a larger one. A Leap HEA does neither.</p>
+        <span class="eyebrow">Comparison</span>
+        <h2>Four ways to tap your equity. <em>One is structurally different.</em></h2>
+        <p>If you&rsquo;re considering a Leap HEI, you&rsquo;re almost certainly also considering a HELOC, a cash-out refinance, or a personal loan. Here&rsquo;s an honest comparison, written by the company that benefits from the comparison being honest.</p>
       </div>
       <div class="compare__wrap">
         <table class="compare">
           <thead>
             <tr>
-              <th scope="col">&nbsp;</th>
-              <th scope="col" class="is-leap">Leap HEA</th>
+              <th scope="col"></th>
+              <th scope="col" class="is-leap">Leap HEI</th>
               <th scope="col">HELOC</th>
               <th scope="col">Cash-out refi</th>
+              <th scope="col">Personal loan</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Monthly payment</td>
-              <td class="is-leap">None</td>
-              <td>Yes, interest-bearing</td>
-              <td>Yes, larger than before</td>
-            </tr>
-            <tr>
-              <td>New interest accrues</td>
-              <td class="is-leap">No</td>
-              <td>Yes, variable rate</td>
-              <td>Yes, often at a higher rate</td>
-            </tr>
-            <tr>
-              <td>Adds to your debt balance</td>
-              <td class="is-leap">No &mdash; structured as an investment</td>
-              <td>Yes &mdash; second lien</td>
-              <td>Yes &mdash; replaces primary mortgage</td>
-            </tr>
-            <tr>
-              <td>Repayment trigger</td>
-              <td class="is-leap">Sale, refinance, or term end</td>
-              <td>Monthly, on a calendar</td>
-              <td>Monthly, on a calendar</td>
-            </tr>
-            <tr>
-              <td>Shares downside if values fall</td>
-              <td class="is-leap">Yes</td>
-              <td>No</td>
-              <td>No</td>
-            </tr>
+            <tr><td>Monthly payments</td><td class="is-leap">None</td><td>Yes &mdash; principal + interest</td><td>Yes &mdash; principal + interest</td><td>Yes &mdash; principal + interest</td></tr>
+            <tr><td>Interest rate</td><td class="is-leap">None &mdash; share of appreciation instead</td><td>Variable, prime + margin</td><td>Fixed (typically higher than your existing mortgage in current environment)</td><td>Fixed or variable, often 9&ndash;20%</td></tr>
+            <tr><td>Adds debt to balance sheet</td><td class="is-leap">No &mdash; structured as an investment</td><td>Yes &mdash; second lien</td><td>Yes &mdash; replaces existing mortgage at larger amount</td><td>Yes &mdash; unsecured installment loan</td></tr>
+            <tr><td>Credit score impact</td><td class="is-leap">Minimal &mdash; soft pull for pre-qual</td><td>Hard pull, reports to bureaus</td><td>Hard pull, refinance reports to bureaus</td><td>Hard pull, reports to bureaus</td></tr>
+            <tr><td>Repayment trigger</td><td class="is-leap">Home sale, refinance, or end of term</td><td>Monthly throughout draw + repayment</td><td>Monthly over new mortgage term</td><td>Monthly over loan term (3&ndash;7 yrs)</td></tr>
+            <tr><td>Maximum amount</td><td class="is-leap">Up to $300,000</td><td>Typically 80&ndash;85% of equity, lender-dependent</td><td>Typically 80% of home value minus existing mortgage</td><td>Typically &lt;$100,000</td></tr>
+            <tr><td>Decision speed</td><td class="is-leap">Fast &mdash; automated underwriting</td><td>2&ndash;6 weeks</td><td>4&ndash;8 weeks</td><td>Days to weeks</td></tr>
+            <tr><td>Income / employment requirement</td><td class="is-leap">Flexible &mdash; equity-driven</td><td>Strict income verification</td><td>Strict income verification</td><td>Strict income verification</td></tr>
+            <tr><td>Closing costs</td><td class="is-leap">Single appraisal + closing fees, typically 2&ndash;3%</td><td>2&ndash;5% of credit line</td><td>2&ndash;5% of new loan amount</td><td>Origination fees 1&ndash;8%</td></tr>
+            <tr><td>Affects your existing mortgage rate</td><td class="is-leap">No</td><td>No</td><td>Yes &mdash; replaces it at current market rate</td><td>No</td></tr>
+            <tr><td>Cost if home value declines</td><td class="is-leap">Reduced repayment &mdash; downside shared</td><td>Full loan balance still owed</td><td>Full loan balance still owed</td><td>Full loan balance still owed</td></tr>
+            <tr><td>Cost if home value rises sharply</td><td class="is-leap">Higher repayment via appreciation share</td><td>Unchanged</td><td>Unchanged</td><td>Unchanged</td></tr>
           </tbody>
         </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="prose">
+        <h2>When a HELOC is the better choice</h2>
+        <p>A HELOC makes more sense than a Leap HEI when you need short-term, flexible access to a smaller amount of capital and you have the monthly cash flow to comfortably service the new payment. HELOCs offer a revolving credit line you can draw and repay over a long period, which is unmatched by any other product when flexibility is the priority. If you expect to use the funds for under three years and you have strong income coverage, the math often favors a HELOC.</p>
+
+        <h2>When a cash-out refinance is the better choice</h2>
+        <p>A cash-out refinance is the right product when current mortgage rates are meaningfully <em>below</em> your existing rate. In that environment, you reduce your monthly payment <em>and</em> extract equity simultaneously. In the current rate environment, where most homeowners locked in below-market rates between 2020 and 2022, a cash-out refi typically increases the monthly cost meaningfully &mdash; making it a poor fit for most homeowners we speak with.</p>
+
+        <h2>When a personal loan is the better choice</h2>
+        <p>Rarely, in our view. Personal loans are typically a last resort for homeowners &mdash; the interest rates are high, the terms are short, and they don&rsquo;t take advantage of the equity you&rsquo;ve worked to build. The one exception is a small amount (under $25,000) for a short period (under two years), where the convenience of a personal loan can outweigh the higher rate.</p>
+
+        <h2>When a Leap HEI is the better choice</h2>
+        <p>A Leap HEI is built specifically for homeowners who want access to a larger amount of equity (typically $50,000 or more), for a longer period (5&ndash;15 years), without adding a monthly payment to their budget. It is the only product among the four that does not require monthly service. It is the only product that shares the downside if your home declines in value. And it is the only product structured as an investment, not as debt &mdash; meaning it does not appear on your credit report and does not affect your debt-to-income ratio for future borrowing.</p>
+
+        <p>If you&rsquo;d like to see what you&rsquo;d qualify for, the pre-qualification takes under two minutes and does not pull your credit.</p>
       </div>
     </div>
   </section>
