@@ -85,20 +85,390 @@
   </header>
 
   <main>
+<style>
+  .fw-module {
+    border-top: 1px solid rgba(22,24,27,0.1);
+    padding: 2.5rem 0;
+  }
+  .fw-module:first-of-type { border-top: none; }
+  .fw-module__header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .fw-module__number {
+    flex-shrink: 0;
+    width: 2.75rem;
+    height: 2.75rem;
+    background: var(--charcoal);
+    color: var(--off-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .fw-module__meta { flex: 1; }
+  .fw-module__tag {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+  .fw-module__title {
+    font-size: clamp(1.15rem, 2vw, 1.35rem);
+    font-weight: 600;
+    line-height: 1.25;
+    margin: 0 0 0.2rem;
+    color: var(--charcoal);
+  }
+  .fw-module__subtitle {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+  .fw-module__body { padding-left: 4.25rem; }
+  .fw-module__topics-label {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--charcoal-soft);
+    margin-bottom: 0.6rem;
+  }
+  .fw-module__topics {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.25rem;
+  }
+  .fw-module__topics li {
+    font-size: 0.9375rem;
+    color: var(--charcoal);
+    padding: 0.25rem 0 0.25rem 1.1rem;
+    position: relative;
+    line-height: 1.45;
+  }
+  .fw-module__topics li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+  .fw-module__outcome {
+    background: var(--off-white-warm);
+    border-left: 3px solid var(--gold);
+    padding: 0.9rem 1.1rem;
+    margin-bottom: 1.25rem;
+    border-radius: 0 4px 4px 0;
+  }
+  .fw-module__outcome-label {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.3rem;
+  }
+  .fw-module__outcome p {
+    font-size: 0.9375rem;
+    margin: 0;
+    color: var(--charcoal);
+    line-height: 1.5;
+  }
+  .fw-module__pdf {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    text-decoration: none;
+    border: 1px solid rgba(22,24,27,0.2);
+    border-radius: 4px;
+    padding: 0.5rem 0.9rem;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .fw-module__pdf:hover { border-color: var(--gold); color: var(--gold); }
+  .fw-module__pdf svg { width: 1rem; height: 1rem; flex-shrink: 0; }
+  .fw-disclaimer {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    font-style: italic;
+    line-height: 1.55;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(22,24,27,0.1);
+    margin-top: 1rem;
+  }
+  @media (max-width: 600px) {
+    .fw-module__body { padding-left: 0; }
+  }
+</style>
+
   <section class="page-head page-head--editorial">
-    <div class="container page-head__inner">
+    <div class="container page-head__inner" style="text-align:center; max-width:760px;">
       <span class="page-head__eyebrow">Financial Planning</span>
-      <h1 class="page-head__title">Financial Wellness,<br><em>built for you.</em></h1>
-      <p class="page-head__lead">Our Financial Wellness series covers 8 topics, starting with &ldquo;How Money Actually Works.&rdquo; We help you explore Credit, Budgeting, Debt, and a range of topics to guide you on your journey to financial prosperity. Take them in order or pick &amp; choose your topics &mdash; it&rsquo;s up to you.</p>
+      <h1 class="page-head__title">Financial Wellness,<br><em>designed for you.</em></h1>
+      <p class="page-head__lead">Our Financial Wellness Series covers 8 topics, starting with &ldquo;How Money Actually Works.&rdquo; We help you explore Credit, Budgeting, Debt, and a range of topics to guide you on your journey to financial prosperity.</p>
     </div>
   </section>
 
   <section class="section">
     <div class="container container--narrow">
-      <div class="prose" style="text-align: center; padding: 4rem 0;">
-        <p style="color: var(--text-muted); font-size: 1.125rem;">Content in progress &mdash; we&rsquo;re putting the finishing touches on this series. Check back soon.</p>
-        <p style="margin-top: 2rem;"><a href="learn.html" class="link-arrow">Return to Insights &amp; Resources &rarr;</a></p>
+      <p class="lead" style="margin-bottom:2.5rem;">This curriculum was designed for people who feel locked out of the financial system &mdash; whether due to low income, past credit problems, debt, or simply never having been taught how money and our financial system works. Each module builds on the previous, moving from foundational understanding to active skill-building and long-term wealth creation. However, you can take them in order or pick &amp; choose your topics &mdash; it&rsquo;s up to you.</p>
+
+      <div class="fw-module">
+        <div class="fw-module__header">
+          <div class="fw-module__number">01</div>
+          <div class="fw-module__meta">
+            <span class="fw-module__tag">Foundation</span>
+            <h2 class="fw-module__title">How money actually works</h2>
+            <p class="fw-module__subtitle">The system, the rules, and who benefits</p>
+          </div>
+        </div>
+        <div class="fw-module__body">
+          <p class="fw-module__topics-label">Core Topics</p>
+          <ul class="fw-module__topics">
+            <li>How banks create money through lending &mdash; and why that matters to you</li>
+            <li>The difference between assets, liabilities, income, and net worth</li>
+            <li>How inflation erodes purchasing power over time</li>
+            <li>Why financial institutions are designed the way they are</li>
+            <li>How predatory financial products target low-income households</li>
+          </ul>
+          <div class="fw-module__outcome">
+            <p class="fw-module__outcome-label">What you&rsquo;ll learn</p>
+            <p>How to recognize the difference between products that build wealth vs. products that extract it &mdash; before signing anything.</p>
+          </div>
+          <a href="#" class="fw-module__pdf">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            Download Module 01 PDF
+          </a>
+        </div>
       </div>
+
+      <div class="fw-module">
+        <div class="fw-module__header">
+          <div class="fw-module__number">02</div>
+          <div class="fw-module__meta">
+            <span class="fw-module__tag">Credit</span>
+            <h2 class="fw-module__title">Understanding credit</h2>
+            <p class="fw-module__subtitle">Scores, reports, and how to take control</p>
+          </div>
+        </div>
+        <div class="fw-module__body">
+          <p class="fw-module__topics-label">Core Topics</p>
+          <ul class="fw-module__topics">
+            <li>What a credit report contains and how to read it</li>
+            <li>How FICO scores are calculated (payment history, utilization, length, mix, inquiries)</li>
+            <li>How to get your free reports from AnnualCreditReport.com</li>
+            <li>Disputing errors &mdash; the legal process and how to actually do it</li>
+            <li>How negative items age off your report (7-year rule, bankruptcies at 10 years)</li>
+            <li>Secured cards, credit-builder loans, and becoming an authorized user</li>
+          </ul>
+          <div class="fw-module__outcome">
+            <p class="fw-module__outcome-label">What you&rsquo;ll learn</p>
+            <p>How to pull and audit your own credit report, identify any errors, and begin a concrete plan to improve your score by 50+ points in 12 months.</p>
+          </div>
+          <a href="#" class="fw-module__pdf">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            Download Module 02 PDF
+          </a>
+        </div>
+      </div>
+
+      <div class="fw-module">
+        <div class="fw-module__header">
+          <div class="fw-module__number">03</div>
+          <div class="fw-module__meta">
+            <span class="fw-module__tag">Budgeting</span>
+            <h2 class="fw-module__title">Budgeting without shame</h2>
+            <p class="fw-module__subtitle">Making a plan that works on any income</p>
+          </div>
+        </div>
+        <div class="fw-module__body">
+          <p class="fw-module__topics-label">Core Topics</p>
+          <ul class="fw-module__topics">
+            <li>Why traditional budget advice often fails people with irregular income</li>
+            <li>The &ldquo;pay yourself first&rdquo; method vs. zero-based budgeting</li>
+            <li>Tracking spending without apps (envelope method, simple spreadsheet)</li>
+            <li>Understanding fixed vs. variable expenses and where cuts are actually possible</li>
+            <li>What to do when income doesn&rsquo;t cover necessities &mdash; triage and prioritization</li>
+            <li>Building a bare-bones budget vs. a goal-oriented budget</li>
+          </ul>
+          <div class="fw-module__outcome">
+            <p class="fw-module__outcome-label">What you&rsquo;ll learn</p>
+            <p>How to create a written monthly spending plan in under 30 minutes using only pen and paper, and identify one area to redirect $25&ndash;$50/month toward a goal.</p>
+          </div>
+          <a href="#" class="fw-module__pdf">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            Download Module 03 PDF
+          </a>
+        </div>
+      </div>
+
+      <div class="fw-module">
+        <div class="fw-module__header">
+          <div class="fw-module__number">04</div>
+          <div class="fw-module__meta">
+            <span class="fw-module__tag">Debt</span>
+            <h2 class="fw-module__title">Debt &mdash; understanding and escaping it</h2>
+            <p class="fw-module__subtitle">Interest, traps, and real payoff strategies</p>
+          </div>
+        </div>
+        <div class="fw-module__body">
+          <p class="fw-module__topics-label">Core Topics</p>
+          <ul class="fw-module__topics">
+            <li>How compound interest works against you &mdash; seeing the real cost of a minimum payment</li>
+            <li>Payday loans, rent-to-own, and buy-here-pay-here auto: what they really cost</li>
+            <li>The avalanche vs. snowball payoff method &mdash; which one works for your psychology</li>
+            <li>Negotiating with creditors and debt collectors (your rights under the FDCPA)</li>
+            <li>Understanding statute of limitations on debt by state</li>
+            <li>When bankruptcy might be the right tool &mdash; Chapter 7 vs. Chapter 13 overview</li>
+            <li>Debt consolidation vs. debt settlement: the real difference</li>
+          </ul>
+          <div class="fw-module__outcome">
+            <p class="fw-module__outcome-label">What you&rsquo;ll learn</p>
+            <p>An approach for listing every debt with the balance, interest rate, and minimum payment &mdash; then map a realistic payoff order and calculate an actual freedom date.</p>
+          </div>
+          <a href="#" class="fw-module__pdf">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            Download Module 04 PDF
+          </a>
+        </div>
+      </div>
+
+      <div class="fw-module">
+        <div class="fw-module__header">
+          <div class="fw-module__number">05</div>
+          <div class="fw-module__meta">
+            <span class="fw-module__tag">Banking</span>
+            <h2 class="fw-module__title">Banking and saving with lower incomes</h2>
+            <p class="fw-module__subtitle">Building a safety net when there&rsquo;s very little left</p>
+          </div>
+        </div>
+        <div class="fw-module__body">
+          <p class="fw-module__topics-label">Core Topics</p>
+          <ul class="fw-module__topics">
+            <li>How to open a bank account with ChexSystems history (second-chance accounts)</li>
+            <li>Credit unions vs. banks vs. online banks &mdash; real differences in fees and access</li>
+            <li>How overdraft fees work and how to eliminate them</li>
+            <li>The $1,000 starter emergency fund &mdash; why this single goal changes everything</li>
+            <li>High-yield savings accounts: what they are and who qualifies</li>
+            <li>Safe places to save if you can&rsquo;t get a bank account (prepaid cards, USPS accounts)</li>
+          </ul>
+          <div class="fw-module__outcome">
+            <p class="fw-module__outcome-label">What you&rsquo;ll learn</p>
+            <p>How to open or switch to a fee-free account and automate a transfer &mdash; even $5/week &mdash; to a separate savings bucket.</p>
+          </div>
+          <a href="#" class="fw-module__pdf">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            Download Module 05 PDF
+          </a>
+        </div>
+      </div>
+
+      <div class="fw-module">
+        <div class="fw-module__header">
+          <div class="fw-module__number">06</div>
+          <div class="fw-module__meta">
+            <span class="fw-module__tag">Resources</span>
+            <h2 class="fw-module__title">Income, benefits, and public resources</h2>
+            <p class="fw-module__subtitle">What you&rsquo;re owed and how to access it</p>
+          </div>
+        </div>
+        <div class="fw-module__body">
+          <p class="fw-module__topics-label">Core Topics</p>
+          <ul class="fw-module__topics">
+            <li>Overview of SNAP, Medicaid, CHIP, WIC, LIHEAP, and housing assistance</li>
+            <li>The Earned Income Tax Credit (EITC) &mdash; one of the most valuable and under-claimed benefits</li>
+            <li>Free tax filing options (VITA, IRS Free File) and how refunds can be leveraged</li>
+            <li>Side income strategies: gig work, selling, childcare &mdash; and how taxes change</li>
+            <li>Income-driven repayment for student loans and forgiveness programs</li>
+            <li>Community resources: food banks, utility assistance, nonprofit credit counseling</li>
+          </ul>
+          <div class="fw-module__outcome">
+            <p class="fw-module__outcome-label">What you&rsquo;ll learn</p>
+            <p>How to identify at least 2 benefits or credits you may qualify for and take the first step to apply or verify eligibility this month.</p>
+          </div>
+          <a href="#" class="fw-module__pdf">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            Download Module 06 PDF
+          </a>
+        </div>
+      </div>
+
+      <div class="fw-module">
+        <div class="fw-module__header">
+          <div class="fw-module__number">07</div>
+          <div class="fw-module__meta">
+            <span class="fw-module__tag">Protection</span>
+            <h2 class="fw-module__title">Protecting what you have</h2>
+            <p class="fw-module__subtitle">Insurance, scams, and legal rights</p>
+          </div>
+        </div>
+        <div class="fw-module__body">
+          <p class="fw-module__topics-label">Core Topics</p>
+          <ul class="fw-module__topics">
+            <li>Why renters insurance matters and how to get it for under $15/month</li>
+            <li>How to compare auto insurance and avoid being overcharged (credit-based insurance scoring)</li>
+            <li>Scams that specifically target financially vulnerable people &mdash; and the red flags</li>
+            <li>Identity theft: how it happens, how to freeze your credit for free, how to recover</li>
+            <li>Tenant rights and protections around eviction and security deposits</li>
+            <li>Your rights under the Fair Debt Collection Practices Act and Fair Credit Reporting Act</li>
+          </ul>
+          <div class="fw-module__outcome">
+            <p class="fw-module__outcome-label">What you&rsquo;ll learn</p>
+            <p>How to place a free credit freeze at all three bureaus (Equifax, Experian, TransUnion) and know the two consumer protection laws you can cite if contacted by a collector.</p>
+          </div>
+          <a href="#" class="fw-module__pdf">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            Download Module 07 PDF
+          </a>
+        </div>
+      </div>
+
+      <div class="fw-module">
+        <div class="fw-module__header">
+          <div class="fw-module__number">08</div>
+          <div class="fw-module__meta">
+            <span class="fw-module__tag">Growth</span>
+            <h2 class="fw-module__title">Building wealth</h2>
+            <p class="fw-module__subtitle">Long-term thinking, even when it feels out of reach</p>
+          </div>
+        </div>
+        <div class="fw-module__body">
+          <p class="fw-module__topics-label">Core Topics</p>
+          <ul class="fw-module__topics">
+            <li>How compound interest works for you &mdash; and why starting small still matters</li>
+            <li>Employer 401(k) match: the closest thing to free money that exists</li>
+            <li>Roth IRA basics: how to open one, contribution limits, why low-income earners benefit most</li>
+            <li>Homeownership as a wealth-building tool &mdash; and when it isn&rsquo;t</li>
+            <li>The racial and systemic wealth gap &mdash; history and current realities</li>
+            <li>Intergenerational wealth: life insurance, wills, and beneficiary designations</li>
+            <li>Community wealth models: credit unions, CDFIs, and cooperative ownership</li>
+          </ul>
+          <div class="fw-module__outcome">
+            <p class="fw-module__outcome-label">What you&rsquo;ll learn</p>
+            <p>How to open one tax-advantaged account &mdash; even if you can only contribute $25 &mdash; and name a beneficiary. That act alone puts you ahead of most Americans.</p>
+          </div>
+          <a href="#" class="fw-module__pdf">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            Download Module 08 PDF
+          </a>
+        </div>
+      </div>
+
+      <p class="fw-disclaimer">*Leap is not a Financial Planner or a Financial Advisor. The information provided on our website is meant for informational purposes only, and intended to start you on a journey of learning that supports your path to financial wellness.</p>
     </div>
   </section>
   </main>
@@ -143,7 +513,6 @@
         <div class="footer__col">
           <h4><a href="about.html">Company</a></h4>
           <ul>
-            <li><a href="about.html">Why Leap / Our Mission</a></li>
             <li><a href="leadership.html">Leadership</a></li>
             <li><a href="partners.html">Partners</a></li>
             <li><a href="pr-media.html">PR &amp; Media</a></li>
@@ -151,17 +520,8 @@
           </ul>
         </div>
       </div>
-      <div class="footer__trust">
-        <span class="footer__trust-label">Trusted &middot; verified by</span>
-        <div class="footer__badges">
-          <span class="footer__badge">BBB Accredited</span>
-          <span class="footer__badge">SOC 2 Type II</span>
-          <span class="footer__badge">Equal Housing Opportunity</span>
-          <span class="footer__badge">NMLS Registered</span>
-        </div>
-      </div>
       <div class="footer__bottom">
-        <span>&copy; <span data-year>2026</span> Leap Analytics, Inc.&nbsp; All rights reserved.</span>
+        <span>&copy; <span data-year>2026</span> Leap Analytics, Inc.&nbsp; All rights reserved. NMLS ID: 360009</span>
         <div class="footer__legal">
           <a href="legal-privacy.html">Privacy</a>
           <a href="legal-terms.html">Terms</a>
