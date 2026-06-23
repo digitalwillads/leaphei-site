@@ -521,8 +521,8 @@ h1 em, h2 em, h3 em,
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(15,22,17,0.30) 0%, rgba(15,22,17,0.25) 40%, rgba(15,22,17,0.72) 100%),
-    linear-gradient(95deg, rgba(15,22,17,0.35) 0%, rgba(15,22,17,0.08) 60%, rgba(15,22,17,0.35) 100%);
+    linear-gradient(180deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.25) 40%, rgba(0,0,0,0.72) 100%),
+    linear-gradient(95deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.08) 60%, rgba(0,0,0,0.35) 100%);
   z-index: -1;
 }
 
@@ -648,8 +648,8 @@ h1 em, h2 em, h3 em,
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(15,22,17,0.10) 0%, rgba(15,22,17,0.30) 50%, rgba(15,22,17,0.88) 100%),
-    linear-gradient(90deg, rgba(15,22,17,0.82) 0%, rgba(15,22,17,0.50) 45%, rgba(15,22,17,0.08) 100%);
+    linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.30) 50%, rgba(0,0,0,0.88) 100%),
+    linear-gradient(90deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.50) 45%, rgba(0,0,0,0.08) 100%);
   z-index: -1;
 }
 .solution-hero__inner {
@@ -2226,15 +2226,15 @@ html.has-custom-cursor textarea:focus ~ .cursor-dot { opacity: 0; }
 .hero__overlay {
   background:
     linear-gradient(180deg,
-      rgba(15,22,17,0.22) 0%,
-      rgba(15,22,17,0.10) 28%,
-      rgba(15,22,17,0.44) 68%,
-      rgba(15,22,17,0.80) 100%),
+      rgba(0,0,0,0.22) 0%,
+      rgba(0,0,0,0.10) 28%,
+      rgba(0,0,0,0.44) 68%,
+      rgba(0,0,0,0.80) 100%),
     linear-gradient(95deg,
-      rgba(15,22,17,0.66) 0%,
-      rgba(15,22,17,0.40) 32%,
-      rgba(15,22,17,0.10) 62%,
-      rgba(15,22,17,0) 78%);
+      rgba(0,0,0,0.66) 0%,
+      rgba(0,0,0,0.40) 32%,
+      rgba(0,0,0,0.10) 62%,
+      rgba(0,0,0,0) 78%);
 }
 .hero__headline,
 .hero__subhead {
