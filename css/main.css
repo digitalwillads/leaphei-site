@@ -647,9 +647,12 @@ h1 em, h2 em, h3 em,
 .solution-hero__overlay {
   position: absolute;
   inset: 0;
+  /* Shane (2026-06-26 "Website notes"): hero videos read too dark / filtered.
+     Lightened the scrim — kept enough at the bottom-left where the copy sits
+     (copy also carries a text-shadow), let the video show through elsewhere. */
   background:
-    linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.30) 50%, rgba(0,0,0,0.88) 100%),
-    linear-gradient(90deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.50) 45%, rgba(0,0,0,0.08) 100%);
+    linear-gradient(180deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.16) 50%, rgba(0,0,0,0.62) 100%),
+    linear-gradient(90deg, rgba(0,0,0,0.56) 0%, rgba(0,0,0,0.28) 45%, rgba(0,0,0,0.04) 100%);
   z-index: -1;
 }
 .solution-hero__inner {
@@ -2220,24 +2223,41 @@ html.has-custom-cursor textarea:focus ~ .cursor-dot { opacity: 0; }
 /* ---- Hero: brighter. Real sunlit photo + a much lighter scrim,
    weighted to the bottom only so the cream headline stays legible
    without darkening the whole frame. ---- */
-/* Shane (2026-06-07): "Activated." bled into the bright hero photo.
-   Darkened the left-and-bottom of the scrim (where the cream copy sits)
-   for more contrast, without dimming the whole sunlit frame. */
+/* Shane (2026-06-26 "Website notes"): hero photo reads too dark / filtered.
+   Pulled the scrim way down — just enough weight at the bottom-left, where the
+   cream copy sits, to keep it legible (copy also carries a text-shadow). The
+   sunlit photo now shows through brightly across most of the frame. */
 .hero__overlay {
   background:
     linear-gradient(180deg,
-      rgba(0,0,0,0.22) 0%,
-      rgba(0,0,0,0.10) 28%,
-      rgba(0,0,0,0.44) 68%,
-      rgba(0,0,0,0.80) 100%),
+      rgba(0,0,0,0.10) 0%,
+      rgba(0,0,0,0.00) 30%,
+      rgba(0,0,0,0.18) 72%,
+      rgba(0,0,0,0.52) 100%),
     linear-gradient(95deg,
-      rgba(0,0,0,0.66) 0%,
-      rgba(0,0,0,0.40) 32%,
-      rgba(0,0,0,0.10) 62%,
+      rgba(0,0,0,0.42) 0%,
+      rgba(0,0,0,0.18) 34%,
+      rgba(0,0,0,0.04) 62%,
       rgba(0,0,0,0) 78%);
 }
 .hero__headline,
 .hero__subhead {
+  text-shadow: 0 1px 30px rgba(15, 22, 17, 0.58);
+}
+/* Subhead = the one-line promise; body = the supporting paragraph.
+   Split per Shane's 2026-06-26 "Website notes" (separate subhead + body copy). */
+.hero__subhead {
+  font-weight: 500;
+  color: rgba(247, 243, 236, 0.96);
+  margin: 0 0 1rem;
+}
+.hero__body {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(240, 237, 230, 0.86);
+  max-width: 52ch;
+  margin: 0 0 2rem;
   text-shadow: 0 1px 30px rgba(15, 22, 17, 0.58);
 }
 
@@ -2476,3 +2496,52 @@ html.has-custom-cursor textarea:focus ~ .cursor-dot { opacity: 0; }
   transition: color 0.15s ease;
 }
 .nav__drawer-sub a:hover { color: var(--gold-soft); }
+
+/* =========================================================
+   PR & Media — "As featured in" press logo strip
+   (Shane 2026-06-26 "Website notes": add the outlet logos)
+   ========================================================= */
+.press-strip {
+  padding: 3rem 0 1rem;
+  border-bottom: 1px solid var(--rule, rgba(22,24,27,0.1));
+}
+.press-strip__label {
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: var(--ink-soft, #6b6b63);
+  margin: 0 0 1.75rem;
+}
+.press-strip__logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem 3.25rem;
+}
+.press-strip__logo {
+  height: 34px;
+  width: auto;
+  max-width: 180px;
+  object-fit: contain;
+  opacity: 0.78;
+  filter: grayscale(100%);
+  transition: opacity 0.25s ease, filter 0.25s ease;
+}
+.press-strip__logo:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+}
+/* Forbes ships as a solid black rounded tile — show it square, no grayscale. */
+.press-strip__logo--tile {
+  height: 46px;
+  filter: none;
+  border-radius: 8px;
+}
+@media (max-width: 640px) {
+  .press-strip__logos { gap: 1.75rem 2rem; }
+  .press-strip__logo { height: 26px; }
+  .press-strip__logo--tile { height: 36px; }
+}
