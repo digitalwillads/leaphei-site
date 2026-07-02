@@ -1,0 +1,58 @@
+name: Build & deploy to GitHub Pages
+
+# Runs build.py (renders _pages/*.html through _layouts/base.html) and publishes
+# the result to https://digitalwillads.github.io/leaphei-site/ on every push to main.
+# This is what lets Shane & Ashley edit copy in the GitHub web editor and have it
+# go live automatically — no local build step required.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}          # allow manual "Run workflow" from the Actions tab
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never run two deploys at once; a newer push supersedes an in-flight one.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build site (python3 build.py)
+        run: |
+          echo "::group::build"
+          python3 build.py
+          echo "::endgroup::"
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'            # serve from repo root, matching the current Pages setup
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
