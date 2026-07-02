@@ -659,7 +659,7 @@ h1 em, h2 em, h3 em,
   width: 100%;
   max-width: var(--container);
   margin: 0 auto;
-  padding: 2rem var(--gutter) 4rem;
+  padding: calc(var(--nav-h) + 2rem) var(--gutter) 4rem;
   color: var(--off-white);
 }
 .solution-hero__copy {
