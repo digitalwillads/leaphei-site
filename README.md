@@ -1,4 +1,4 @@
-# Leap HEI — website prototype
+# Leap HEI — website  prototype
 
 A static-site prototype for [Leap HEI](https://leaphei.com), built for client preview.
 
