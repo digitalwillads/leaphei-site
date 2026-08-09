@@ -151,7 +151,7 @@
     // a.use: debt | renovate | retirement | other
     // a.equity: <100 | 100-300 | 300+
     // a.credit: <620 | 620-720 | 720+
-    if (a.use === 'debt')        return { name: 'Leap Restore', desc: 'Designed to help homeowners pay down high-interest debt and rebuild credit without a new monthly payment.', href: 'solutions-restore.html' };
+    if (a.use === 'debt')        return { name: 'Leap Restore', desc: 'Designed to help homeowners pay down high-interest debt and rebuild credit without a new monthly payment.', href: 'https://app-stage.leaphei.com/' };
     if (a.use === 'renovate')    return { name: 'Leap Revive',  desc: 'Built for the homeowner who wants to renovate the home they already love, with all funds available at close.', href: 'solutions-revive.html' };
     if (a.use === 'retirement')  return { name: 'Leap Relax',   desc: 'Engineered for homeowners approaching retirement who want to turn equity into a longer runway.', href: 'solutions-relax.html' };
     return { name: 'A Leap HEI', desc: 'A licensed Leap specialist will match you to the right product for your situation in a 15-minute conversation.', href: 'apply.html' };
