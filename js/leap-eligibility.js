@@ -10,16 +10,15 @@
    ============================================================ */
 (function(){
   "use strict";
+  if(window.__leapEligibilityInit) return;   // never initialize twice, even if included twice
+  window.__leapEligibilityInit = true;
   if(!document.querySelector('link[href*="Cormorant+Garamond"]')){
     var f=document.createElement("link"); f.rel="stylesheet";
     f.href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500;600;700&display=swap";
     document.head.appendChild(f);
   }
-  if(!window.turnstile && !document.querySelector('script[src*="turnstile"]')){
-    var t=document.createElement("script");
-    t.src="https://challenges.cloudflare.com/turnstile/v0/api.js"; t.async=true; t.defer=true;
-    document.head.appendChild(t);
-  }
+  // Turnstile loads lazily (only at the verification step) to avoid duplicating
+  // any copy the host site already loads — see mountTurnstile() below.
   var MODAL_HTML = `<div class="modal" id="modal" aria-hidden="true">
   <div class="modal__backdrop" data-close></div>
   <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
@@ -211,11 +210,19 @@
 
   // ---- Flow ----
   $("notQuite").addEventListener("click", ()=>{ $("confirm").classList.remove("show"); $("stage").classList.remove("open"); selected.ready=false; });
-  // ---- Turnstile: render reliably (wait for the async script) and capture the token ----
+  // ---- Turnstile: load lazily, reuse any existing copy, capture token via callback ----
   let tsToken = "", tsWidgetId = null;
+  function ensureTurnstileScript(){
+    if(window.turnstile) return;  // already available (loaded by us or the host site)
+    if(document.querySelector('script[src*="challenges.cloudflare.com/turnstile"]')) return;  // already loading
+    var t=document.createElement("script");
+    t.src="https://challenges.cloudflare.com/turnstile/v0/api.js"; t.async=true; t.defer=true;
+    document.head.appendChild(t);
+  }
   function mountTurnstile(){
     if(!TURNSTILE_SITE_KEY || tsWidgetId !== null) return;
-    if(!window.turnstile){ setTimeout(mountTurnstile, 250); return; }  // script not ready yet — retry
+    ensureTurnstileScript();
+    if(!window.turnstile || !window.turnstile.render){ setTimeout(mountTurnstile, 250); return; }  // wait for it
     try{
       tsWidgetId = turnstile.render("#turnstile", {
         sitekey: TURNSTILE_SITE_KEY,
