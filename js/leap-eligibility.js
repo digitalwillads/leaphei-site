@@ -133,7 +133,7 @@
      CONFIG — the three values to check at cutover (see README).
      ============================================================ */
   const GOOGLE_MAPS_API_KEY = "AIzaSyDxrJgxuwiXWN3jzkNwD0OusXcKNqAEBHU";
-  const TURNSTILE_SITE_KEY   = "0x4AAAAAADngRpURDKSLbCtJ";
+  const TURNSTILE_SITE_KEY   = "";
   // The eligibility API base. Chosen by hostname so the same file works in all
   // three places. Set the leaphei.com value to your deployed API on Monday.
   const HOST = location.hostname;
