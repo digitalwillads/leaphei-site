@@ -211,27 +211,26 @@
   // ---- Flow ----
   $("notQuite").addEventListener("click", ()=>{ $("confirm").classList.remove("show"); $("stage").classList.remove("open"); selected.ready=false; });
   // ---- Turnstile: load lazily, reuse any existing copy, capture token via callback ----
-  let tsToken = "", tsWidgetId = null, tsReadyQueue = [];
-  // Cloudflare calls this once the API is fully ready (render attached).
-  window.__leapTurnstileOnload = function(){
-    var q = tsReadyQueue; tsReadyQueue = [];
-    q.forEach(function(cb){ try{ cb(); }catch(e){ console.error(e); } });
-  };
-  function ensureTurnstileScript(){
-    if(window.turnstile && window.turnstile.render) return;
-    if(document.getElementById("cf-turnstile-script")) return;               // our loader already added
-    if(document.querySelector('script[src*="challenges.cloudflare.com/turnstile"]')) return; // host loaded it
-    var t=document.createElement("script");
-    t.id="cf-turnstile-script";
-    t.src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=__leapTurnstileOnload&render=explicit";
-    t.async=true; t.defer=true;
-    document.head.appendChild(t);
-  }
+  let tsToken = "", tsWidgetId = null;
   function whenTurnstileReady(cb){
-    if(window.turnstile && window.turnstile.render){ cb(); return; }          // already ready
-    if(window.turnstile && window.turnstile.ready){ window.turnstile.ready(cb); return; } // host loaded, use its ready
-    tsReadyQueue.push(cb);                                                    // wait for our onload
-    ensureTurnstileScript();
+    // Ready now.
+    if(window.turnstile && typeof window.turnstile.render === "function"){ cb(); return; }
+    // Load the script ONLY if nothing turnstile-related is already present — never
+    // add a second loader (a double load corrupts the API so render never attaches).
+    if(!window.turnstile && !document.querySelector('script[src*="turnstile"]')){
+      var t=document.createElement("script");
+      t.id="cf-turnstile-script";
+      t.src="https://challenges.cloudflare.com/turnstile/v0/api.js";
+      t.async=true; t.defer=true;
+      document.head.appendChild(t);
+    }
+    // Poll until render attaches (whether the loader was ours or the host site's).
+    var tries=0;
+    (function poll(){
+      if(window.turnstile && typeof window.turnstile.render === "function"){ cb(); return; }
+      if(tries++ > 50){ console.warn("[Leap] Turnstile never became ready — a second loader on the page may be conflicting."); return; }
+      setTimeout(poll, 200);
+    })();
   }
   function mountTurnstile(){
     if(!TURNSTILE_SITE_KEY || tsWidgetId !== null) return;
