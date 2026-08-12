@@ -211,31 +211,45 @@
   // ---- Flow ----
   $("notQuite").addEventListener("click", ()=>{ $("confirm").classList.remove("show"); $("stage").classList.remove("open"); selected.ready=false; });
   // ---- Turnstile: load lazily, reuse any existing copy, capture token via callback ----
-  let tsToken = "", tsWidgetId = null;
+  let tsToken = "", tsWidgetId = null, tsReadyQueue = [];
+  // Cloudflare calls this once the API is fully ready (render attached).
+  window.__leapTurnstileOnload = function(){
+    var q = tsReadyQueue; tsReadyQueue = [];
+    q.forEach(function(cb){ try{ cb(); }catch(e){ console.error(e); } });
+  };
   function ensureTurnstileScript(){
-    if(window.turnstile) return;  // already available (loaded by us or the host site)
-    if(document.querySelector('script[src*="challenges.cloudflare.com/turnstile"]')) return;  // already loading
+    if(window.turnstile && window.turnstile.render) return;
+    if(document.getElementById("cf-turnstile-script")) return;               // our loader already added
+    if(document.querySelector('script[src*="challenges.cloudflare.com/turnstile"]')) return; // host loaded it
     var t=document.createElement("script");
-    t.src="https://challenges.cloudflare.com/turnstile/v0/api.js"; t.async=true; t.defer=true;
+    t.id="cf-turnstile-script";
+    t.src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=__leapTurnstileOnload&render=explicit";
+    t.async=true; t.defer=true;
     document.head.appendChild(t);
+  }
+  function whenTurnstileReady(cb){
+    if(window.turnstile && window.turnstile.render){ cb(); return; }          // already ready
+    if(window.turnstile && window.turnstile.ready){ window.turnstile.ready(cb); return; } // host loaded, use its ready
+    tsReadyQueue.push(cb);                                                    // wait for our onload
+    ensureTurnstileScript();
   }
   function mountTurnstile(){
     if(!TURNSTILE_SITE_KEY || tsWidgetId !== null) return;
-    ensureTurnstileScript();
-    if(!window.turnstile || !window.turnstile.render){ setTimeout(mountTurnstile, 250); return; }  // wait for it
-    var el = $("turnstile");
-    if(!el){ console.warn("[Leap] #turnstile container not found"); return; }
-    el.innerHTML = "";  // clear any prior attempt so render isn't a no-op
-    try{
-      tsWidgetId = turnstile.render(el, {
-        sitekey: TURNSTILE_SITE_KEY,
-        theme: "light",
-        callback: t => { tsToken = t; $("formErr").classList.remove("show"); },
-        "expired-callback": () => { tsToken = ""; },
-        "error-callback": (c) => { tsToken = ""; console.warn("[Leap] Turnstile error-callback:", c); },
-      });
-      console.log("[Leap] Turnstile render called, widgetId =", tsWidgetId);
-    }catch(e){ console.error("[Leap] Turnstile render threw:", e); }
+    whenTurnstileReady(function(){
+      if(tsWidgetId !== null) return;
+      var el = $("turnstile"); if(!el) return;
+      el.innerHTML = "";
+      try{
+        tsWidgetId = turnstile.render(el, {
+          sitekey: TURNSTILE_SITE_KEY,
+          theme: "light",
+          callback: t => { tsToken = t; $("formErr").classList.remove("show"); },
+          "expired-callback": () => { tsToken = ""; },
+          "error-callback": (c) => { tsToken = ""; console.warn("[Leap] Turnstile error:", c); },
+        });
+        console.log("[Leap] Turnstile rendered, id =", tsWidgetId);
+      }catch(e){ console.error("[Leap] Turnstile render threw:", e); }
+    });
   }
   function resetTurnstile(){
     tsToken = "";
