@@ -223,14 +223,19 @@
     if(!TURNSTILE_SITE_KEY || tsWidgetId !== null) return;
     ensureTurnstileScript();
     if(!window.turnstile || !window.turnstile.render){ setTimeout(mountTurnstile, 250); return; }  // wait for it
+    var el = $("turnstile");
+    if(!el){ console.warn("[Leap] #turnstile container not found"); return; }
+    el.innerHTML = "";  // clear any prior attempt so render isn't a no-op
     try{
-      tsWidgetId = turnstile.render("#turnstile", {
+      tsWidgetId = turnstile.render(el, {
         sitekey: TURNSTILE_SITE_KEY,
+        theme: "light",
         callback: t => { tsToken = t; $("formErr").classList.remove("show"); },
         "expired-callback": () => { tsToken = ""; },
-        "error-callback": () => { tsToken = ""; },
+        "error-callback": (c) => { tsToken = ""; console.warn("[Leap] Turnstile error-callback:", c); },
       });
-    }catch(e){}
+      console.log("[Leap] Turnstile render called, widgetId =", tsWidgetId);
+    }catch(e){ console.error("[Leap] Turnstile render threw:", e); }
   }
   function resetTurnstile(){
     tsToken = "";
@@ -241,7 +246,7 @@
     $("confirm").classList.remove("show");
     $("capture").classList.add("show");
     setTimeout(()=>$("email").focus(), 300);
-    mountTurnstile();
+    setTimeout(mountTurnstile, 650);   // wait for the capture panel to finish expanding before rendering
   });
 
   // phone formatting (US)
