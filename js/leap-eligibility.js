@@ -211,13 +211,30 @@
 
   // ---- Flow ----
   $("notQuite").addEventListener("click", ()=>{ $("confirm").classList.remove("show"); $("stage").classList.remove("open"); selected.ready=false; });
+  // ---- Turnstile: render reliably (wait for the async script) and capture the token ----
+  let tsToken = "", tsWidgetId = null;
+  function mountTurnstile(){
+    if(!TURNSTILE_SITE_KEY || tsWidgetId !== null) return;
+    if(!window.turnstile){ setTimeout(mountTurnstile, 250); return; }  // script not ready yet — retry
+    try{
+      tsWidgetId = turnstile.render("#turnstile", {
+        sitekey: TURNSTILE_SITE_KEY,
+        callback: t => { tsToken = t; $("formErr").classList.remove("show"); },
+        "expired-callback": () => { tsToken = ""; },
+        "error-callback": () => { tsToken = ""; },
+      });
+    }catch(e){}
+  }
+  function resetTurnstile(){
+    tsToken = "";
+    if(window.turnstile && tsWidgetId !== null){ try{ turnstile.reset(tsWidgetId); }catch(_){} }
+  }
+
   $("yesThis").addEventListener("click", ()=>{
     $("confirm").classList.remove("show");
     $("capture").classList.add("show");
     setTimeout(()=>$("email").focus(), 300);
-    if(window.turnstile && TURNSTILE_SITE_KEY && !$("turnstile").dataset.rendered){
-      try{ turnstile.render("#turnstile", { sitekey:TURNSTILE_SITE_KEY }); $("turnstile").dataset.rendered="1"; }catch(e){}
-    }
+    mountTurnstile();
   });
 
   // phone formatting (US)
@@ -239,7 +256,13 @@
     if($("company").value){ return; }
     if(Date.now()-formRenderedAt < 2000){ /* too fast — let server/turnstile catch, no hard block */ }
 
-    const token = (window.turnstile && $("turnstile").dataset.rendered) ? (turnstile.getResponse() || "") : "";
+    // require a solved Turnstile before sending (an empty token is a guaranteed 400)
+    if(TURNSTILE_SITE_KEY && !tsToken){
+      showErr("Please complete the verification below.");
+      mountTurnstile();
+      return;
+    }
+    const token = tsToken;
 
     setBusy(true);
     const payload = {
@@ -258,7 +281,7 @@
     }catch(e){
       setBusy(false);
       showErr(e.message + "  (If you're testing on a static host, the API must be reachable over https.)");
-      if(window.turnstile && $("turnstile").dataset.rendered){ try{ turnstile.reset("#turnstile"); }catch(_){} }
+      resetTurnstile();
     }
   }
 
@@ -334,7 +357,7 @@
     $("amtFigure").textContent="$0"; $("formErr").classList.remove("show");
     document.body.classList.remove("engaged"); armEngage();
     mountAutocomplete();  // fresh, empty address field
-    if(window.turnstile && $("turnstile").dataset.rendered){ try{ turnstile.reset("#turnstile"); }catch(_){} }
+    resetTurnstile();
   }
 
   armEngage();
