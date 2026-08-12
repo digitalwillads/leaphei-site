@@ -90,10 +90,7 @@
       </div>
       <!-- honeypot -->
       <div class="hp" aria-hidden="true"><label>Company<input id="company" type="text" tabindex="-1" autocomplete="off"></label></div>
-      <!-- id must NOT be "turnstile": a #turnstile element becomes window.turnstile
-           (named element access), which makes Cloudflare's api.js think it's already
-           loaded and skip installing the real API. -->
-      <div class="turnstile-row"><div id="cfTurnstile"></div></div>
+      <div class="turnstile-row"><div id="turnstile"></div></div>
       <p class="consent">By continuing you agree we may contact you about your inquiry, including by phone or text if you provide a number. Message/data rates may apply.</p>
       <p class="err" id="formErr"></p>
       <div class="submit-row">
@@ -144,7 +141,7 @@
   const API_BASE =
     (HOST === "localhost" || HOST === "127.0.0.1")
       ? "http://localhost:8000"
-      : "https://leap-eligibility-api.fly.dev";  // ← digitalwillads + prod
+      : "https://leap-eligibility-api.onrender.com";  // ← digitalwillads + prod
   /* ============================================================ */
 
   const $ = id => document.getElementById(id);
@@ -218,9 +215,8 @@
     $("confirm").classList.remove("show");
     $("capture").classList.add("show");
     setTimeout(()=>$("email").focus(), 300);
-    if(window.turnstile && TURNSTILE_SITE_KEY && !$("cfTurnstile").dataset.rendered){
-      try{ turnstile.render("#cfTurnstile", { sitekey:TURNSTILE_SITE_KEY }); $("cfTurnstile").dataset.rendered="1"; }
-      catch(e){ console.error("Leap eligibility: Turnstile render failed", e); }
+    if(window.turnstile && TURNSTILE_SITE_KEY && !$("turnstile").dataset.rendered){
+      try{ turnstile.render("#turnstile", { sitekey:TURNSTILE_SITE_KEY }); $("turnstile").dataset.rendered="1"; }catch(e){}
     }
   });
 
@@ -243,7 +239,7 @@
     if($("company").value){ return; }
     if(Date.now()-formRenderedAt < 2000){ /* too fast — let server/turnstile catch, no hard block */ }
 
-    const token = (window.turnstile && $("cfTurnstile").dataset.rendered) ? (turnstile.getResponse() || "") : "";
+    const token = (window.turnstile && $("turnstile").dataset.rendered) ? (turnstile.getResponse() || "") : "";
 
     setBusy(true);
     const payload = {
@@ -262,7 +258,7 @@
     }catch(e){
       setBusy(false);
       showErr(e.message + "  (If you're testing on a static host, the API must be reachable over https.)");
-      if(window.turnstile && $("cfTurnstile").dataset.rendered){ try{ turnstile.reset("#cfTurnstile"); }catch(_){} }
+      if(window.turnstile && $("turnstile").dataset.rendered){ try{ turnstile.reset("#turnstile"); }catch(_){} }
     }
   }
 
@@ -338,7 +334,7 @@
     $("amtFigure").textContent="$0"; $("formErr").classList.remove("show");
     document.body.classList.remove("engaged"); armEngage();
     mountAutocomplete();  // fresh, empty address field
-    if(window.turnstile && $("cfTurnstile").dataset.rendered){ try{ turnstile.reset("#cfTurnstile"); }catch(_){} }
+    if(window.turnstile && $("turnstile").dataset.rendered){ try{ turnstile.reset("#turnstile"); }catch(_){} }
   }
 
   armEngage();
