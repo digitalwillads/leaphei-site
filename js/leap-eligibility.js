@@ -84,7 +84,7 @@
           <div class="ctrl"><input id="email" type="email" placeholder=" " autocomplete="email" required><span class="flabel">Email address</span></div>
         </div>
         <div class="field full">
-          <div class="ctrl"><input id="phone" type="tel" placeholder=" " autocomplete="tel"><span class="flabel">Phone (optional)</span></div>
+          <div class="ctrl"><input id="phone" type="tel" placeholder=" " autocomplete="tel"><span class="flabel">Phone</span></div>
         </div>
       </div>
       <!-- honeypot -->
@@ -133,7 +133,7 @@
      CONFIG — the three values to check at cutover (see README).
      ============================================================ */
   const GOOGLE_MAPS_API_KEY = "AIzaSyDxrJgxuwiXWN3jzkNwD0OusXcKNqAEBHU";
-  const TURNSTILE_SITE_KEY   = "";
+  const TURNSTILE_SITE_KEY   = "0x4AAAAAADngRpURDKSLbCtJ";
   // The eligibility API base. Chosen by hostname so the same file works in all
   // three places. Set the leaphei.com value to your deployed API on Monday.
   const HOST = location.hostname;
@@ -277,6 +277,8 @@
     if(!first || !last){ showErr("Please enter your first and last name."); document.body.classList.add("engaged"); $("first_name").focus(); return; }
     if(!selected.ready){ showErr("Please choose your address from the suggestions."); return; }
     if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ showErr("Please enter a valid email address."); $("email").focus(); return; }
+    const phoneDigits = $("phone").value.replace(/\D/g,"");
+    if(phoneDigits.length !== 10){ showErr("Please enter a valid 10-digit phone number."); $("phone").focus(); return; }
     // bot guards (client side; server is authoritative)
     if($("company").value){ return; }
     if(Date.now()-formRenderedAt < 2000){ /* too fast — let server/turnstile catch, no hard block */ }
