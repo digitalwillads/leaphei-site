@@ -212,34 +212,44 @@
   $("notQuite").addEventListener("click", ()=>{ $("confirm").classList.remove("show"); $("stage").classList.remove("open"); selected.ready=false; });
   // ---- Turnstile: load lazily, reuse any existing copy, capture token via callback ----
   let tsToken = "", tsWidgetId = null;
+  function tsApi(){
+    // window.turnstile can be shadowed by <div id="turnstile"> (named-element global),
+    // so only treat it as the API if it actually has render().
+    var t = window.turnstile;
+    return (t && typeof t.render === "function") ? t : null;
+  }
   function whenTurnstileReady(cb){
-    // Ready now.
-    if(window.turnstile && typeof window.turnstile.render === "function"){ cb(); return; }
-    // Load the script ONLY if nothing turnstile-related is already present — never
-    // add a second loader (a double load corrupts the API so render never attaches).
-    if(!window.turnstile && !document.querySelector('script[src*="turnstile"]')){
+    if(tsApi()){ console.log("[Leap] Turnstile already ready"); cb(); return; }
+    // Inject once, keyed off the actual script tag (not the ambiguous global).
+    if(!document.getElementById("cf-turnstile-script") &&
+       !document.querySelector('script[src*="challenges.cloudflare.com/turnstile"]')){
+      console.log("[Leap] injecting Turnstile script");
       var t=document.createElement("script");
       t.id="cf-turnstile-script";
       t.src="https://challenges.cloudflare.com/turnstile/v0/api.js";
       t.async=true; t.defer=true;
+      t.onerror=function(){ console.error("[Leap] Turnstile script FAILED to load (network/blocked)"); };
+      t.onload=function(){ console.log("[Leap] Turnstile script onload fired"); };
       document.head.appendChild(t);
+    } else {
+      console.log("[Leap] Turnstile script tag already present");
     }
-    // Poll until render attaches (whether the loader was ours or the host site's).
     var tries=0;
     (function poll(){
-      if(window.turnstile && typeof window.turnstile.render === "function"){ cb(); return; }
-      if(tries++ > 50){ console.warn("[Leap] Turnstile never became ready — a second loader on the page may be conflicting."); return; }
+      if(tsApi()){ cb(); return; }
+      if(tries++ > 50){ console.warn("[Leap] Turnstile never became ready — script loaded but render never attached."); return; }
       setTimeout(poll, 200);
     })();
   }
   function mountTurnstile(){
+    console.log("[Leap] mountTurnstile called — key set:", !!TURNSTILE_SITE_KEY, "already mounted:", tsWidgetId !== null);
     if(!TURNSTILE_SITE_KEY || tsWidgetId !== null) return;
     whenTurnstileReady(function(){
       if(tsWidgetId !== null) return;
       var el = $("turnstile"); if(!el) return;
       el.innerHTML = "";
       try{
-        tsWidgetId = turnstile.render(el, {
+        tsWidgetId = tsApi().render(el, {
           sitekey: TURNSTILE_SITE_KEY,
           theme: "light",
           callback: t => { tsToken = t; $("formErr").classList.remove("show"); },
@@ -252,7 +262,8 @@
   }
   function resetTurnstile(){
     tsToken = "";
-    if(window.turnstile && tsWidgetId !== null){ try{ turnstile.reset(tsWidgetId); }catch(_){} }
+    var api = tsApi();
+    if(api && tsWidgetId !== null){ try{ api.reset(tsWidgetId); }catch(_){} }
   }
 
   $("yesThis").addEventListener("click", ()=>{
