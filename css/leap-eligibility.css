@@ -121,7 +121,8 @@
 
   .cap-head{font-family:var(--font-serif); font-size:1.3rem; color:var(--forest); margin:0 0 4px}
   .cap-sub{color:var(--muted); font-size:13.5px; line-height:1.5; margin:0 0 20px}
-  .turnstile-row{margin-top:20px; min-height:65px}
+  .turnstile-row{margin-top:20px; min-height:70px}
+  .turnstile-row #leap-turnstile{min-height:65px; width:300px; max-width:100%}
   .consent{font-size:11.5px; color:var(--muted); line-height:1.5; margin:16px 0 0}
   .submit-row{margin-top:24px; display:flex; align-items:center; gap:16px}
   .spinner{width:18px; height:18px; border:2px solid var(--bronze-pale); border-top-color:var(--bronze-deep); border-radius:50%; animation:spin .7s linear infinite; display:none}
