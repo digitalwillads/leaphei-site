@@ -133,7 +133,7 @@
      CONFIG — the three values to check at cutover (see README).
      ============================================================ */
   const GOOGLE_MAPS_API_KEY = "AIzaSyDxrJgxuwiXWN3jzkNwD0OusXcKNqAEBHU";
-  const TURNSTILE_SITE_KEY   = "";
+  const TURNSTILE_SITE_KEY   = "0x4AAAAAADngRpURDKSLbCtJ";
   // The eligibility API base. Chosen by hostname so the same file works in all
   // three places. Set the leaphei.com value to your deployed API on Monday.
   const HOST = location.hostname;
@@ -391,11 +391,23 @@
   initMaps();
   console.log("%cLeap eligibility — build 2026-06-19-elegant","color:#b8975a;font-weight:600");
 
-  document.querySelectorAll("a,button").forEach(function(el){
-    if(!el.hasAttribute("data-open-eligibility") &&
-       /check\s+my\s+eligibility/i.test((el.textContent||"").trim())){
-      el.addEventListener("click", function(e){ e.preventDefault(); openModal(); });
+  // Universal trigger: intercept ANY "Check my eligibility" link/button anywhere
+  // on the page — including ones added later (e.g. the step-process CTA) and ones
+  // that point at apply.html — and open the modal instead of navigating.
+  // Capture phase + stopImmediatePropagation runs before other click handlers
+  // (like the stepper's own), so their navigation never fires.
+  document.addEventListener("click", function(e){
+    var t = e.target;
+    var el = t && t.closest ? t.closest("a,button") : null;
+    if(!el || el.hasAttribute("data-open-eligibility")) return;  // data-attr handled above
+    if(el.closest("#modal")) return;                             // ignore clicks inside our modal
+    var txt = (el.textContent || "").toLowerCase().replace(/[^a-z]/g, "");
+    if(txt.indexOf("checkmyeligibility") !== -1){
+      e.preventDefault();
+      e.stopPropagation();
+      if(e.stopImmediatePropagation) e.stopImmediatePropagation();
+      openModal();
     }
-  });
+  }, true);
   window.LeapEligibility = { open: openModal, close: closeModal };
 })();
