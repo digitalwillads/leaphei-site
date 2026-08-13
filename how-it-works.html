@@ -635,6 +635,7 @@
         <div class="mechanics__cta-eyebrow">Next step</div>
         <h2>Ready to see what you qualify for?</h2>
         <p>A three-question pre-qualification takes under two minutes and does not affect your credit score. You'll get a product recommendation and an estimated investment range.</p>
+        <!-- Opens the Leap eligibility modal (data-open-eligibility), not the app. -->
         <a href="#" data-open-eligibility class="btn btn--primary btn--lg">Check my eligibility &rarr;</a>
       </div>
     </div>
@@ -677,11 +678,14 @@
 
       new LeapSteps('#leap-steps-root', steps, {
         ctaLabel:   'Check my eligibility',
+        // Final step opens the Leap eligibility modal, with a link fallback.
         onComplete: function () {
-    if (window.LeapEligibility) { window.LeapEligibility.open(); }
-    else { window.location.href = 'https://app-stage.leaphei.com/'; }
-  }
-});
+          if (window.LeapEligibility && typeof window.LeapEligibility.open === 'function') {
+            window.LeapEligibility.open();
+          } else {
+            window.location.href = 'https://app-stage.leaphei.com/';
+          }
+        }
       });
     })();
   </script>
@@ -750,7 +754,7 @@
   </footer>
 
   <script src="js/site.js" defer></script>
-  <!-- Leap eligibility modal — opens on any "Check my eligibility" trigger; calls the Fly API -->
+  <!-- Leap eligibility modal — opens on any "Check my eligibility" trigger; calls the Render API -->
   <script src="js/leap-eligibility.js" defer></script>
 </body>
 </html>
