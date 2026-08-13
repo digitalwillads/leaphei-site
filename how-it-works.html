@@ -635,7 +635,7 @@
         <div class="mechanics__cta-eyebrow">Next step</div>
         <h2>Ready to see what you qualify for?</h2>
         <p>A three-question pre-qualification takes under two minutes and does not affect your credit score. You'll get a product recommendation and an estimated investment range.</p>
-        <a href="https://app-stage.leaphei.com/" class="btn btn--primary btn--lg">Check my eligibility &rarr;</a>
+        <a href="#" data-open-eligibility class="btn btn--primary btn--lg">Check my eligibility &rarr;</a>
       </div>
     </div>
   </section>
@@ -677,7 +677,11 @@
 
       new LeapSteps('#leap-steps-root', steps, {
         ctaLabel:   'Check my eligibility',
-        onComplete: function () { window.location.href = 'https://app-stage.leaphei.com/'; }
+        onComplete: function () {
+    if (window.LeapEligibility) { window.LeapEligibility.open(); }
+    else { window.location.href = 'https://app-stage.leaphei.com/'; }
+  }
+});
       });
     })();
   </script>
