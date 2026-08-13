@@ -11,7 +11,7 @@
   // Until Ashley sends the real URL, this stays at the local
   // pre-qual flow so nothing breaks. Update this constant — every
   // CTA tagged [data-app-href] picks it up automatically.
-  const APPLICATION_URL = 'apply.html'; // TODO(2026-05-13): swap to live URL from Ashley.
+  const APPLICATION_URL = 'https://app-stage.leaphei.com/'; // TODO(2026-05-13): swap to live URL from Ashley.
 
   document.querySelectorAll('[data-app-href]').forEach(el => {
     el.setAttribute('href', APPLICATION_URL);
