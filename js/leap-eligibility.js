@@ -89,7 +89,7 @@
       </div>
       <!-- honeypot -->
       <div class="hp" aria-hidden="true"><label>Company<input id="company" type="text" tabindex="-1" autocomplete="off"></label></div>
-      <div class="turnstile-row"><div id="turnstile"></div></div>
+      <div class="turnstile-row"><div id="leap-turnstile"></div></div>
       <p class="consent">By continuing you agree we may contact you about your inquiry, including by phone or text if you provide a number. Message/data rates may apply.</p>
       <p class="err" id="formErr"></p>
       <div class="submit-row">
@@ -213,7 +213,7 @@
   // ---- Turnstile: load lazily, reuse any existing copy, capture token via callback ----
   let tsToken = "", tsWidgetId = null;
   function tsApi(){
-    // window.turnstile can be shadowed by <div id="turnstile"> (named-element global),
+    // window.turnstile could be shadowed by a same-named element global; only trust the real API.
     // so only treat it as the API if it actually has render().
     var t = window.turnstile;
     return (t && typeof t.render === "function") ? t : null;
@@ -246,7 +246,7 @@
     if(!TURNSTILE_SITE_KEY || tsWidgetId !== null) return;
     whenTurnstileReady(function(){
       if(tsWidgetId !== null) return;
-      var el = $("turnstile"); if(!el) return;
+      var el = $("leap-turnstile"); if(!el) return;
       el.innerHTML = "";
       try{
         tsWidgetId = tsApi().render(el, {
