@@ -1,0 +1,31 @@
+name: Build & deploy dev preview
+# Runs build.py and publishes the result to a separate repo's GitHub Pages
+# so dev previews never appear under leaphei.com (which is only configured
+# as a custom domain on the production repo).
+on:
+  push:
+    branches: [dev]
+  workflow_dispatch: {}
+concurrency:
+  group: dev-preview
+  cancel-in-progress: true
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build site
+        run: python3 build.py
+      - name: Deploy to preview repo
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.DEV_DEPLOY_TOKEN }}
+          external_repository: digitalwillads/leaphei-site-dev
+          publish_branch: gh-pages
+          publish_dir: .
+          exclude_assets: '.github,_pages,_layouts,build.py'
