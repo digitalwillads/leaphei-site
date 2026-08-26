@@ -25,7 +25,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.DEV_DEPLOY_TOKEN }}
-          external_repository: digitalwillads/leaphei-site-dev
+          external_repository: ashley685/leaphei-site-dev
           publish_branch: gh-pages
           publish_dir: .
           exclude_assets: '.github,_pages,_layouts,build.py'
