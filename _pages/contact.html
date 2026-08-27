@@ -52,7 +52,7 @@
 
         <!-- Cloudflare Turnstile widget -->
         <div class="contact-form__field">
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAADngRiezbd6WzTrCk_zRNQnm8Lo" data-callback="onTurnstileSuccess"></div>
+          <div id="contact-turnstile"></div>
         </div>
 
         <div class="contact-form__field contact-form__status" id="contactFormStatus" role="status" aria-live="polite"></div>
@@ -122,15 +122,15 @@
   .contact-form__submit--disabled { opacity: 0.6; pointer-events: none; }
 </style>
 
-<!-- Cloudflare Turnstile -->
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
-<!-- Contact form submission: Turnstile-gated, posts to the Leap eligibility backend -->
+<!--
+  TESTING: this sitekey is Cloudflare's official "always passes" test key —
+  guaranteed to render and work on any domain, no dashboard config needed.
+  Swap TEST_SITEKEY for your real key once this confirms everything else works.
+-->
 <script>
 (function () {
-  // Same localhost/production split used in leap-eligibility.js, so this works
-  // whether you're testing on localhost:8780 (with a local Flask server on
-  // :8000) or on the live site.
+  var TEST_SITEKEY = "1x00000000000000000000AA"; // <-- swap for your real key when ready
+
   var HOST = location.hostname;
   var CONTACT_ENDPOINT =
     (HOST === "localhost" || HOST === "127.0.0.1")
@@ -141,16 +141,63 @@
   var statusEl = document.getElementById("contactFormStatus");
   var submitBtn = document.getElementById("contactFormSubmit");
   var turnstileToken = null;
-
-  window.onTurnstileSuccess = function (token) {
-    turnstileToken = token;
-  };
+  var widgetId = null;
 
   function setStatus(message, kind) {
     statusEl.textContent = message || "";
     statusEl.classList.remove("contact-form__status--error", "contact-form__status--success");
     if (kind) statusEl.classList.add("contact-form__status--" + kind);
   }
+
+  // Don't assume anything about what leap-eligibility.js has or hasn't loaded
+  // yet — load our own copy of the script if one isn't already on the page,
+  // the same way leap-eligibility.js itself checks before injecting.
+  function turnstileApi() {
+    var t = window.turnstile;
+    return (t && typeof t.render === "function") ? t : null;
+  }
+
+  function mountWidget() {
+    if (widgetId !== null) return;
+    var el = document.getElementById("contact-turnstile");
+    if (!el) return;
+    try {
+      widgetId = turnstileApi().render(el, {
+        sitekey: TEST_SITEKEY,
+        theme: "light",
+        callback: function (token) { turnstileToken = token; },
+        "expired-callback": function () { turnstileToken = null; },
+        "error-callback": function (code) {
+          turnstileToken = null;
+          console.warn("[Contact form] Turnstile error:", code);
+        }
+      });
+    } catch (e) {
+      console.error("[Contact form] Turnstile render threw:", e);
+    }
+  }
+
+  function whenTurnstileReady(cb) {
+    if (turnstileApi()) { cb(); return; }
+    if (!document.getElementById("cf-turnstile-script") &&
+        !document.querySelector('script[src*="challenges.cloudflare.com/turnstile"]')) {
+      var s = document.createElement("script");
+      s.id = "cf-turnstile-script";
+      s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+      s.async = true;
+      s.defer = true;
+      s.onerror = function () { console.error("[Contact form] Turnstile script failed to load."); };
+      document.head.appendChild(s);
+    }
+    var tries = 0;
+    (function poll() {
+      if (turnstileApi()) { cb(); return; }
+      if (tries++ > 50) { console.warn("[Contact form] Turnstile never became ready."); return; }
+      setTimeout(poll, 200);
+    })();
+  }
+
+  whenTurnstileReady(mountWidget);
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -185,7 +232,8 @@
       .then(function () {
         setStatus("Thanks — we've received your message and will be in touch shortly.", "success");
         form.reset();
-        if (window.turnstile) window.turnstile.reset();
+        var api = turnstileApi();
+        if (api && widgetId !== null) { try { api.reset(widgetId); } catch (_) {} }
         turnstileToken = null;
       })
       .catch(function () {
