@@ -1,0 +1,14 @@
+app = "leaphei-site"
+primary_region = "iad"
+
+[http_service]
+  internal_port = 80
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  # Production client site: keep one machine warm so visitors never hit a cold start.
+  min_machines_running = 1
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "256mb"
