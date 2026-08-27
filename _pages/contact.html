@@ -11,9 +11,7 @@
 
   <section class="section">
     <div class="container container--narrow">
-      <form class="contact-form" name="contact" method="POST" action="https://formspree.io/f/info@leaphei.com" style="max-width: 600px; margin: 0 auto;">
-        <input type="hidden" name="_replyto" value="">
-        <input type="hidden" name="_subject" value="New contact from Leap website">
+      <form class="contact-form" name="contact" id="contactForm" style="max-width: 600px; margin: 0 auto;">
 
         <div class="contact-form__field">
           <label for="contact-name" class="contact-form__label">Name <span aria-hidden="true">*</span></label>
@@ -52,8 +50,15 @@
           </label>
         </div>
 
+        <!-- Cloudflare Turnstile widget — replace data-sitekey with your real Site Key -->
+        <div class="contact-form__field">
+          <div class="cf-turnstile" data-sitekey="0x0000000000000000000000AA" data-callback="onTurnstileSuccess"></div>
+        </div>
+
+        <div class="contact-form__field contact-form__status" id="contactFormStatus" role="status" aria-live="polite"></div>
+
         <div class="contact-form__actions">
-          <button type="submit" class="btn btn--primary btn--lg">Submit &rarr;</button>
+          <button type="submit" class="btn btn--primary btn--lg" id="contactFormSubmit">Submit &rarr;</button>
         </div>
 
       </form>
@@ -111,4 +116,78 @@
     margin-top: 0.25rem;
   }
   .contact-form__actions { margin-top: 2rem; }
+  .contact-form__status { font-family: var(--font-sans); font-size: 0.9rem; min-height: 1.2em; }
+  .contact-form__status--error { color: var(--red, #b3261e); }
+  .contact-form__status--success { color: var(--forest, #1e3528); }
+  .contact-form__submit--disabled { opacity: 0.6; pointer-events: none; }
 </style>
+
+<!-- Cloudflare Turnstile -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<!-- Contact form submission: Turnstile-gated, posts to the Flask/Fly backend -->
+<script>
+(function () {
+  // TODO: replace with the real Fly.io backend URL, e.g. https://leap-eligibility.fly.dev/contact-submit
+  var CONTACT_ENDPOINT = "https://YOUR-FLY-APP.fly.dev/contact-submit";
+
+  var form = document.getElementById("contactForm");
+  var statusEl = document.getElementById("contactFormStatus");
+  var submitBtn = document.getElementById("contactFormSubmit");
+  var turnstileToken = null;
+
+  window.onTurnstileSuccess = function (token) {
+    turnstileToken = token;
+  };
+
+  function setStatus(message, kind) {
+    statusEl.textContent = message || "";
+    statusEl.classList.remove("contact-form__status--error", "contact-form__status--success");
+    if (kind) statusEl.classList.add("contact-form__status--" + kind);
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    if (!turnstileToken) {
+      setStatus("Please complete the verification checkbox before submitting.", "error");
+      return;
+    }
+
+    var payload = {
+      name: form.name.value,
+      email: form.email.value,
+      phone: form.phone.value,
+      topic: form.topic.value,
+      comments: form.comments.value,
+      "hea-interest": form["hea-interest"].checked,
+      "cf-turnstile-response": turnstileToken
+    };
+
+    submitBtn.classList.add("contact-form__submit--disabled");
+    setStatus("Sending…", null);
+
+    fetch(CONTACT_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    })
+      .then(function (res) {
+        if (!res.ok) throw new Error("Request failed");
+        return res.json();
+      })
+      .then(function () {
+        setStatus("Thanks — we've received your message and will be in touch shortly.", "success");
+        form.reset();
+        if (window.turnstile) window.turnstile.reset();
+        turnstileToken = null;
+      })
+      .catch(function () {
+        setStatus("Something went wrong sending your message. Please try again or email hello@leaphei.com directly.", "error");
+      })
+      .finally(function () {
+        submitBtn.classList.remove("contact-form__submit--disabled");
+      });
+  });
+})();
+</script>
