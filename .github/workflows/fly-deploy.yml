@@ -1,0 +1,29 @@
+name: Deploy to Fly.io
+
+# Production deploy: every push to main rebuilds the site (build.py runs inside
+# the Docker build) and ships it to https://leaphei-site.fly.dev / leaphei.com.
+# Shane & Ashley's GitHub web-editor workflow is unchanged — edit, commit, live.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+concurrency:
+  group: fly-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up flyctl
+        uses: superfly/flyctl-actions/setup-flyctl@master
+
+      - name: Deploy
+        run: flyctl deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
