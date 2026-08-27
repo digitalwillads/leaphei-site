@@ -11,9 +11,7 @@
 
   <section class="section">
     <div class="container container--narrow">
-      <form class="contact-form" name="contact" method="POST" action="https://formspree.io/f/info@leaphei.com" style="max-width: 600px; margin: 0 auto;">
-        <input type="hidden" name="_replyto" value="">
-        <input type="hidden" name="_subject" value="New contact from Leap website">
+      <form class="contact-form" name="contact" id="contactForm" style="max-width: 600px; margin: 0 auto;">
 
         <div class="contact-form__field">
           <label for="contact-name" class="contact-form__label">Name <span aria-hidden="true">*</span></label>
@@ -52,8 +50,15 @@
           </label>
         </div>
 
+        <!-- Cloudflare Turnstile widget -->
+        <div class="contact-form__field">
+          <div id="contact-turnstile"></div>
+        </div>
+
+        <div class="contact-form__field contact-form__status" id="contactFormStatus" role="status" aria-live="polite"></div>
+
         <div class="contact-form__actions">
-          <button type="submit" class="btn btn--primary btn--lg">Submit &rarr;</button>
+          <button type="submit" class="btn btn--primary btn--lg" id="contactFormSubmit">Submit &rarr;</button>
         </div>
 
       </form>
@@ -111,4 +116,132 @@
     margin-top: 0.25rem;
   }
   .contact-form__actions { margin-top: 2rem; }
+  .contact-form__status { font-family: var(--font-sans); font-size: 0.9rem; min-height: 1.2em; }
+  .contact-form__status--error { color: var(--red, #b3261e); }
+  .contact-form__status--success { color: var(--forest, #1e3528); }
+  .contact-form__submit--disabled { opacity: 0.6; pointer-events: none; }
 </style>
+
+<!--
+  TESTING: this sitekey is Cloudflare's official "always passes" test key —
+  guaranteed to render and work on any domain, no dashboard config needed.
+  Swap TEST_SITEKEY for your real key once this confirms everything else works.
+-->
+<script>
+(function () {
+  var TEST_SITEKEY = "0x4AAAAAAEdgA6Jl9CruwlwX"; // <-- swap for your real key when ready
+
+  var HOST = location.hostname;
+  var CONTACT_ENDPOINT =
+    (HOST === "localhost" || HOST === "127.0.0.1")
+      ? "http://localhost:8000/api/contact-submit"
+      : "https://leap-eligibility-api.onrender.com/api/contact-submit";
+
+  var form = document.getElementById("contactForm");
+  var statusEl = document.getElementById("contactFormStatus");
+  var submitBtn = document.getElementById("contactFormSubmit");
+  var turnstileToken = null;
+  var widgetId = null;
+
+  function setStatus(message, kind) {
+    statusEl.textContent = message || "";
+    statusEl.classList.remove("contact-form__status--error", "contact-form__status--success");
+    if (kind) statusEl.classList.add("contact-form__status--" + kind);
+  }
+
+  // Don't assume anything about what leap-eligibility.js has or hasn't loaded
+  // yet — load our own copy of the script if one isn't already on the page,
+  // the same way leap-eligibility.js itself checks before injecting.
+  function turnstileApi() {
+    var t = window.turnstile;
+    return (t && typeof t.render === "function") ? t : null;
+  }
+
+  function mountWidget() {
+    if (widgetId !== null) return;
+    var el = document.getElementById("contact-turnstile");
+    if (!el) return;
+    try {
+      widgetId = turnstileApi().render(el, {
+        sitekey: TEST_SITEKEY,
+        theme: "light",
+        callback: function (token) { turnstileToken = token; },
+        "expired-callback": function () { turnstileToken = null; },
+        "error-callback": function (code) {
+          turnstileToken = null;
+          console.warn("[Contact form] Turnstile error:", code);
+        }
+      });
+    } catch (e) {
+      console.error("[Contact form] Turnstile render threw:", e);
+    }
+  }
+
+  function whenTurnstileReady(cb) {
+    if (turnstileApi()) { cb(); return; }
+    if (!document.getElementById("cf-turnstile-script") &&
+        !document.querySelector('script[src*="challenges.cloudflare.com/turnstile"]')) {
+      var s = document.createElement("script");
+      s.id = "cf-turnstile-script";
+      s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+      s.async = true;
+      s.defer = true;
+      s.onerror = function () { console.error("[Contact form] Turnstile script failed to load."); };
+      document.head.appendChild(s);
+    }
+    var tries = 0;
+    (function poll() {
+      if (turnstileApi()) { cb(); return; }
+      if (tries++ > 50) { console.warn("[Contact form] Turnstile never became ready."); return; }
+      setTimeout(poll, 200);
+    })();
+  }
+
+  whenTurnstileReady(mountWidget);
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    if (!turnstileToken) {
+      setStatus("Please complete the verification checkbox before submitting.", "error");
+      return;
+    }
+
+    var payload = {
+      name: form.name.value,
+      email: form.email.value,
+      phone: form.phone.value,
+      topic: form.topic.value,
+      comments: form.comments.value,
+      "hea-interest": form["hea-interest"].checked,
+      "cf-turnstile-response": turnstileToken
+    };
+
+    submitBtn.classList.add("contact-form__submit--disabled");
+    setStatus("Sending…", null);
+
+    fetch(CONTACT_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    })
+      .then(function (res) {
+        if (!res.ok) throw new Error("Request failed");
+        return res.json();
+      })
+      .then(function () {
+        setStatus("Thanks — we've received your message and will be in touch shortly.", "success");
+        form.reset();
+        var api = turnstileApi();
+        if (api && widgetId !== null) { try { api.reset(widgetId); } catch (_) {} }
+        turnstileToken = null;
+      })
+      .catch(function () {
+        setStatus("Something went wrong sending your message. Please try again or email info@leaphei.com directly.", "error");
+      })
+      .finally(function () {
+        submitBtn.classList.remove("contact-form__submit--disabled");
+      });
+  });
+})();
+</script>
