@@ -53,7 +53,7 @@
         </ul>
       </nav>
       <div class="nav__actions">
-        <a href="#" class="nav__signin">Sign In</a>
+        <a href="https://app-stage.leaphei.com/auth/login?callbackUrl=%2Fverify-account" class="nav__signin">Sign In</a>
         <a href="https://app-stage.leaphei.com/" data-app-href class="nav__cta">Apply &rarr;</a>
       </div>
       <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" id="navToggle"><span></span></button>
@@ -80,7 +80,7 @@
         <a href="pr-media.html">PR &amp; Media</a>
         <a href="contact.html">Contact Us</a>
       </div>
-      <a href="#" class="nav__link">Sign In</a>
+      <a href="https://app-stage.leaphei.com/auth/login?callbackUrl=%2Fverify-account" class="nav__link nav__link--cta">Sign In</a>
       <a href="https://app-stage.leaphei.com/" data-app-href class="nav__link nav__link--cta">Apply &rarr;</a>
     </div>
   </header>
@@ -512,7 +512,7 @@
     <div class="solution-hero__inner">
       <div class="solution-hero__copy">
         <span class="solution-hero__chapter">How It Works &middot; The Mechanics</span>
-        <h1 class="solution-hero__title">A home equity agreement, <em>fully&nbsp;explained</em>.</h1>
+        <h1 class="solution-hero__title">A home equity investment, <em>fully&nbsp;explained</em>.</h1>
         <p class="solution-hero__lead">Most homeowners have only encountered HELOCs and cash-out refinancing. Unfortunately, the requirements for qualification are stringent, the timelines and paperwork are a hassle, and these products might not be a fit for your unique situation. A home equity investment is structurally different and can offer a different path to the outcomes you seek &mdash; including financial mobility and wellness.</p>
       </div>
     </div>
@@ -524,8 +524,9 @@
       <div class="mechanics__callout">
         <div class="mechanics__callout-eyebrow">How it works</div>
         <h3>At its core, a Home Equity Investment provides you a lump sum upfront in exchange for a share of your home&rsquo;s future value</h3>
-        <p>You get your cash now and unlike a loan, you don&rsquo;t pay anything back until you sell, refinance, or the term ends (typically 10 years). Leap shares in your home&rsquo;s growth &mdash; or loss. When the agreement ends, the investor gets their percentage of your home&rsquo;s value at that time.</p>
+        <p>You get your cash now and unlike a traditional loan, you don&rsquo;t pay anything back until you sell, refinance, or the term ends (typically 10 years). Leap shares in your home&rsquo;s growth &mdash; or loss. When the agreement ends, the investor gets their percentage of your home&rsquo;s value at that time.</p>
         <p>Most importantly, you keep control &mdash; you still own your home, you just repay the investor when you&rsquo;re ready to move or settle the agreement.</p>
+        <p><p><em>Our complete Terms and Disclosures are <a href="PDFs/Key%20Terms%20and%20Disclosures.pdf" style="text-decoration: underline;"  target="_blank" rel="noopener noreferrer">available here</a>.</em></p>
       </div>
     </div>
   </section>
@@ -539,11 +540,11 @@
     </div>
   </section>
 
-  <!-- Why pick an HEA -->
+  <!-- Why pick an HEI -->
   <section class="section">
     <div class="container container--narrow">
       <div class="mechanics__section-head">
-        <h2>Why pick an HEA?</h2>
+        <h2>Why pick an HEI?</h2>
       </div>
       <div class="card-grid card-grid--2">
         <article class="card">
@@ -623,19 +624,19 @@
         <h2>When a Leap HEI is the better choice</h2>
         <p>A Leap HEI is built specifically for homeowners who want access to a larger amount of equity (typically $50,000 or more), for a longer period (5&ndash;15 years), without adding a monthly payment to their budget. It is the only product among the four that does not require monthly service. It is the only product that shares the downside if your home declines in value. And it is the only product structured as an investment, not as debt &mdash; meaning it does not appear on your credit report and does not affect your debt-to-income ratio for future borrowing.</p>
 
-        <p>If you&rsquo;d like to see what you&rsquo;d qualify for, the pre-qualification takes under two minutes and does not pull your credit.</p>
+        <p>If you&rsquo;d like to see what you&rsquo;d qualify for, the pre-qualification takes under two minutes and does not create a hard pull on your credit report.</p>
       </div>
     </div>
   </section>
 
   <!-- MODULE 6: Final CTA banner -->
-  <section class="section">
+  <section class="section" style="padding-top: 2rem;">
     <div class="container container--narrow">
       <div class="mechanics__cta">
         <div class="mechanics__cta-eyebrow">Next step</div>
         <h2>Ready to see what you qualify for?</h2>
         <p>A three-question pre-qualification takes under two minutes and does not affect your credit score. You'll get a product recommendation and an estimated investment range.</p>
-        <a href="#" data-open-eligibility class="btn btn--primary btn--lg">Check my eligibility &rarr;</a>
+        <a href="apply.html" class="btn btn--primary btn--lg">Check my eligibility &rarr;</a>
       </div>
     </div>
   </section>
@@ -677,11 +678,7 @@
 
       new LeapSteps('#leap-steps-root', steps, {
         ctaLabel:   'Check my eligibility',
-        onComplete: function () {
-    if (window.LeapEligibility) { window.LeapEligibility.open(); }
-    else { window.location.href = 'https://app-stage.leaphei.com/'; }
-  }
-});
+        onComplete: function () { window.location.href = 'apply.html'; }
       });
     })();
   </script>
@@ -694,7 +691,7 @@
           <a href="index.html" class="footer__brand" aria-label="Leap home">
             <img src="images/logo-gold.png" alt="Leap" class="footer__brand-img">
           </a>
-          <p class="footer__tag">A home equity investment platform built for homeowners who want to put their equity to work without taking on a new monthly bill.</p>
+          <p class="footer__tag">A home equity agreement platform built for homeowners who want to put their equity to work without taking on a new monthly bill.</p>
           <!-- Social URLs per Shane's 2026-06-26 "Website notes". -->
           <div class="footer__social" aria-label="Follow Leap">
             <a href="https://www.linkedin.com/company/leap-hei/" target="_blank" rel="noopener" aria-label="Leap on LinkedIn">LinkedIn</a>
@@ -704,7 +701,7 @@
           </div>
           <div class="footer__contact">
             <a href="mailto:hello@leaphei.com">hello@leaphei.com</a>
-            <a href="tel:+13106201121">(310) 620-1121</a>
+            <a href="tel:+18005327462">(800) 532-7462</a>
           </div>
         </div>
         <div class="footer__col">
