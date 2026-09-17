@@ -3,7 +3,7 @@
 
 - _layouts/base.html wraps each page.
 - _pages/<slug>.html contains a page's body. First lines may be `<!-- meta key: value -->`
-  for title and description.
+  for title, description and robots (e.g. `<!-- robots: noindex, nofollow -->`).
 - Output: <slug>.html at the project root.
 """
 import os
@@ -19,7 +19,7 @@ META_RE = re.compile(r"^<!--\s*(\w+)\s*:\s*(.+?)\s*-->\s*$")
 
 
 def build_page(slug, body, layout):
-    meta = {"title": slug.replace("-", " ").title(), "desc": "Home equity investment from Leap."}
+    meta = {"title": slug.replace("-", " ").title(), "desc": "Home equity investment from Leap.", "robots": "index, follow"}
     lines = body.splitlines()
     while lines:
         m = META_RE.match(lines[0])
@@ -28,7 +28,7 @@ def build_page(slug, body, layout):
         meta[m.group(1).lower()] = m.group(2)
         lines.pop(0)
     body_clean = "\n".join(lines).strip("\n")
-    html = layout.replace("{{TITLE}}", meta["title"]).replace("{{DESC}}", meta["desc"]).replace("{{BODY}}", body_clean)
+    html = layout.replace("{{TITLE}}", meta["title"]).replace("{{DESC}}", meta["desc"]).replace("{{ROBOTS}}", meta["robots"]).replace("{{BODY}}", body_clean)
     return html
 
 

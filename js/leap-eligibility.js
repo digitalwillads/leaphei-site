@@ -325,6 +325,10 @@
 
   function render(data){
     setBusy(false);
+    // Conversion tracking: one event per completed check, with the decision so
+    // GTM can count approvals separately from declines.
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: "eligibility_check_complete", eligibility_decision: data.decision || "unknown" });
     $("capture").classList.remove("show");
     $("resultWrap").classList.add("show");
     if(data.decision === "approved"){

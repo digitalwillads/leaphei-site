@@ -12,6 +12,7 @@
   <!-- End Google Tag Manager -->
   <title>Contact Us — We'd love to hear from you — Leap HEI</title>
   <meta name="description" content="Get in touch with Leap — whether you're interested in an HEI, looking to partner with us, or exploring career opportunities.">
+  <meta name="robots" content="index, follow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap">
@@ -219,13 +220,14 @@
 </style>
 
 <!--
-  TESTING: this sitekey is Cloudflare's official "always passes" test key —
-  guaranteed to render and work on any domain, no dashboard config needed.
-  Swap TEST_SITEKEY for your real key once this confirms everything else works.
+  The Turnstile sitekey MUST be the same one js/leap-eligibility.js uses: both
+  forms post to the same API, which verifies against a single TURNSTILE_SECRET.
+  A token minted under a different sitekey fails siteverify and the API
+  answers 400 "Verification failed" (this is what broke the form in Aug/Sep 2026).
 -->
 <script>
 (function () {
-  var TEST_SITEKEY = "0x4AAAAAAEdgA6Jl9CruwlwX"; // <-- swap for your real key when ready
+  var TURNSTILE_SITE_KEY = "0x4AAAAAADngRpURDKSLbCtJ";
 
   var HOST = location.hostname;
   var CONTACT_ENDPOINT =
@@ -259,7 +261,7 @@
     if (!el) return;
     try {
       widgetId = turnstileApi().render(el, {
-        sitekey: TEST_SITEKEY,
+        sitekey: TURNSTILE_SITE_KEY,
         theme: "light",
         callback: function (token) { turnstileToken = token; },
         "expired-callback": function () { turnstileToken = null; },
@@ -326,11 +328,14 @@
         return res.json();
       })
       .then(function () {
+        // Conversion tracking: GTM can fire on the dataLayer event or on the
+        // thank-you page view; both happen on every successful submission.
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: "contact_form_submit", form_topic: payload.topic });
         setStatus("Thanks — we've received your message and will be in touch shortly.", "success");
         form.reset();
-        var api = turnstileApi();
-        if (api && widgetId !== null) { try { api.reset(widgetId); } catch (_) {} }
         turnstileToken = null;
+        window.location.assign("thank-you.html");
       })
       .catch(function () {
         setStatus("Something went wrong sending your message. Please try again or email info@leaphei.com directly.", "error");
